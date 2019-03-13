@@ -65,16 +65,18 @@ namespace Interfaces
         // just using name thats in the database for simple use. SQLite probably just
         // uses some linear search, not worrying about optimizing yet
         // can always overload for flexibility/optimization later.
-        Creature getCreature(string name);
-        Item getItem(string name);
+
+        Creature BuildCreature(string name);
+        Item BuildItem(string name);
     }
 
     public interface Data {
         void InsertCreature(Dictionary<object> creatureData);
         void InsertItem(Dictionary<object> itemData);
+        Creature getCreature(string name);
+        Item getItem(string name);
 
-        Creature BuildCreature(string name);
-        Item BuildItem(string name);
+
 
     }
 }
