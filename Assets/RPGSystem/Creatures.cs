@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
 using Items;
+using Inventories;
 using Attributes;
  
 
@@ -10,10 +11,23 @@ namespace Creatures {
         public string name;
         // public List<Attribute> Attributes;
         public Dictionary<AttributeType, Attribute> Attributes;
-        public List<Item> inventory;
+        // // creature.Attributes.Strength = ...
+        // public struct _Attributes {
+        //     Attribute Strength;
+        //     Attribute Dexterity;
+        //     Attribute Constitution;
+        //     Attribute Wisdom;
+        //     Attribute Charisma;
+        //     Attribute Intelligence;
+        //     Attribute Initiative;
+        //     Attribute Attack;
+        //     Attribute Damage;
+        // }
+        // private _Attributes a = new _Attributes();
+        public Inventory inventory;
 
         public Creature() {
-            inventory = new List<Item>();
+            inventory = new Inventory();
             this.Attributes = new Dictionary<AttributeType, Attribute>()
             {
                 {AttributeType.Strength, new Attribute(10)},
@@ -45,7 +59,7 @@ namespace Creatures {
         public Creature(Dictionary<AttributeType, Attribute> attributes, string name, long id) {
             this.name = name;
             this.id = id;
-            inventory = new List<Item>();
+            inventory = new Inventory();
 
             // attribute enforcement
             this.Attributes = new Dictionary<AttributeType, Attribute>()
@@ -91,7 +105,6 @@ namespace Creatures {
             System.Random rand = new System.Random();
         }
 
-        
         override public string ToString() {
             string result = "";
             result += "id: " + this.id + "\n";
