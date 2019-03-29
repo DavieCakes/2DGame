@@ -5,6 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public float speed = 3f;
+    public bool pause;
     private Rigidbody rb;
 
     private void Start()
@@ -15,11 +16,18 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float mHor = Input.GetAxis("Horizontal");
-        float mVer = Input.GetAxis("Vertical");
+        if (!pause)
+        {
+            float mHor = Input.GetAxis("Horizontal");
+            float mVer = Input.GetAxis("Vertical");
 
-        Vector3 move = new Vector3(mHor, 0, mVer);
+            Vector3 move = new Vector3(mHor, 0, mVer);
 
-        rb.velocity = move * speed;
+            rb.velocity = move * speed;
+        }
+        else
+        {
+            rb.velocity = Vector3.zero;
+        }
     }
 }

@@ -9,6 +9,17 @@ public class Teleport : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
+            Movement m = other.gameObject.GetComponent<Movement>();
+            m.pause = true;
+            StartCoroutine(MoveWait(m));
             other.transform.position = destination.position;
+        }
+    }
+
+    IEnumerator MoveWait(Movement m)
+    {
+        yield return new WaitForSeconds(.25f);
+        m.pause = false;
     }
 }
