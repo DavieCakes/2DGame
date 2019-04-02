@@ -13,6 +13,7 @@ public class Encounters : MonoBehaviour
     GameObject enemy;
     Animator anim;
     public Button[] btnArray;
+    public string[] drops;
 
     public Canvas encounterUI;
     public Text txtBox;
@@ -52,6 +53,7 @@ public class Encounters : MonoBehaviour
         enemy = Instantiate(enemies[Random.Range(0, enemies.Length)], encounterUI.transform);
         ec = enemy.GetComponent<EnemyController>();
         anim = enemy.transform.GetChild(0).GetComponent<Animator>();
+        
         txtBox.text = ec.GetName() + " is attacking!";
         yield return new WaitForSeconds(1f);
         anim.SetTrigger("TrigGesture");
@@ -65,13 +67,29 @@ public class Encounters : MonoBehaviour
         txtBox.text += "\n" + ec.GetName() + " was defeated!";
         anim.SetTrigger("TrigDeath");
         yield return new WaitForSeconds(2f);
+        Drops();
         Destroy(enemy);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         pc.pause = false;
         inEn = false;
         active = false;
         gc.InEncounter();
         encounterUI.enabled = false;
+    }
+
+    private void Drops()
+    {
+        txtBox.text = "";
+        foreach (string s in this.drops)
+        {
+            txtBox.text += pc.GetName() + " received " + s + ".\n";
+            pc.ReceiveDrop(s);
+        }
+        foreach (string s in ec.drops)
+        {
+            txtBox.text += pc.GetName() + " received " + s + ".\n";
+            pc.ReceiveDrop(s);
+        }
     }
 
     public void BtnAttack()
@@ -102,12 +120,23 @@ public class Encounters : MonoBehaviour
 
     public void BtnItem()
     {
-
+        if(inEn)
+        {
+            StartCoroutine(Item());
+        }
     }
 
     IEnumerator Item()
     {
-        txtBox.text = "You have no items!";
+        Debug.Log("Items() was called!");
+        if (pc.UseItem().Equals(""))
+        {
+
+        }
+        else
+        {
+            txtBox.text = "You have no items!";
+        }
         yield return null;
     }
 

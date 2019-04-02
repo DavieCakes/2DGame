@@ -18,7 +18,7 @@ public class Door : MonoBehaviour
     public Type type = Type.Regular;
     public GameObject arch;
     public Transform parent;
-    public GameObject damageMsg;
+    public GameObject[] damageMsg;
 
     private void OnTriggerStay(Collider other)
     {
@@ -42,7 +42,7 @@ public class Door : MonoBehaviour
                         break;
                 }
             }
-            else if(Input.GetKey(KeyCode.F))
+            else if (Input.GetKey(KeyCode.F))
             {
                 TrapAvoid();
             }
@@ -67,14 +67,27 @@ public class Door : MonoBehaviour
 
     private void Trapped(PlayerController pc)
     {
-
+        StartCoroutine(TrapTriggered(pc));
         GameObject temp = Instantiate(arch, transform.position, transform.rotation, parent);
         Destroy(gameObject);
     }
 
+    IEnumerator TrapTriggered(PlayerController pc)
+    {
+        pc.TakeDamage(5);
+        if (damageMsg.Length == 2)
+        {
+            GameObject temp = Instantiate(damageMsg[0], damageMsg[1].transform);
+            yield return new WaitForSeconds(2f);
+            Destroy(temp);
+        }
+        yield return null;
+    }
+
     private void TrapAvoid()
     {
-
+        GameObject temp = Instantiate(arch, transform.position, transform.rotation, parent);
+        Destroy(gameObject);
     }
 
     private void Secret()

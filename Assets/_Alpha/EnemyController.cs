@@ -9,6 +9,8 @@ public class EnemyController : MonoBehaviour
     public int maxHealth = 10, damage = 1;
     private int health;
     public Slider slider;
+    public string[] drops;
+
     // Start is called before the first frame update
     void Start()
     {
