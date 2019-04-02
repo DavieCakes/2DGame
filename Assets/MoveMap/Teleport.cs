@@ -10,16 +10,8 @@ public class Teleport : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Movement m = other.gameObject.GetComponent<Movement>();
-            m.pause = true;
-            StartCoroutine(MoveWait(m));
+            PlayerController m = other.gameObject.GetComponent<PlayerController>();
             other.transform.position = destination.position;
         }
-    }
-
-    IEnumerator MoveWait(Movement m)
-    {
-        yield return new WaitForSeconds(.25f);
-        m.pause = false;
     }
 }

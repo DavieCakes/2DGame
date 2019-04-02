@@ -4,21 +4,41 @@ using UnityEngine;
 
 public class Blocker : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other)
+    bool door;
+    public GameObject doors;
+    public GameObject[] blockers;
+
+    private void Start()
     {
-        Debug.Log(other.gameObject.tag);
-        if (other.gameObject.CompareTag("Player"))
+        door = doors != null;
+    }
+
+    private void Update()
+    {
+        if (door)
+            if (doors == null)
+                door = false;
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (!door && other.gameObject.CompareTag("Player"))
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+            foreach (GameObject b in blockers)
+            {
+                b.transform.position = new Vector3(b.transform.position.x, 2.9f, b.transform.position.z);
+            }
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        Debug.Log("Something Exited" + other.gameObject.tag);
-        if (other.gameObject.CompareTag("Player"))
+        if (!door && other.gameObject.CompareTag("Player"))
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
+            foreach (GameObject b in blockers)
+            {
+                b.transform.position = new Vector3(b.transform.position.x, 1.9f, b.transform.position.z);
+            }
         }
     }
 }
