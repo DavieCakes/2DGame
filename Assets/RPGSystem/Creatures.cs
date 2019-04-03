@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using Items;
 using Inventories;
 using Attributes;
- 
+
 
 namespace Creatures {
     public class Creature {
         public long id;
         public string name;
         // public List<Attribute> Attributes;
-        public Dictionary<AttributeType, Attribute> Attributes;
+        public Dictionary<AttributeType, Attribute> attributes;
         // // creature.Attributes.Strength = ...
         // public struct _Attributes {
         //     Attribute Strength;
@@ -28,7 +28,7 @@ namespace Creatures {
 
         public Creature() {
             inventory = new Inventory();
-            this.Attributes = new Dictionary<AttributeType, Attribute>()
+            this.attributes = new Dictionary<AttributeType, Attribute>()
             {
                 {AttributeType.Strength, new Attribute(10)},
                 {AttributeType.Dexterity, new Attribute(10)},
@@ -56,23 +56,24 @@ namespace Creatures {
         //     };
         }
 
-        public Creature(Dictionary<AttributeType, Attribute> attributes, string name, long id) {
+        public Creature(Dictionary<AttributeType, Attribute> _attributes, string name, long id) {
             this.name = name;
             this.id = id;
             inventory = new Inventory();
 
             // attribute enforcement
-            this.Attributes = new Dictionary<AttributeType, Attribute>()
+            this.attributes = new Dictionary<AttributeType, Attribute>()
             {
-                {AttributeType.Strength, attributes[AttributeType.Strength]},
-                {AttributeType.Dexterity, attributes[AttributeType.Dexterity]},
-                {AttributeType.Constitution, attributes[AttributeType.Constitution]},
-                {AttributeType.Wisdom, attributes[AttributeType.Wisdom]},
-                {AttributeType.Charisma, attributes[AttributeType.Charisma]},
-                {AttributeType.Intelligence, attributes[AttributeType.Intelligence]},
-                {AttributeType.Initiative, attributes[AttributeType.Initiative]},
-                {AttributeType.Attack, attributes[AttributeType.Attack]},
-                {AttributeType.Damage, attributes[AttributeType.Damage]},
+                {AttributeType.Strength, _attributes[AttributeType.Strength]},
+                {AttributeType.Dexterity, _attributes[AttributeType.Dexterity]},
+                {AttributeType.Constitution, _attributes[AttributeType.Constitution]},
+                {AttributeType.Wisdom, _attributes[AttributeType.Wisdom]},
+                {AttributeType.Charisma, _attributes[AttributeType.Charisma]},
+                {AttributeType.Intelligence, _attributes[AttributeType.Intelligence]},
+                {AttributeType.Initiative, _attributes[AttributeType.Initiative]},
+                {AttributeType.Attack, _attributes[AttributeType.Attack]},
+                {AttributeType.Damage, _attributes[AttributeType.Damage]},
+                {AttributeType.Health, _attributes[AttributeType.Health]},
             };
         }
 
@@ -80,7 +81,7 @@ namespace Creatures {
         {
             foreach (Modifier mod in item.StatMods)
             {
-                this.Attributes[mod.attType].AddModifier(mod);
+                this.attributes[mod.attType].AddModifier(mod);
             }
             inventory.Add(item); //TODO these should equip into equip slots
         }
@@ -89,7 +90,7 @@ namespace Creatures {
         {
             foreach (Modifier mod in item.StatMods)
             {
-                this.Attributes[mod.attType].RemoveAllModifiersFromSource(item);
+                this.attributes[mod.attType].RemoveAllModifiersFromSource(item);
             }
 
             inventory.Remove(item); //TODO these should unequip from equip slots
@@ -101,8 +102,26 @@ namespace Creatures {
         //     // reconsider abilities
         // }
 
-        public void Attack(Creature target) {
+        public bool Attack(Creature target) {
             System.Random rand = new System.Random();
+            int hitVal = rand.Next(1, 20) + (int)this.attributes[AttributeType.Attack].Value;
+            if (hitVal < target.attributes[AttributeType.AC].Value) {
+                return false;
+            }
+            target.attributes[AttributeType.Health].AddModifier(new Modifier((this.attributes[AttributeType.Damage].Value * -1), ModifierType.Flat));
+            return true;
+        }
+
+        public void TakeDamage(int value) {
+            // TODO This could cause issues
+            if (value < 1) {
+                return;
+            }
+            this.attributes[AttributeType.Health].AddModifier(new Modifier(value * -1, ModifierType.Flat));
+        }
+
+        public bool isDead() {
+            return this.attributes[AttributeType.Health].Value <= 0.0f;
         }
 
         override public string ToString() {
@@ -110,7 +129,7 @@ namespace Creatures {
             result += "id: " + this.id + "\n";
             result += "name: " + this.name + "\n";
             result += "attributes:\n";
-            foreach(KeyValuePair<AttributeType, Attribute> entry in this.Attributes) {
+            foreach(KeyValuePair<AttributeType, Attribute> entry in this.attributes) {
                 result += entry.Key.ToString() + ": " + entry.Value.ToString() + "\n";
             }
             

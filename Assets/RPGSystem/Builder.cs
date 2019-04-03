@@ -68,6 +68,9 @@ namespace Builders {
                     case "damage":
                         attributeType = AttributeType.Damage;
                         break;
+                    case "health":
+                        attributeType = AttributeType.Health;
+                        break;
                     default:
                         throw new System.Exception("String '" + typeString + "' does not match known AttributeType");
                 }
