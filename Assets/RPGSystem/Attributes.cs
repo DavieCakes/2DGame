@@ -104,6 +104,7 @@ namespace Attributes {
         Damage,
         Initiative,
         AC,
+        Health,
     }
 
     public class Modifier {
