@@ -8,11 +8,13 @@ public class PlayerController : MonoBehaviour
     public int keys = 0, health = 20;
     public float speed = 3f;
     public int attack = 1;
-    bool moving;
+    bool moving = false;
     public bool pause;
     private Rigidbody rb;
     GameController gc;
     ItemsList items;
+    Animator anim;
+    int cDir = 0, pDir = 0;
 
     private void Start()
     {
@@ -20,15 +22,18 @@ public class PlayerController : MonoBehaviour
         gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        anim = transform.GetChild(1).GetComponent<Animator>();
     }
 
     private void FixedUpdate()
     {
+        float mHor = 0f;
+        float mVer = 0f;
         if (!pause)
         {
-            float mHor = Input.GetAxis("Horizontal");
-            float mVer = Input.GetAxis("Vertical");
-
+            mHor = Input.GetAxis("Horizontal");
+            mVer = Input.GetAxis("Vertical");
+            
             Vector3 move = new Vector3(mHor, 0, mVer);
 
             rb.velocity = move * speed;
@@ -38,6 +43,41 @@ public class PlayerController : MonoBehaviour
             rb.velocity = Vector3.zero;
         }
         moving = rb.velocity != Vector3.zero;
+
+        Debug.Log(Input.GetAxisRaw("Horizontal") + " " + Input.GetAxisRaw("Vertical"));
+        
+        switch(Input.GetAxisRaw("Vertical"))
+        {
+            case 1:
+                if (Input.GetAxisRaw("Horizontal") == 0)
+                    cDir = 1;
+                break;
+            case -1:
+                if (Input.GetAxisRaw("Horizontal") == 0)
+                    cDir = 3;
+                break;
+            case 0:
+                switch(Input.GetAxisRaw("Horizontal"))
+                {
+                    case 1:
+                        cDir = 2;
+                        break;
+                    case -1:
+                        cDir = 4;
+                        break;
+                    case 0:
+                        cDir = 0;
+                        break;
+                }
+                break;
+        }
+
+        if(cDir != pDir)
+        {
+            pDir = cDir;
+            anim.SetInteger("Direction", cDir);
+            anim.SetTrigger("Change");
+        }
     }
 
     public bool IsMoving() { return moving; }

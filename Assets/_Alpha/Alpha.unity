@@ -14404,6 +14404,11 @@ PrefabInstance:
       propertyPath: near clip plane
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3815764110934569798, guid: 7306494aa0f814948aede66ff08b1e8d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3ff0c5cbe7c922f4ebe55c55a4342dc6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7306494aa0f814948aede66ff08b1e8d, type: 3}
 --- !u!1 &828849480 stripped
@@ -14681,11 +14686,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 7255705361095183910, guid: ae5b0ef1d0fadfe47ad42d14fbd4c1a2,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3574559018686321610, guid: ae5b0ef1d0fadfe47ad42d14fbd4c1a2,
         type: 3}
       propertyPath: blockers.Array.size
@@ -14706,6 +14706,11 @@ PrefabInstance:
       propertyPath: blockers.Array.data[2]
       value: 
       objectReference: {fileID: 1418195427}
+    - target: {fileID: 7255705361095183910, guid: ae5b0ef1d0fadfe47ad42d14fbd4c1a2,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae5b0ef1d0fadfe47ad42d14fbd4c1a2, type: 3}
 --- !u!4 &843446138 stripped
