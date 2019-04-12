@@ -57,3 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460e5cbf69569e14e822b4e003bdf62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destination: {fileID: 0}
+  transition: {fileID: 402611719547588353, guid: 514940fe1bd0d6244a2ac714cd5894c1,
+    type: 3}
+  speed: 3

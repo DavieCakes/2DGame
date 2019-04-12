@@ -58,6 +58,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies: []
+  btnArray: []
+  drops: []
   encounterUI: {fileID: 131850678520641921, guid: 48f8009e66557234b91c5a4133474ea7,
     type: 3}
+  transition: {fileID: 402611719547588353, guid: 514940fe1bd0d6244a2ac714cd5894c1,
+    type: 3}
   txtBox: {fileID: 0}
+  encounterRate: 200

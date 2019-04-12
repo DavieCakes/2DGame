@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140150607121679103}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.015, y: -0, z: 0.095}
   m_LocalScale: {x: 3.2, y: 3.2, z: 1}
   m_Children: []
   m_Father: {fileID: 3815764110773467825}
@@ -209,7 +209,7 @@ Transform:
   m_GameObject: {fileID: 3815764110773467830}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 1, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3815764110150882530}
   - {fileID: 7625527007275515448}
@@ -228,12 +228,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb64ae73a2bdbf4fadc70d30a69d5c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equip:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  abilities:
+    bHealth: 20
+    maxHealth: 0
+    bAttack: 1
+    bDefense: 1
+    bAgility: 1
+    health: 0
+    attack: 0
+    defense: 0
+    agility: 0
   playerName: Player
   keys: 0
-  health: 20
-  speed: 3
-  attack: 1
+  gold: 0
+  moveSpeed: 2.5
   pause: 0
+  keyCount: {fileID: 0}
+  goldCount: {fileID: 0}
+  health: {fileID: 0}
 --- !u!54 &3815764110773467831
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -244,7 +261,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -257,9 +274,9 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3815764110773467830}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3e8e463e1cd0a3b47900b6f85fa0c829, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.43, y: 1, z: 0.825}
   m_Center: {x: 0, y: 0, z: 0}

@@ -12,6 +12,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shrieker Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: drops.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: enemyName
+      value: Shrieker
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: maxHealth
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: drops.Array.data[0]
+      value: 
+      objectReference: {fileID: 5732286479796356487, guid: 93ea6ead7ba220a47af9c6c1cbe63a34,
+        type: 3}
+    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: agility
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1841772342755481649, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -117,25 +143,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
+    - target: {fileID: 5946325290764513460, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
-      propertyPath: drops.Array.size
-      value: 1
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
+    - target: {fileID: 5946325290764513460, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
-      propertyPath: enemyName
-      value: Shrieker
-      objectReference: {fileID: 0}
-    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
-        type: 3}
-      propertyPath: maxHealth
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
-        type: 3}
-      propertyPath: drops.Array.data[0]
-      value: Mushrooms
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
@@ -150,16 +166,6 @@ PrefabInstance:
     - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
       propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5946325290764513460, guid: 62174776a1833b14d99edbc15a70b329,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5946325290764513460, guid: 62174776a1833b14d99edbc15a70b329,
-        type: 3}
-      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

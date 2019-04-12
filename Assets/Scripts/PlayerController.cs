@@ -1,13 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+[System.Serializable]
+public class Abilities
+{
+
+    public int bHealth = 20,
+        maxHealth,
+        bAttack = 1,
+        bDefense = 1,
+        bAgility = 1;
+
+    public int health,
+        attack,
+        defense,
+        agility;
+
+    public void SetUp()
+    {
+        maxHealth = bHealth;
+        health = bHealth;
+        attack = bAttack;
+        defense = bDefense;
+        agility = bAgility;
+    }
+}
 
 public class PlayerController : MonoBehaviour
 {
+    public Equipment[] equip = new Equipment[4];
+
+    public Abilities abilities;
+
     public string playerName = "Player";
-    public int keys = 0, health = 20;
-    public float speed = 3f;
-    public int attack = 1;
+    public int keys = 0, gold = 0;
+    public float moveSpeed = 2.5f;
     bool moving = false;
     public bool pause;
     private Rigidbody rb;
@@ -16,8 +45,18 @@ public class PlayerController : MonoBehaviour
     Animator anim;
     int cDir = 0, pDir = 0;
 
+    public Text keyCount, goldCount;
+    public Slider health;
+
     private void Start()
     {
+        abilities.SetUp();
+        foreach (Equipment e in equip)
+        {
+            if(e != null)
+                e.AbilitiesBoost(this);
+        }
+        UpdateUI();
         items = new ItemsList();
         gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         rb = GetComponent<Rigidbody>();
@@ -31,46 +70,46 @@ public class PlayerController : MonoBehaviour
         float mVer = 0f;
         if (!pause)
         {
-            mHor = Input.GetAxis("Horizontal");
-            mVer = Input.GetAxis("Vertical");
+            mHor = Input.GetAxisRaw("Horizontal");
+            mVer = Input.GetAxisRaw("Vertical");
             
             Vector3 move = new Vector3(mHor, 0, mVer);
 
-            rb.velocity = move * speed;
+            rb.velocity = move * moveSpeed;
         }
         else
         {
             rb.velocity = Vector3.zero;
         }
         moving = rb.velocity != Vector3.zero;
-
-        Debug.Log(Input.GetAxisRaw("Horizontal") + " " + Input.GetAxisRaw("Vertical"));
         
-        switch(Input.GetAxisRaw("Vertical"))
+        if (moving)
         {
-            case 1:
-                if (Input.GetAxisRaw("Horizontal") == 0)
-                    cDir = 1;
-                break;
-            case -1:
-                if (Input.GetAxisRaw("Horizontal") == 0)
-                    cDir = 3;
-                break;
-            case 0:
-                switch(Input.GetAxisRaw("Horizontal"))
-                {
-                    case 1:
-                        cDir = 2;
-                        break;
-                    case -1:
-                        cDir = 4;
-                        break;
-                    case 0:
-                        cDir = 0;
-                        break;
-                }
-                break;
+            switch (Input.GetAxisRaw("Vertical"))
+            {
+                case 1:
+                    if (Input.GetAxisRaw("Horizontal") == 0)
+                        cDir = 1;
+                    break;
+                case -1:
+                    if (Input.GetAxisRaw("Horizontal") == 0)
+                        cDir = 3;
+                    break;
+                case 0:
+                    switch (Input.GetAxisRaw("Horizontal"))
+                    {
+                        case 1:
+                            cDir = 2;
+                            break;
+                        case -1:
+                            cDir = 4;
+                            break;
+                    }
+                    break;
+            }
         }
+        else
+            cDir = 0;
 
         if(cDir != pDir)
         {
@@ -87,31 +126,36 @@ public class PlayerController : MonoBehaviour
         if (keys > 0)
         {
             keys--;
+            UpdateUI();
             return true;
         }
+        UpdateUI();
         return false;
     }
 
-    public void TakeDamage(int damage)
+    public bool TakeDamage(int damage)
     {
-        health -= damage;
-        if (health <= 0)
+        abilities.health -= damage;
+        UpdateUI();
+        if (abilities.health <= 0)
         {
-            health = 0;
+            abilities.health = 0;
             gc.GameOver();
+            return false;
         }
+        return true;
     }
 
     public string GetName() { return playerName; }
 
-    public string UseItem()
+    public Its UseItem()
     {
         if(items.Length == 0)
-            return "";
-        return "Item";
+            return null;
+        return items.Remove(0);
     }
 
-    public void ReceiveDrop(string item)
+    public void ReceiveDrop(Its item)
     {
         if (item.Equals("Key"))
             keys++;
@@ -119,6 +163,15 @@ public class PlayerController : MonoBehaviour
         {
             items.Append(item);
         }
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        health.maxValue = abilities.maxHealth;
+        health.value = abilities.health;
+        keyCount.text = "KEYS: " + keys.ToString();
+        goldCount.text = "GOLD: " + gold.ToString();
     }
 }
 
@@ -127,9 +180,9 @@ class ItemsList
     class Node
     {
         public Node next;
-        public string data;
+        public Its data;
 
-        public Node(string data)
+        public Node(Its data)
         {
             this.data = data;
         }
@@ -138,7 +191,7 @@ class ItemsList
     Node head;
     public int Length = 0;
 
-    public void Append(string data)
+    public void Append(Its data)
     {
         Node newNode = new Node(data);
         Length++;
@@ -154,10 +207,10 @@ class ItemsList
         }
     }
     
-    public string Remove(int index)
+    public Its Remove(int index)
     {
         if (index >= Length)
-            return "";
+            return null;
         Node cur = head;
         for (int i = 0; i < index; i++) cur = cur.next;
         return cur.data;
