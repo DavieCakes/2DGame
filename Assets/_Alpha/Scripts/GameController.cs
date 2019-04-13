@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    public Canvas gOUI;
     public GameObject player;
     private PlayerController pc;
     bool inEncounter;
@@ -16,6 +17,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gOUI.enabled = false;
         pc = player.GetComponent<PlayerController>();
         PauseUI.enabled = false;
         aud = GetComponent<AudioSource>();
@@ -38,6 +40,8 @@ public class GameController : MonoBehaviour
     public void GameOver()
     {
         Debug.Log("Game Over called");
+        gOUI.enabled = true;
+        gOUI.transform.GetChild(1).GetComponent<Text>().text = "Game Over!";
     }
 
     public void Pause()

@@ -130,11 +130,11 @@ public class Encounters : MonoBehaviour
         else
         {
             anim.SetTrigger("TrigAttack");
-            yield return new WaitForSeconds(1.5f);
             txtBox.text = ec.GetName() + " attacked!";
+            yield return new WaitForSeconds(1.5f);
             if(pc.TakeDamage(ec.Attack()))
             {
-                txtBox.text += pc.GetName() + " attacked!";
+                txtBox.text += "\n" + pc.GetName() + " attacked!";
                 ec.TakeDamage(pc.abilities.attack);
                 foreach (Button btn in btnArray)
                     btn.interactable = true;

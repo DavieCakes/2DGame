@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,22 +11,25 @@ public class MimicBoss : MonoBehaviour
     GameObject enemy;
     EnemyController ec;
     GameController gc;
+    PlayerController pc;
     Animator anim;
     float delayCount = 0f, delay = 10f;
-    bool trig = false;
+    bool trig = false, inEn = false;
     public Text txtBox;
     public Button[] btnArray;
     public GameObject mimic;
+    public Canvas GameOverUI;
 
     void Start()
     {
         anim = transform.GetChild(0).GetComponent<Animator>();
         gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(!inEn && other.CompareTag("Player"))
         {
             if(Input.GetKey(KeyCode.E))
                 StartCoroutine(BossFight(other.GetComponent<PlayerController>()));
@@ -50,11 +54,12 @@ public class MimicBoss : MonoBehaviour
 
     IEnumerator BossFight(PlayerController pc)
     {
+        inEn = true;
         pc.pause = true;
         gc.InEncounter();
 
         anim.SetTrigger("Awakened");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.5f);
 
         if (transition != null)
         {
@@ -69,8 +74,7 @@ public class MimicBoss : MonoBehaviour
         anim = enemy.transform.GetChild(0).GetComponent<Animator>();
 
         txtBox.text = ec.GetName() + " is attacking!";
-        yield return new WaitForSeconds(1f);
-        anim.SetTrigger("TrigGesture");
+        anim.SetTrigger("Fight");
         yield return new WaitForSeconds(1f);
         foreach (Button btn in btnArray)
             btn.interactable = true;
@@ -79,12 +83,84 @@ public class MimicBoss : MonoBehaviour
             yield return null;
         }
         txtBox.text += "\n" + ec.GetName() + " was defeated!";
-        anim.SetTrigger("TrigDeath");
+        anim.SetTrigger("Death");
         yield return new WaitForSeconds(2f);
         Destroy(enemy);
-        yield return new WaitForSeconds(3f);
-        pc.pause = false;
-        gc.InEncounter();
-        encounterUI.enabled = false;
+
+        GameOverUI.enabled = true;
+        while(true)
+        {
+            if (Input.GetKey(KeyCode.R))
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            yield return null;
+        }
+    }
+
+    public void BtnAttack()
+    {
+        if (inEn)
+        {
+            foreach (Button btn in btnArray)
+            {
+                btn.interactable = false;
+            }
+            StartCoroutine(Attack());
+        }
+    }
+
+    IEnumerator Attack()
+    {
+        if (pc.abilities.agility > ec.agility || (pc.abilities.agility == ec.agility && Random.Range(0, 2) == 0))
+        {
+            txtBox.text = pc.GetName() + " attacked!";
+            if (ec.TakeDamage(pc.abilities.attack))
+            {
+                anim.SetTrigger("Attacking");
+                yield return new WaitForSeconds(1.5f);
+                txtBox.text += "\n" + ec.GetName() + " attacked!";
+                pc.TakeDamage(ec.Attack());
+                foreach (Button btn in btnArray)
+                    btn.interactable = true;
+            }
+        }
+        else
+        {
+            anim.SetTrigger("Attacking");
+            txtBox.text = ec.GetName() + " attacked!";
+            yield return new WaitForSeconds(1.5f);
+            if (pc.TakeDamage(ec.Attack()))
+            {
+                txtBox.text += "\n" + pc.GetName() + " attacked!";
+                ec.TakeDamage(pc.abilities.attack);
+                foreach (Button btn in btnArray)
+                    btn.interactable = true;
+            }
+        }
+    }
+
+    public void BtnItem()
+    {
+        if(inEn)
+            StartCoroutine(Item());
+    }
+
+    IEnumerator Item()
+    {
+        Debug.Log("Items() was called!");
+        if (pc.UseItem() == null)
+        {
+
+        }
+        else
+        {
+            txtBox.text = "You have no items!";
+        }
+        yield return null;
+    }
+
+    public void BtnRun()
+    {
+        if (inEn)
+            txtBox.text = "As you try to run,\nthe Mimic chases you!\nYou cannot get away!";
     }
 }
