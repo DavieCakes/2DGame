@@ -3,57 +3,77 @@ using System.Collections.Generic;
 using Items;
 using Inventories;
 using Attributes;
+        public struct CreatureAttributes {
+            public Attribute Strength;
+            public Attribute Dexterity;
+            public Attribute Constitution;
+            public Attribute Wisdom;
+            public Attribute Charisma;
+            public Attribute Intelligence;
+            public Attribute Initiative;
+            public Attribute Attack;
+            public Attribute Damage;
+            public Attribute Health;
+            public Attribute AC;
 
+            public CreatureAttributes (
+                int strength,
+                int dexterity,
+                int constitution,
+                int wisdom,
+                int charisma,
+                int intelligence,
+                int initiative,
+                int attack,
+                int damage,
+                int health,
+                int ac ) {
+                this.Strength = new Attribute(strength);
+                this.Dexterity = new Attribute(dexterity);
+                this.Constitution = new Attribute(constitution);
+                this.Wisdom = new Attribute(wisdom);
+                this.Charisma = new Attribute(charisma);
+                this.Intelligence = new Attribute(intelligence);
+                this.Initiative = new Attribute(initiative);
+                this.Attack = new Attribute(attack);
+                this.Damage = new Attribute(damage);
+                this.Health = new Attribute(health);
+                this.AC = new Attribute(ac);
+            }
+
+            public CreatureAttributes(Dictionary<AttributeType, Attribute> _attributes) {
+                
+                this.Strength = _attributes[AttributeType.STRENGTH];
+                this.Dexterity = _attributes[AttributeType.DEXTERITY];
+                this.Constitution = _attributes[AttributeType.CONSTITUTION];
+                this.Wisdom = _attributes[AttributeType.WISDOM];
+                this.Charisma = _attributes[AttributeType.CHARISMA];
+                this.Intelligence = _attributes[AttributeType.INTELLIGENCE];
+                this.Initiative = _attributes[AttributeType.INITIATIVE];
+                this.Attack = _attributes[AttributeType.ATTACK];
+                this.Damage = _attributes[AttributeType.DAMAGE];
+                this.AC = _attributes[AttributeType.AC];
+                this.Health = _attributes[AttributeType.HEALTH];
+            }
+        }
 
 namespace Creatures {
     public class Creature {
         public long id;
         public string name;
         // public List<Attribute> Attributes;
-        public Dictionary<AttributeType, Attribute> attributes;
-        // // creature.Attributes.Strength = ...
-        // public struct _Attributes {
-        //     Attribute Strength;
-        //     Attribute Dexterity;
-        //     Attribute Constitution;
-        //     Attribute Wisdom;
-        //     Attribute Charisma;
-        //     Attribute Intelligence;
-        //     Attribute Initiative;
-        //     Attribute Attack;
-        //     Attribute Damage;
-        // }
+        public Dictionary<AttributeType, Attribute> attributesHash;
+        public CreatureAttributes attributes;
+        // creature.Attributes.Strength = ...
+
         // private _Attributes a = new _Attributes();
         public Inventory inventory;
+        public Inventory equipped;
 
         public Creature() {
-            inventory = new Inventory();
-            this.attributes = new Dictionary<AttributeType, Attribute>()
-            {
-                {AttributeType.Strength, new Attribute(10)},
-                {AttributeType.Dexterity, new Attribute(10)},
-                {AttributeType.Constitution, new Attribute(10)},
-                {AttributeType.Wisdom, new Attribute(10)},
-                {AttributeType.Charisma, new Attribute(10)},
-                {AttributeType.Intelligence, new Attribute(10)},
-                // calculate secondary attributes separately
-                {AttributeType.Initiative, new Attribute(10)},
-                {AttributeType.Attack, new Attribute(10)},
-                {AttributeType.Damage, new Attribute(10)},
-            };
-
-        // this.Attributes = new List<Attribute>()
-        //     {
-        //         {new Attribute(10, AttributeType.Strength)},
-        //         {new Attribute(10, AttributeType.Dexterity)},
-        //         {new Attribute(10, AttributeType.Constitution)},
-        //         {new Attribute(10, AttributeType.Wisdom)},
-        //         {new Attribute(10, AttributeType.Charisma)},
-        //         {new Attribute(10, AttributeType.Intelligence)},
-        //         {new Attribute(10, AttributeType.Initiative)},
-        //         {new Attribute(10, AttributeType.Attack)},
-        //         {new Attribute(10, AttributeType.Damage)},
-        //     };
+            this.inventory = new Inventory();
+            this.attributes = new CreatureAttributes(10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
+            InitAttributeHash();
         }
 
         public Creature(Dictionary<AttributeType, Attribute> _attributes, string name, long id) {
@@ -62,38 +82,58 @@ namespace Creatures {
             inventory = new Inventory();
 
             // attribute enforcement
-            this.attributes = new Dictionary<AttributeType, Attribute>()
+            this.attributes = new CreatureAttributes (_attributes);
+
+            InitAttributeHash();
+        }
+
+        private void InitAttributeHash() {
+            this.attributesHash = new Dictionary<AttributeType, Attribute>()
             {
-                {AttributeType.Strength, _attributes[AttributeType.Strength]},
-                {AttributeType.Dexterity, _attributes[AttributeType.Dexterity]},
-                {AttributeType.Constitution, _attributes[AttributeType.Constitution]},
-                {AttributeType.Wisdom, _attributes[AttributeType.Wisdom]},
-                {AttributeType.Charisma, _attributes[AttributeType.Charisma]},
-                {AttributeType.Intelligence, _attributes[AttributeType.Intelligence]},
-                {AttributeType.Initiative, _attributes[AttributeType.Initiative]},
-                {AttributeType.Attack, _attributes[AttributeType.Attack]},
-                {AttributeType.Damage, _attributes[AttributeType.Damage]},
-                {AttributeType.Health, _attributes[AttributeType.Health]},
+                {AttributeType.STRENGTH, this.attributes.Strength},
+                {AttributeType.DEXTERITY, this.attributes.Dexterity},
+                {AttributeType.CONSTITUTION, this.attributes.Constitution},
+                {AttributeType.WISDOM, this.attributes.Wisdom},
+                {AttributeType.CHARISMA, this.attributes.Charisma},
+                {AttributeType.INTELLIGENCE, this.attributes.Intelligence},
+                {AttributeType.INITIATIVE, this.attributes.Initiative},
+                {AttributeType.ATTACK, this.attributes.Attack},
+                {AttributeType.DAMAGE, this.attributes.Damage},
+                {AttributeType.HEALTH, this.attributes.Health}
             };
         }
 
+        public void PickUp(Item item) {
+            inventory.Add(item);
+        }
+        
         public void Equip(Item item)
         {
             foreach (Modifier mod in item.StatMods)
             {
-                this.attributes[mod.attType].AddModifier(mod);
+                this.attributesHash[mod.attType].AddModifier(mod);
             }
-            inventory.Add(item); //TODO these should equip into equip slots
+            equipped.Add(item);
         }
 
         public void Unequip(Item item)
         {
             foreach (Modifier mod in item.StatMods)
             {
-                this.attributes[mod.attType].RemoveAllModifiersFromSource(item);
+                this.attributesHash[mod.attType].RemoveAllModifiersFromSource(item);
             }
 
-            inventory.Remove(item); //TODO these should unequip from equip slots
+            equipped.Remove(item); 
+            inventory.Add(item);
+        }
+
+        public bool EquipFromInventory(Item item) {
+            if(!inventory.Contains(item)) {
+                return false;
+            }
+                inventory.Remove(item);
+                Equip(item);
+                return true;
         }
 
         // public void CalculateSecondaryStats() {
@@ -104,11 +144,11 @@ namespace Creatures {
 
         public bool Attack(Creature target) {
             System.Random rand = new System.Random();
-            int hitVal = rand.Next(1, 20) + (int)this.attributes[AttributeType.Attack].Value;
-            if (hitVal < target.attributes[AttributeType.AC].Value) {
+            int hitVal = rand.Next(1, 20) + (int)this.attributes.Attack.Value;
+            if (hitVal < target.attributes.AC.Value) {
                 return false;
             }
-            target.attributes[AttributeType.Health].AddModifier(new Modifier((this.attributes[AttributeType.Damage].Value * -1), ModifierType.Flat));
+            target.TakeDamage(this.attributes.Damage.Value);
             return true;
         }
 
@@ -117,11 +157,19 @@ namespace Creatures {
             if (value < 1) {
                 return;
             }
-            this.attributes[AttributeType.Health].AddModifier(new Modifier(value * -1, ModifierType.Flat));
+            this.attributes.Health.AddModifier(new Modifier(value * -1, ModifierType.Flat));
+        }
+
+        public void TakeDamage(float value) {
+            // TODO This could cause issues
+            if (value < 1) {
+                return;
+            }
+            this.attributes.Health.AddModifier(new Modifier(value * -1, ModifierType.Flat));
         }
 
         public bool isDead() {
-            return this.attributes[AttributeType.Health].Value <= 0.0f;
+            return this.attributes.Health.Value <= 0.0f;
         }
 
         override public string ToString() {
@@ -129,7 +177,7 @@ namespace Creatures {
             result += "id: " + this.id + "\n";
             result += "name: " + this.name + "\n";
             result += "attributes:\n";
-            foreach(KeyValuePair<AttributeType, Attribute> entry in this.attributes) {
+            foreach(KeyValuePair<AttributeType, Attribute> entry in this.attributesHash) {
                 result += entry.Key.ToString() + ": " + entry.Value.ToString() + "\n";
             }
             

@@ -31,7 +31,7 @@ public class Tester : MonoBehaviour
 
     void TestBuildCreature() {
         Builder builder = new Builder();
-        Creature creature = builder.BuildCreature("Greater Kobold");
+        Creature creature = builder.BuildCreature("Warrior Drow");
         Debug.Log(creature.ToString());
     }
 

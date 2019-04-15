@@ -1,0 +1,34 @@
+<Data>
+    <Creatures>
+        <Creature name = "Warrior Drow" id = "1">
+            <Attribute name = "Strength" value = "10"/>
+            <Attribute name = "Dexterity" value = "10"/>
+            <Attribute name = "Constitution" value = "10"/>
+            <Attribute name = "Wisdom" value = "10"/>
+            <Attribute name = "Charisma" value = "10"/>
+            <Attribute name = "Intelligence" value = "10"/>
+            <Attribute name = "Initiative" value = "10"/>
+            <Attribute name = "Attack" value = "10"/>
+            <Attribute name = "Damage" value = "10"/>
+            <Attribute name = "Health" value = "10"/>
+            <Attribute name = "AC" value = "10"/>
+            <Inventory>
+                <Item name = "Mushrooms"/>
+            </Inventory>
+        </Creature>
+    </Creatures>
+    <Items>
+        <Item name = "Mushrooms" id = "1" type="consumable">
+            <Modifier name = "health" value ="10"/>
+        </Item>
+        <Item name = "Helmet" id = "2" type = "equipment_helmet">
+            <Modifier name = "ac" value ="7"/>
+        </Item>
+        <Item name = "Boots" id = "1" type="equipment_boots">
+            <Modifier name = "initiative" value ="5"/>
+        </Item>
+        <Item name = "Sword" id = "1" type="equipment_weapon">
+            <Modifier name = "damage" value ="10"/>
+        </Item>
+    </Items>
+</Data>

@@ -10,7 +10,7 @@ namespace Builders {
     public class Builder {
         public Creature BuildCreature(string creatureName) {
 
-            Database database = new Database();
+            XMLDatabase database = new XMLDatabase();
             Dictionary<string, object> creatureData = database.GetCreatureData(creatureName);
             // get creature id, get creature attributes, get item_ids, get items, equip items, return
             // long creatureId = (long)creatureData["id"];
@@ -19,8 +19,8 @@ namespace Builders {
             Dictionary<AttributeType, Attribute> attributes = new Dictionary<AttributeType, Attribute>();
             Creature creature;
 
-            foreach(long id in (List<long>)creatureData["item_ids"]) {
-                inventory.Add(BuildItem(id));
+            foreach(string item in (List<string>)creatureData["inventory"]) {
+                inventory.Add(BuildItem(item));
             }
 
             foreach(KeyValuePair<string, long> entry in (Dictionary<string, long>)creatureData["attributes"]) {
@@ -30,7 +30,7 @@ namespace Builders {
 
             creature = new Creature(attributes, (string)creatureData["name"], (long)creatureData["id"]);
             foreach(Item item in inventory) {
-                creature.Equip(item);
+                creature.PickUp(item);
             }
             return creature;
         }
@@ -39,37 +39,40 @@ namespace Builders {
                     AttributeType attributeType;
                     switch(typeString.ToLower()) {
                     case "strength":
-                        attributeType = AttributeType.Strength;
+                        attributeType = AttributeType.STRENGTH;
                         break;
                     case "dexterity":
-                        attributeType = AttributeType.Dexterity;
+                        attributeType = AttributeType.DEXTERITY;
                         break;
                     case "constitution":
-                        attributeType = AttributeType.Constitution;
+                        attributeType = AttributeType.CONSTITUTION;
                         break;
                     case "wisdom":
-                        attributeType = AttributeType.Wisdom;
+                        attributeType = AttributeType.WISDOM;
                         break;
                     case "charisma":
-                        attributeType = AttributeType.Charisma;
+                        attributeType = AttributeType.CHARISMA;
                         break;
                     case "intelligence":
-                        attributeType = AttributeType.Intelligence;
+                        attributeType = AttributeType.INTELLIGENCE;
                         break;
                     case "initiative":
-                        attributeType = AttributeType.Initiative;
+                        attributeType = AttributeType.INITIATIVE;
                         break;
                     case "tohit":
-                        attributeType = AttributeType.Attack;
+                        attributeType = AttributeType.ATTACK;
                         break;
                     case "attack":
-                        attributeType = AttributeType.Attack;
+                        attributeType = AttributeType.ATTACK;
                         break;
                     case "damage":
-                        attributeType = AttributeType.Damage;
+                        attributeType = AttributeType.DAMAGE;
                         break;
                     case "health":
-                        attributeType = AttributeType.Health;
+                        attributeType = AttributeType.HEALTH;
+                        break;
+                    case "ac":
+                        attributeType = AttributeType.AC;
                         break;
                     default:
                         throw new System.Exception("String '" + typeString + "' does not match known AttributeType");
@@ -78,7 +81,7 @@ namespace Builders {
         }
 
         public Item BuildItem(string itemName) {
-            Database database = new Database();
+            XMLDatabase database = new XMLDatabase();
             Dictionary<string, object> itemData = database.GetItemData(itemName);
             List<Modifier> modifiers = new List<Modifier>();
             Item item = new Item((string)itemData["name"], (long)itemData["id"]);
@@ -91,18 +94,18 @@ namespace Builders {
             return item;
         }
 
-        public Item BuildItem(long itemId) {
-            Database database = new Database();
-            Dictionary<string, object> itemData = database.GetItemData(itemId);
-            List<Modifier> modifiers = new List<Modifier>();
-            Item item = new Item((string)itemData["name"], (long)itemData["id"]);
+        // public Item BuildItem(long itemId) {
+        //     XMLDatabase database = new XMLDatabase();
+        //     Dictionary<string, object> itemData = database.GetItemData(itemId);
+        //     List<Modifier> modifiers = new List<Modifier>();
+        //     Item item = new Item((string)itemData["name"], (long)itemData["id"]);
 
-            foreach(KeyValuePair<string, long> row in (Dictionary<string, long>)itemData["modifiers"]) {
-                // Debug.Log(row.Key + row.Value);
-                item.AddStatMod(new Modifier((float)row.Value, ModifierType.Flat, item, StringToAttributeType(row.Key)));
-            }
+        //     foreach(KeyValuePair<string, long> row in (Dictionary<string, long>)itemData["modifiers"]) {
+        //         // Debug.Log(row.Key + row.Value);
+        //         item.AddStatMod(new Modifier((float)row.Value, ModifierType.Flat, item, StringToAttributeType(row.Key)));
+        //     }
 
-            return item;
-        }
+        //     return item;
+        // }
     }
 }

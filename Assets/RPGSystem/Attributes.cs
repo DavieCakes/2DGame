@@ -31,6 +31,13 @@ namespace Attributes {
             Modifiers = _modifiers.AsReadOnly();
         }
 
+        public Attribute(int baseValue) {
+            // this.attributeType = attributeType;
+            BaseValue = (float)baseValue;
+            _modifiers = new List<Modifier>();
+            Modifiers = _modifiers.AsReadOnly();
+        }
+
         public void AddModifier(Modifier mod) {
             isDirty = true;
             _modifiers.Add(mod);
@@ -93,18 +100,18 @@ namespace Attributes {
 
     public enum AttributeType {
         // Primary Attributes
-        Strength,
-        Dexterity,
-        Constitution,
-        Wisdom,
-        Intelligence,
-        Charisma,
+        STRENGTH,
+        DEXTERITY,
+        CONSTITUTION,
+        WISDOM,
+        INTELLIGENCE,
+        CHARISMA,
         // Secondary Attributes
-        Attack,
-        Damage,
-        Initiative,
+        ATTACK,
+        DAMAGE,
+        INITIATIVE,
         AC,
-        Health,
+        HEALTH,
     }
 
     public class Modifier {
