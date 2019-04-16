@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 2930980440759016631, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
       propertyPath: m_Name
-      value: Ghoul
+      value: Skeleton Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1841772342755481649, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
@@ -120,7 +120,7 @@ PrefabInstance:
     - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
       propertyPath: enemyName
-      value: Ghoul
+      value: Skeleton
       objectReference: {fileID: 0}
     - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
@@ -132,20 +132,10 @@ PrefabInstance:
       propertyPath: damage
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
+    - target: {fileID: 4754490897425902925, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.7924528
+      propertyPath: m_SizeDelta.x
+      value: 220
       objectReference: {fileID: 0}
     - target: {fileID: 5946325290764513460, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
@@ -156,6 +146,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7843112212405665735, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: bbc8a2e6f5a1f4540ba2469ead3fd4c3, type: 2}
+    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: m_FillMethod
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62174776a1833b14d99edbc15a70b329, type: 3}
