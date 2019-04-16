@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4465891242580122404
+--- !u!1001 &3048417538077478157
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 2930980440759016631, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
       propertyPath: m_Name
-      value: DarkMantle
+      value: LightOrc Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1841772342755481649, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
@@ -119,33 +119,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
-      propertyPath: maxHealth
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
-        type: 3}
-      propertyPath: damage
-      value: 5
+      propertyPath: drops.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
       propertyPath: enemyName
-      value: Dark Mantle
+      value: Light Orc
       objectReference: {fileID: 0}
-    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
+    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
-      propertyPath: m_Color.r
-      value: 0.3018868
+      propertyPath: maxHealth
+      value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
+    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
-      propertyPath: m_Color.g
-      value: 0.3018868
-      objectReference: {fileID: 0}
-    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
+      propertyPath: drops.Array.data[0]
+      value: 
+      objectReference: {fileID: 5732286479796356487, guid: 93ea6ead7ba220a47af9c6c1cbe63a34,
         type: 3}
-      propertyPath: m_Color.b
-      value: 0.3018868
+    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: agility
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5946325290764513460, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
@@ -156,6 +152,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7843112212405665735, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: cfe721a7bf93e6147bcb3fb13e50612d, type: 2}
+    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62174776a1833b14d99edbc15a70b329, type: 3}

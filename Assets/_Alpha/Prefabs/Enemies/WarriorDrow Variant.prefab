@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 2930980440759016631, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
       propertyPath: m_Name
-      value: WarriorDrow
+      value: WarriorDrow Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1841772342755481649, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
@@ -132,20 +132,10 @@ PrefabInstance:
       propertyPath: enemyName
       value: Warrior Drow
       objectReference: {fileID: 0}
-    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
+    - target: {fileID: 4754490897425902925, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
-      propertyPath: m_Color.r
-      value: 0.6320754
-      objectReference: {fileID: 0}
-    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.6320754
+      propertyPath: m_SizeDelta.x
+      value: 220
       objectReference: {fileID: 0}
     - target: {fileID: 5946325290764513460, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
@@ -156,6 +146,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7843112212405665735, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ed740adf8048d7246ae740b2c5ad11cc, type: 2}
+    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62174776a1833b14d99edbc15a70b329, type: 3}
