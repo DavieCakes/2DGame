@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EncounterHandler : MonoBehaviour
 {
@@ -13,9 +14,10 @@ public class EncounterHandler : MonoBehaviour
     EnemyController ec;
     Animator anim;
     Its[] drops;
+    public bool boss = false;
 
     public Canvas transition;
-    public GameObject encounterUI, overWorldUI;
+    public GameObject encounterUI, overWorldUI, gameOverUI;
     public Text txtBox;
     public Button[] btnArray;
 
@@ -39,8 +41,18 @@ public class EncounterHandler : MonoBehaviour
         StartCoroutine(encounter);
     }
 
+    public void StartEncounter(MimicBoss mb, int i)
+    {
+        boss = true;
+        this.enc = mb;
+        enemies = mb.enemies;
+        encounter = BossFight();
+        StartCoroutine(encounter);
+    }
+
     IEnumerator Encounter()
     {
+        Debug.Log("Encounter Started");
         pc.pause = true;
         gc.InEncounter();
         overWorldUI.SetActive(false);
@@ -52,12 +64,8 @@ public class EncounterHandler : MonoBehaviour
             yield return new WaitForSeconds(.5f);
         }
 
-        encounterUI.SetActive(true);
-        enemy = Instantiate(enemies[Random.Range(0, enemies.Length)], encounterUI.transform);
-        ec = enemy.GetComponent<EnemyController>();
-        anim = enemy.transform.GetChild(0).GetComponent<Animator>();
-
-        txtBox.text = ec.GetName() + " is attacking!";
+        SetUp();
+        
         yield return new WaitForSeconds(1f);
         anim.SetTrigger("TrigGesture");
         yield return new WaitForSeconds(1f);
@@ -75,6 +83,59 @@ public class EncounterHandler : MonoBehaviour
         Drops();
         Destroy(enemy);
         yield return new WaitForSeconds(3f);
+        RegWin();
+    }
+
+    IEnumerator BossFight()
+    {
+        Debug.Log("Boss Fight Started");
+        overWorldUI.SetActive(false);
+
+        if (transition != null)
+        {
+            StartCoroutine(Instantiate(transition).transform.GetChild(0)
+                .GetComponent<Transition>().Up(1f, true));
+            yield return new WaitForSeconds(1f);
+        }
+
+        SetUp();
+
+        txtBox.text = ec.GetName() + " is attacking!";
+        anim.SetTrigger("Fight");
+        yield return new WaitForSeconds(1f);
+        foreach (Button btn in btnArray)
+            btn.interactable = true;
+        btnArray[0].Select();
+        while (ec.GetHealth() > 0)
+        {
+            yield return null;
+        }
+        txtBox.text += "\n" + ec.GetName() + " was defeated!";
+        anim.SetTrigger("Death");
+        yield return new WaitForSeconds(2f);
+        Destroy(enemy);
+        yield return new WaitForSeconds(1f);
+        gameOverUI.SetActive(true);
+        while (true)
+        {
+            if (Input.GetKey(KeyCode.R))
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            yield return null;
+        }
+    }
+
+    private void SetUp()
+    {
+        encounterUI.SetActive(true);
+        enemy = Instantiate(enemies[Random.Range(0, enemies.Length)], encounterUI.transform);
+        ec = enemy.GetComponent<EnemyController>();
+        anim = enemy.transform.GetChild(0).GetComponent<Animator>();
+
+        txtBox.text = ec.GetName() + " is attacking!";
+    }
+
+    private void RegWin()
+    {
         enc.clear();
         enc = null;
         pc.pause = false;
@@ -112,7 +173,7 @@ public class EncounterHandler : MonoBehaviour
             txtBox.text = pc.GetName() + " attacked!";
             if (ec.TakeDamage(pc.abilities.attack))
             {
-                anim.SetTrigger("TrigAttack");
+                anim.SetTrigger(boss ? "Attacking" : "TrigAttack");
                 yield return new WaitForSeconds(1.5f);
                 txtBox.text += "\n" + ec.GetName() + " attacked!";
                 pc.TakeDamage(ec.Attack());
@@ -122,7 +183,7 @@ public class EncounterHandler : MonoBehaviour
         }
         else
         {
-            anim.SetTrigger("TrigAttack");
+            anim.SetTrigger(boss ? "Attacking" : "TrigAttack");
             txtBox.text = ec.GetName() + " attacked!";
             yield return new WaitForSeconds(1.5f);
             if (pc.TakeDamage(ec.Attack()))
@@ -158,9 +219,14 @@ public class EncounterHandler : MonoBehaviour
 
     public void BtnRun()
     {
-        foreach (Button btn in btnArray)
-            btn.interactable = false;
-        StartCoroutine(Run());
+        if (!boss)
+        {
+            foreach (Button btn in btnArray)
+                btn.interactable = false;
+            StartCoroutine(Run());
+        }
+        else
+            txtBox.text = "As you try to run,\nthe Mimic chases you!\nYou cannot get away!";
     }
 
     IEnumerator Run()

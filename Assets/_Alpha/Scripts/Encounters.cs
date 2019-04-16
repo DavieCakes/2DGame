@@ -7,11 +7,10 @@ public class Encounters : MonoBehaviour
 {
     public EncounterHandler handler;
     public GameObject[] enemies;
-    PlayerController pc;
+    protected PlayerController pc;
     public Its[] drops;
     public int encounterRate = 200;
     public float delay = 5f, waitTime = 5f;
-    bool active;
 
     // Start is called before the first frame update
     void Start()
@@ -19,13 +18,14 @@ public class Encounters : MonoBehaviour
         pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         if (pc == null)
             Debug.Log("Did not find PlayerController on player!");
-        active = enemies.Length > 0;
+        if (enemies.Length == 0)
+            encounterRate = 0;
     }
 
     // Update is called once per frame
     void OnTriggerStay(Collider other)
     {
-        if (active && other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             if (pc.IsMoving())
             {

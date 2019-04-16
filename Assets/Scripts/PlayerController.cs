@@ -76,47 +76,47 @@ public class PlayerController : MonoBehaviour
             Vector3 move = new Vector3(mHor, 0, mVer);
 
             rb.velocity = move * moveSpeed;
+            
+            if (moving)
+            {
+                switch (mVer)
+                {
+                    case 1:
+                        if (mHor == 0 || anim.GetInteger("Direction") == 0)
+                        cDir = 1;
+                        break;
+                    case -1:
+                        if (mHor == 0 || anim.GetInteger("Direction") == 0)
+                        cDir = 3;
+                        break;
+                    case 0:
+                        switch (mHor)
+                        {
+                            case 1:
+                                cDir = 2;
+                                break;
+                            case -1:
+                                cDir = 4;
+                                break;
+                        }
+                        break;
+                }
+            }
+            else
+                cDir = 0;
+
+            if (cDir != pDir)
+            {
+                pDir = cDir;
+                anim.SetInteger("Direction", cDir);
+                anim.SetTrigger("Change");
+            }
         }
         else
         {
             rb.velocity = Vector3.zero;
         }
         moving = rb.velocity != Vector3.zero;
-        
-        if (moving)
-        {
-            switch (Input.GetAxisRaw("Vertical"))
-            {
-                case 1:
-                    if (Input.GetAxisRaw("Horizontal") == 0)
-                        cDir = 1;
-                    break;
-                case -1:
-                    if (Input.GetAxisRaw("Horizontal") == 0)
-                        cDir = 3;
-                    break;
-                case 0:
-                    switch (Input.GetAxisRaw("Horizontal"))
-                    {
-                        case 1:
-                            cDir = 2;
-                            break;
-                        case -1:
-                            cDir = 4;
-                            break;
-                    }
-                    break;
-            }
-        }
-        else
-            cDir = 0;
-
-        if(cDir != pDir)
-        {
-            pDir = cDir;
-            anim.SetInteger("Direction", cDir);
-            anim.SetTrigger("Change");
-        }
     }
 
     public bool IsMoving() { return moving; }
