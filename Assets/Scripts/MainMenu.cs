@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     {
         audioMenu.SetActive(false);
         helpMenu.SetActive(false);
+        mainMenu.transform.GetChild(0).GetChild(0).GetComponent<Button>().Select();
     }
 
     public void Play()

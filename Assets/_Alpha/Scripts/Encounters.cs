@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class Encounters : MonoBehaviour
 {
     public EncounterHandler handler;
-
     public GameObject[] enemies;
     PlayerController pc;
     public Its[] drops;
     public int encounterRate = 200;
+    public float delay = 5f, waitTime = 5f;
+    bool active;
 
     // Start is called before the first frame update
     void Start()
@@ -18,16 +19,23 @@ public class Encounters : MonoBehaviour
         pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         if (pc == null)
             Debug.Log("Did not find PlayerController on player!");
+        active = enemies.Length > 0;
     }
 
     // Update is called once per frame
     void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (active && other.CompareTag("Player"))
         {
-            if (pc.IsMoving() && Random.Range(0, encounterRate) == 0)
+            if (pc.IsMoving())
             {
-                handler.StartEncounter(this);
+                if (delay >= waitTime)
+                {
+                    if (Random.Range(0, encounterRate) == 0)
+                        handler.StartEncounter(this);
+                }
+                else
+                    delay += Time.deltaTime;
             }
         }
     }
@@ -35,5 +43,6 @@ public class Encounters : MonoBehaviour
     public void clear()
     {
         drops = new Its[0];
+        delay = 0f;
     }
 }

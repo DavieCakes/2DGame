@@ -5,21 +5,19 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public Canvas gOUI;
+    public GameObject gameOverUI, pauseUI, overWorldUI;
     public GameObject player;
     private PlayerController pc;
     bool inEncounter;
     AudioSource aud;
     public AudioClip[] clips;
-
-    public Canvas PauseUI;
-
+    
     // Start is called before the first frame update
     void Start()
     {
-        gOUI.enabled = false;
+        gameOverUI.SetActive(false);
         pc = player.GetComponent<PlayerController>();
-        PauseUI.enabled = false;
+        pauseUI.SetActive(false);
         aud = GetComponent<AudioSource>();
         if (clips.Length > 0)
         {
@@ -40,8 +38,8 @@ public class GameController : MonoBehaviour
     public void GameOver()
     {
         Debug.Log("Game Over called");
-        gOUI.enabled = true;
-        gOUI.transform.GetChild(1).GetComponent<Text>().text = "Game Over!";
+        gameOverUI.SetActive(true);
+        gameOverUI.transform.GetChild(1).GetComponent<Text>().text = "Game Over!";
     }
 
     public void Pause()
@@ -49,7 +47,9 @@ public class GameController : MonoBehaviour
         if (!inEncounter)
         {
             pc.pause = !pc.pause;
-            PauseUI.enabled = pc.pause;
+            pauseUI.SetActive(pc.pause);
+            pauseUI.transform.GetChild(1).GetChild(1).GetComponent<Button>().Select();
+            overWorldUI.SetActive(!pc.pause);
             aud.pitch = (pc.pause) ? .6f : 1f;
         }
     }

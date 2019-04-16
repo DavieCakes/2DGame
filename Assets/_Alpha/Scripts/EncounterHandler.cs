@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class EncounterHandler : MonoBehaviour
 {
+    Encounters enc;
     PlayerController pc;
     GameController gc;
     GameObject enemy;
@@ -31,6 +32,7 @@ public class EncounterHandler : MonoBehaviour
 
     public void StartEncounter(Encounters enc)
     {
+        this.enc = enc;
         drops = enc.drops;
         enemies = enc.enemies;
         encounter = Encounter();
@@ -62,6 +64,7 @@ public class EncounterHandler : MonoBehaviour
         foreach (Button btn in btnArray)
             btn.interactable = true;
         btnArray[0].Select();
+        btnArray[0].Select();
         while (ec.GetHealth() > 0)
         {
             yield return null;
@@ -72,6 +75,8 @@ public class EncounterHandler : MonoBehaviour
         Drops();
         Destroy(enemy);
         yield return new WaitForSeconds(3f);
+        enc.clear();
+        enc = null;
         pc.pause = false;
         gc.InEncounter();
         encounterUI.SetActive(false);
@@ -96,9 +101,7 @@ public class EncounterHandler : MonoBehaviour
     public void BtnAttack()
     {
         foreach (Button btn in btnArray)
-        {
             btn.interactable = false;
-        }
         StartCoroutine(Attack());
     }
 
@@ -115,7 +118,6 @@ public class EncounterHandler : MonoBehaviour
                 pc.TakeDamage(ec.Attack());
                 foreach (Button btn in btnArray)
                     btn.interactable = true;
-                btnArray[0].Select();
             }
         }
         else
@@ -131,6 +133,7 @@ public class EncounterHandler : MonoBehaviour
                     btn.interactable = true;
             }
         }
+        btnArray[0].Select();
     }
 
     public void BtnItem()
