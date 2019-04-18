@@ -1,0 +1,877 @@
+fileFormatVersion: 2
+guid: 7d5026c585f9284458325db42e2a43fa
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: WarriorDrow_0
+    21300002: WarriorDrow_1
+    21300004: WarriorDrow_2
+    21300006: WarriorDrow_3
+    21300008: WarriorDrow_4
+    21300010: WarriorDrow_5
+    21300012: WarriorDrow_6
+    21300014: WarriorDrow_7
+    21300016: WarriorDrow_8
+    21300018: WarriorDrow_9
+    21300020: WarriorDrow_10
+    21300022: WarriorDrow_11
+    21300024: WarriorDrow_12
+    21300026: WarriorDrow_13
+    21300028: WarriorDrow_14
+    21300030: WarriorDrow_15
+    21300032: WarriorDrow_16
+    21300034: WarriorDrow_17
+    21300036: WarriorDrow_18
+    21300038: WarriorDrow_19
+    21300040: WarriorDrow_20
+    21300042: WarriorDrow_21
+    21300044: WarriorDrow_22
+    21300046: WarriorDrow_23
+    21300048: WarriorDrow_24
+    21300050: WarriorDrow_25
+    21300052: WarriorDrow_26
+    21300054: WarriorDrow_27
+    21300056: WarriorDrow_28
+    21300058: WarriorDrow_29
+    21300060: WarriorDrow_30
+    21300062: WarriorDrow_31
+    21300064: WarriorDrow_32
+    21300066: WarriorDrow_33
+    21300068: WarriorDrow_34
+    21300070: WarriorDrow_35
+    21300072: WarriorDrow_36
+    21300074: WarriorDrow_37
+    21300076: WarriorDrow_38
+    21300078: WarriorDrow_39
+    21300080: WarriorDrow_40
+    21300082: WarriorDrow_41
+    21300084: WarriorDrow_42
+    21300086: WarriorDrow_43
+    21300088: WarriorDrow_44
+    21300090: WarriorDrow_45
+    21300092: WarriorDrow_46
+    21300094: WarriorDrow_47
+    21300096: WarriorDrow_48
+    21300098: WarriorDrow_49
+    21300100: WarriorDrow_50
+    21300102: WarriorDrow_51
+    21300104: WarriorDrow_52
+    21300106: WarriorDrow_53
+    21300108: WarriorDrow_54
+    21300110: WarriorDrow_55
+    21300112: WarriorDrow_56
+    21300114: WarriorDrow_57
+    21300116: WarriorDrow_58
+    21300118: WarriorDrow_59
+    21300120: WarriorDrow_60
+    21300122: WarriorDrow_61
+    21300124: WarriorDrow_62
+    21300126: WarriorDrow_63
+    21300128: WarriorDrow_64
+    21300130: WarriorDrow_65
+    21300132: WarriorDrow_66
+    21300134: WarriorDrow_67
+    21300136: WarriorDrow_68
+    21300138: WarriorDrow_69
+    21300140: WarriorDrow_70
+    21300142: WarriorDrow_71
+    21300144: WarriorDrow_72
+    21300146: WarriorDrow_73
+    21300148: WarriorDrow_74
+    21300150: WarriorDrow_75
+    21300152: WarriorDrow_76
+    21300154: WarriorDrow_77
+    21300156: WarriorDrow_78
+    21300158: WarriorDrow_79
+    21300160: WarriorDrow_80
+    21300162: WarriorDrow_81
+    21300164: WarriorDrow_82
+    21300166: WarriorDrow_83
+    21300168: WarriorDrow_84
+    21300170: WarriorDrow_85
+    21300172: WarriorDrow_86
+    21300174: WarriorDrow_87
+    21300176: WarriorDrow_88
+    21300178: WarriorDrow_89
+    21300180: WarriorDrow_90
+    21300182: WarriorDrow_91
+    21300184: WarriorDrow_92
+    21300186: WarriorDrow_93
+    21300188: WarriorDrow_94
+    21300190: WarriorDrow_95
+    21300192: WarriorDrow_96
+    21300194: WarriorDrow_97
+    21300196: WarriorDrow_98
+    21300198: WarriorDrow_99
+    21300200: WarriorDrow_100
+    21300202: WarriorDrow_101
+    21300204: WarriorDrow_102
+    21300206: WarriorDrow_103
+    21300208: WarriorDrow_104
+    21300210: WarriorDrow_105
+    21300212: WarriorDrow_106
+    21300214: WarriorDrow_107
+    21300216: WarriorDrow_108
+    21300218: WarriorDrow_109
+    21300220: WarriorDrow_110
+    21300222: WarriorDrow_111
+    21300224: WarriorDrow_112
+    21300226: WarriorDrow_113
+    21300228: WarriorDrow_114
+    21300230: WarriorDrow_115
+    21300232: WarriorDrow_116
+    21300234: WarriorDrow_117
+    21300236: WarriorDrow_118
+    21300238: WarriorDrow_119
+    21300240: WarriorDrow_120
+    21300242: WarriorDrow_121
+    21300244: WarriorDrow_122
+    21300246: WarriorDrow_123
+    21300248: WarriorDrow_124
+    21300250: WarriorDrow_125
+    21300252: WarriorDrow_126
+    21300254: WarriorDrow_127
+    21300256: WarriorDrow_128
+    21300258: WarriorDrow_129
+    21300260: WarriorDrow_130
+    21300262: WarriorDrow_131
+    21300264: WarriorDrow_132
+    21300266: WarriorDrow_133
+    21300268: WarriorDrow_134
+    21300270: WarriorDrow_135
+    21300272: WarriorDrow_136
+    21300274: WarriorDrow_137
+    21300276: WarriorDrow_138
+    21300278: WarriorDrow_139
+    21300280: WarriorDrow_140
+    21300282: WarriorDrow_141
+    21300284: WarriorDrow_142
+    21300286: WarriorDrow_143
+    21300288: WarriorDrow_144
+    21300290: WarriorDrow_145
+    21300292: WarriorDrow_146
+    21300294: WarriorDrow_147
+    21300296: WarriorDrow_148
+    21300298: WarriorDrow_149
+    21300300: WarriorDrow_150
+    21300302: WarriorDrow_151
+    21300304: WarriorDrow_152
+    21300306: WarriorDrow_153
+    21300308: WarriorDrow_154
+    21300310: WarriorDrow_155
+    21300312: WarriorDrow_156
+    21300314: WarriorDrow_157
+    21300316: WarriorDrow_158
+    21300318: WarriorDrow_159
+    21300320: WarriorDrow_160
+    21300322: WarriorDrow_161
+    21300324: WarriorDrow_162
+    21300326: WarriorDrow_163
+    21300328: WarriorDrow_164
+    21300330: WarriorDrow_165
+    21300332: WarriorDrow_166
+    21300334: WarriorDrow_167
+    21300336: WarriorDrow_168
+    21300338: WarriorDrow_169
+    21300340: WarriorDrow_170
+    21300342: WarriorDrow_171
+    21300344: WarriorDrow_172
+    21300346: WarriorDrow_173
+    21300348: WarriorDrow_174
+    21300350: WarriorDrow_175
+    21300352: WarriorDrow_176
+    21300354: WarriorDrow_177
+  externalObjects: {}
+  serializedVersion: 9
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: WarriorDrow_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d8b52d6dfb6fab409c4bb161cf0731d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a50d69ed7cc61e4da0d59ba5cf2fd69
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 699fd96d8c39de541bbba3d154d1dc0b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc0b789a466a7ce4da25e2c0d82bb210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8bf38cb9582bd44ab9852191c3a26ba
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f0a53f012d2644459accbe6d7f4457e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77f246d3e3b8f294b8619b505513110e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e0ff5f4580ec3d4fa21b5512a13da12
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 565dc0375b7454c46b82409b2edb21ff
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d0f2a0a8e040ae47adf1ce5f83afe62
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc5e5c675ef2c6a4a9226972501a6205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_11
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2dc0da1ffa373e4b9d5599f8a78b335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_12
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a48799d0a765d0458b0245b8eef9a6a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_13
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cb3eb65861e24942a7465270433da1d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_14
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85a9e22091c1d204493138bdce376636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_15
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4f528687e9215f45bbf5616faed3b95
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_16
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98aea373ccf24b849aeb0176b4e6093f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_17
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bd22ea51cf9d25448c8111fa02f0069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 715a49a6884bb644d92256f570b258ee
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_19
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4614df4b9f5d2e429417fa45c2dc6f4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_20
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 636caf469473d724d9404e77ba2b41cf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_21
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07fc016b067e57b4a94a174b52b3a775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_22
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2029518f57a79f44cbbfdc9e56771402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_23
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c0cd7252fee92941b20865bce663b53
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1de9d8b641ece7d44a973cccb2bb6e24
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_25
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5110a543174a7954281bddd862981785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_26
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcd8281a70f8bab45a2130bd49381ff7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_27
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20d612d4a6eee9343b65f38e7f4add2f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_28
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b8bead56bdfcc1499fb7528678b994c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorDrow_29
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b98af08eadb40ab41a3bcb507aaca9bb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 54967eb2637fc9b4ea2dcde3823ae66b
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

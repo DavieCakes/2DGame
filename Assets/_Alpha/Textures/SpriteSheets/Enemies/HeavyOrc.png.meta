@@ -1,0 +1,897 @@
+fileFormatVersion: 2
+guid: 0629c311f44af3a4094de3222eee95f5
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: HeavyOrc_0
+    21300002: HeavyOrc_1
+    21300004: HeavyOrc_2
+    21300006: HeavyOrc_3
+    21300008: HeavyOrc_4
+    21300010: HeavyOrc_5
+    21300012: HeavyOrc_6
+    21300014: HeavyOrc_7
+    21300016: HeavyOrc_8
+    21300018: HeavyOrc_9
+    21300020: HeavyOrc_10
+    21300022: HeavyOrc_11
+    21300024: HeavyOrc_12
+    21300026: HeavyOrc_13
+    21300028: HeavyOrc_14
+    21300030: HeavyOrc_15
+    21300032: HeavyOrc_16
+    21300034: HeavyOrc_17
+    21300036: HeavyOrc_18
+    21300038: HeavyOrc_19
+    21300040: HeavyOrc_20
+    21300042: HeavyOrc_21
+    21300044: HeavyOrc_22
+    21300046: HeavyOrc_23
+    21300048: HeavyOrc_24
+    21300050: HeavyOrc_25
+    21300052: HeavyOrc_26
+    21300054: HeavyOrc_27
+    21300056: HeavyOrc_28
+    21300058: HeavyOrc_29
+    21300060: HeavyOrc_30
+    21300062: HeavyOrc_31
+    21300064: HeavyOrc_32
+    21300066: HeavyOrc_33
+    21300068: HeavyOrc_34
+    21300070: HeavyOrc_35
+    21300072: HeavyOrc_36
+    21300074: HeavyOrc_37
+    21300076: HeavyOrc_38
+    21300078: HeavyOrc_39
+    21300080: HeavyOrc_40
+    21300082: HeavyOrc_41
+    21300084: HeavyOrc_42
+    21300086: HeavyOrc_43
+    21300088: HeavyOrc_44
+    21300090: HeavyOrc_45
+    21300092: HeavyOrc_46
+    21300094: HeavyOrc_47
+    21300096: HeavyOrc_48
+    21300098: HeavyOrc_49
+    21300100: HeavyOrc_50
+    21300102: HeavyOrc_51
+    21300104: HeavyOrc_52
+    21300106: HeavyOrc_53
+    21300108: HeavyOrc_54
+    21300110: HeavyOrc_55
+    21300112: HeavyOrc_56
+    21300114: HeavyOrc_57
+    21300116: HeavyOrc_58
+    21300118: HeavyOrc_59
+    21300120: HeavyOrc_60
+    21300122: HeavyOrc_61
+    21300124: HeavyOrc_62
+    21300126: HeavyOrc_63
+    21300128: HeavyOrc_64
+    21300130: HeavyOrc_65
+    21300132: HeavyOrc_66
+    21300134: HeavyOrc_67
+    21300136: HeavyOrc_68
+    21300138: HeavyOrc_69
+    21300140: HeavyOrc_70
+    21300142: HeavyOrc_71
+    21300144: HeavyOrc_72
+    21300146: HeavyOrc_73
+    21300148: HeavyOrc_74
+    21300150: HeavyOrc_75
+    21300152: HeavyOrc_76
+    21300154: HeavyOrc_77
+    21300156: HeavyOrc_78
+    21300158: HeavyOrc_79
+    21300160: HeavyOrc_80
+    21300162: HeavyOrc_81
+    21300164: HeavyOrc_82
+    21300166: HeavyOrc_83
+    21300168: HeavyOrc_84
+    21300170: HeavyOrc_85
+    21300172: HeavyOrc_86
+    21300174: HeavyOrc_87
+    21300176: HeavyOrc_88
+    21300178: HeavyOrc_89
+    21300180: HeavyOrc_90
+    21300182: HeavyOrc_91
+    21300184: HeavyOrc_92
+    21300186: HeavyOrc_93
+    21300188: HeavyOrc_94
+    21300190: HeavyOrc_95
+    21300192: HeavyOrc_96
+    21300194: HeavyOrc_97
+    21300196: HeavyOrc_98
+    21300198: HeavyOrc_99
+    21300200: HeavyOrc_100
+    21300202: HeavyOrc_101
+    21300204: HeavyOrc_102
+    21300206: HeavyOrc_103
+    21300208: HeavyOrc_104
+    21300210: HeavyOrc_105
+    21300212: HeavyOrc_106
+    21300214: HeavyOrc_107
+    21300216: HeavyOrc_108
+    21300218: HeavyOrc_109
+    21300220: HeavyOrc_110
+    21300222: HeavyOrc_111
+    21300224: HeavyOrc_112
+    21300226: HeavyOrc_113
+    21300228: HeavyOrc_114
+    21300230: HeavyOrc_115
+    21300232: HeavyOrc_116
+    21300234: HeavyOrc_117
+    21300236: HeavyOrc_118
+    21300238: HeavyOrc_119
+    21300240: HeavyOrc_120
+    21300242: HeavyOrc_121
+    21300244: HeavyOrc_122
+    21300246: HeavyOrc_123
+    21300248: HeavyOrc_124
+    21300250: HeavyOrc_125
+    21300252: HeavyOrc_126
+    21300254: HeavyOrc_127
+    21300256: HeavyOrc_128
+    21300258: HeavyOrc_129
+    21300260: HeavyOrc_130
+    21300262: HeavyOrc_131
+    21300264: HeavyOrc_132
+    21300266: HeavyOrc_133
+    21300268: HeavyOrc_134
+    21300270: HeavyOrc_135
+    21300272: HeavyOrc_136
+    21300274: HeavyOrc_137
+    21300276: HeavyOrc_138
+    21300278: HeavyOrc_139
+    21300280: HeavyOrc_140
+    21300282: HeavyOrc_141
+    21300284: HeavyOrc_142
+    21300286: HeavyOrc_143
+    21300288: HeavyOrc_144
+    21300290: HeavyOrc_145
+    21300292: HeavyOrc_146
+    21300294: HeavyOrc_147
+    21300296: HeavyOrc_148
+    21300298: HeavyOrc_149
+    21300300: HeavyOrc_150
+    21300302: HeavyOrc_151
+    21300304: HeavyOrc_152
+    21300306: HeavyOrc_153
+    21300308: HeavyOrc_154
+    21300310: HeavyOrc_155
+    21300312: HeavyOrc_156
+    21300314: HeavyOrc_157
+    21300316: HeavyOrc_158
+    21300318: HeavyOrc_159
+    21300320: HeavyOrc_160
+    21300322: HeavyOrc_161
+    21300324: HeavyOrc_162
+    21300326: HeavyOrc_163
+    21300328: HeavyOrc_164
+    21300330: HeavyOrc_165
+    21300332: HeavyOrc_166
+    21300334: HeavyOrc_167
+    21300336: HeavyOrc_168
+    21300338: HeavyOrc_169
+    21300340: HeavyOrc_170
+    21300342: HeavyOrc_171
+    21300344: HeavyOrc_172
+    21300346: HeavyOrc_173
+    21300348: HeavyOrc_174
+    21300350: HeavyOrc_175
+    21300352: HeavyOrc_176
+    21300354: HeavyOrc_177
+  externalObjects: {}
+  serializedVersion: 9
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: HeavyOrc_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 238fa6ed2cb8b6d4ba3e60321e0c161b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce215efc7cb6a564483c82c69af72236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e40b0009a16b99c46980362809a04e36
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 512f75c0dda850448b7bc2721d537a53
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 370e85592a8804148884dc681a8d3aa1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 577f6c177ca9ed34d913430896681395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa2cea532088b7248ad1a631e6b54f74
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21e8d79a80f430e48973d371e217fb53
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e547e65589fe4a54287d9ffa04d1dd76
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce7ba3db5cf449242be84dc3ac7cb76b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 167bd9ca825f0264eafe8a789c36308b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_11
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 487d70b3a27a2ec4a97bda5c16af4989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_12
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3532ab697c566ff4cb3060384e2462a6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_13
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfc3ef6d0ae5a4d45833a07943e95948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_14
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85fdd0be00c681c48a72b42cb633655f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_15
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8be8e6b042ce514fb05fba19618bf8c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_16
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14007338b81168245b021e4d1f297bb2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2b56dc6d775e3b44b0ddd4cf7cba481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_18
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a76269fa9d8e674a89af15fa9416f3d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_19
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1afb997740d8e645a6ca20520a2ebf0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_20
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f535fc36abff07429476b409631cad7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_21
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1ce79fab87afd24a855a7e4ef47a675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_22
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec94ff9847843774f920d1599de1ad3f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_23
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2e11c8e10f5875418b80da560fc5307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_24
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c30b876a1a8755d42a78ee6d0170a683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 533aaddc4f060964a9a2ce653c43e8fb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_26
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37fdd4c5d7db0254a9981894847a6af4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_27
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52d4571ddcce8d5468718cedd1d87a85
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_28
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 040177e4841bd7e41badf2a4f5cd2037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_29
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4457b023292d374d93146c867cabad5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeavyOrc_30
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af5613f456f589a40b8bb07e1ebdf874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 04aa5e042c4b4514ebbf44abed6863bc
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
