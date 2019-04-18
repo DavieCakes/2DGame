@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+using Items;
+using Builders;
+
 public class EncounterHandler : MonoBehaviour
 {
     Encounters enc;
@@ -13,7 +16,7 @@ public class EncounterHandler : MonoBehaviour
     GameObject[] enemies;
     EnemyController ec;
     Animator anim;
-    Its[] drops;
+    List<Item> drops = new List<Item>();
     public bool boss = false;
 
     public Canvas transition;
@@ -35,7 +38,9 @@ public class EncounterHandler : MonoBehaviour
     public void StartEncounter(Encounters enc)
     {
         this.enc = enc;
-        drops = enc.drops;
+        drops.AddRange(Builder.BuildRandomItemDrop());
+        foreach (var item in drops)
+            Debug.Log(item.ToString());
         enemies = enc.enemies;
         encounter = Encounter();
         StartCoroutine(encounter);
@@ -147,15 +152,17 @@ public class EncounterHandler : MonoBehaviour
     private void Drops()
     {
         txtBox.text = "";
-        foreach (Its s in this.drops)
+        foreach (Item s in this.drops)
         {
             txtBox.text += pc.GetName() + " received " + s.GetItemName() + ".\n";
             pc.ReceiveDrop(s);
         }
-        foreach (Its s in ec.drops)
+        foreach (string s in ec.drops)
         {
-            txtBox.text += pc.GetName() + " received " + s.GetItemName() + ".\n";
-            pc.ReceiveDrop(s);
+            Debug.Log(s);
+            Item temp = Builder.BuildEquipment(s);
+            txtBox.text += pc.GetName() + " received " + temp.GetItemName() + ".\n";
+            pc.ReceiveDrop(temp);
         }
     }
 
@@ -168,10 +175,10 @@ public class EncounterHandler : MonoBehaviour
 
     IEnumerator Attack()
     {
-        if (pc.abilities.agility > ec.agility || (pc.abilities.agility == ec.agility && Random.Range(0, 2) == 0))
+        if (pc.playerModel.abilities.Agility.Value > ec.agility || (pc.playerModel.abilities.Agility.Value == ec.agility && Random.Range(0, 2) == 0))
         {
             txtBox.text = pc.GetName() + " attacked!";
-            if (ec.TakeDamage(pc.abilities.attack))
+            if (ec.TakeDamage(pc.playerModel.abilities.Attack.Value))
             {
                 anim.SetTrigger(boss ? "Attacking" : "TrigAttack");
                 yield return new WaitForSeconds(1.5f);
@@ -189,7 +196,7 @@ public class EncounterHandler : MonoBehaviour
             if (pc.TakeDamage(ec.Attack()))
             {
                 txtBox.text += "\n" + pc.GetName() + " attacked!";
-                ec.TakeDamage(pc.abilities.attack);
+                ec.TakeDamage(pc.playerModel.abilities.Attack.Value);
                 foreach (Button btn in btnArray)
                     btn.interactable = true;
             }

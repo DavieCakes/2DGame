@@ -1,0 +1,63 @@
+<Data>
+    <Creatures>
+        <Creature name = "Warrior Drow" >
+        
+            <Attribute name = "Strength" value = "10"/>
+            <Attribute name = "Dexterity" value = "10"/>
+            <Attribute name = "Constitution" value = "10"/>
+            <Attribute name = "Wisdom" value = "10"/>
+            <Attribute name = "Charisma" value = "10"/>
+            <Attribute name = "Intelligence" value = "10"/>
+            <Attribute name = "Initiative" value = "10"/>
+            <Attribute name = "Attack" value = "10"/>
+            <Attribute name = "Damage" value = "10"/>
+            <Attribute name = "Health" value = "10"/>
+            <Attribute name = "AC" value = "10"/>
+            <Inventory>
+                <Item name = "Mushrooms"/>
+            </Inventory>
+        </Creature>
+    </Creatures>
+    <Items>
+        <Item name = "key" type="key"/>
+        <Item name = "Health Potion" type = "healthpotion"/>
+
+        <Item name = "Armor1" type = "equipment" slot = "armor"> <Modifier name = "defense" value ="1"/> </Item>
+        <Item name = "Armor2" type = "equipment" slot = "armor"> <Modifier name = "defense" value ="2"/> </Item>
+        <Item name = "Armor3" type = "equipment" slot = "armor"> <Modifier name = "defense" value ="3"/> </Item>
+        <Item name = "Armor4" type = "equipment" slot = "armor"> <Modifier name = "defense" value ="4"/> </Item>
+        <Item name = "Armor5" type = "equipment" slot = "armor"> <Modifier name = "defense" value ="5"/> </Item>
+        <Item name = "Armor6" type = "equipment" slot = "armor"> <Modifier name = "defense" value ="6"/> </Item>
+        <Item name = "Armor7" type = "equipment" slot = "armor"> <Modifier name = "defense" value ="7"/> </Item>
+        <Item name = "Armor8" type = "equipment" slot = "armor"> <Modifier name = "defense" value ="8"/> </Item>
+
+        <Item name = "Boots1" type = "equipment" slot = "boots"> <Modifier name = "agility" value ="1"/> </Item>
+        <Item name = "Boots2" type = "equipment" slot = "boots"> <Modifier name = "agility" value ="2"/> </Item>
+        <Item name = "Boots3" type = "equipment" slot = "boots"> <Modifier name = "agility" value ="3"/> </Item>
+        <Item name = "Boots4" type = "equipment" slot = "boots"> <Modifier name = "agility" value ="4"/> </Item>
+        <Item name = "Boots5" type = "equipment" slot = "boots"> <Modifier name = "agility" value ="5"/> </Item>
+        <Item name = "Boots6" type = "equipment" slot = "boots"> <Modifier name = "agility" value ="6"/> </Item>
+        <Item name = "Boots7" type = "equipment" slot = "boots"> <Modifier name = "agility" value ="7"/> </Item>
+        <Item name = "Boots8" type = "equipment" slot = "boots"> <Modifier name = "agility" value ="8"/> </Item>
+
+        <Item name = "Helm of Awe" type = "equipment" slot = "helmet"> <Modifier name = "health" value ="1"/> <Modifier name = "agility" value ="1"/> </Item>
+        <Item name = "Tarnhelm" type = "equipment" slot = "helmet"> <Modifier name = "health" value ="2"/> <Modifier name = "agility" value ="2"/> </Item>
+        <Item name = "Goswhit" type = "equipment" slot = "helmet"> <Modifier name = "health" value ="3"/> <Modifier name = "agility" value ="3"/> </Item>
+        <Item name = "Hulishjalmr" type = "equipment" slot = "helmet"> <Modifier name = "health" value ="4"/> <Modifier name = "agility" value ="4"/> </Item>
+        <Item name = "Veil of Isis" type = "equipment" slot = "helmet"> <Modifier name = "health" value ="5"/> <Modifier name = "agility" value ="5"/> </Item>
+        <Item name = "Kappa's Plate" type = "equipment" slot = "helmet"> <Modifier name = "health" value ="6"/> <Modifier name = "agility" value ="6"/> </Item>
+        <Item name = "Veil of Veronica" type = "equipment" slot = "helmet"> <Modifier name = "health" value ="7"/> <Modifier name = "agility" value ="7"/> </Item>
+        <Item name = "Iron Crown of Lombardy" type = "equipment" slot = "helmet"> <Modifier name = "health" value ="8"/> <Modifier name = "agility" value ="8"/> </Item>
+        <Item name = "Ariadne's Diadem" type = "equipment" slot = "helmet"> <Modifier name = "health" value ="9"/> <Modifier name = "agility" value ="9"/> </Item>
+
+        <Item name = "Trident" type = "equipment" slot = "weapon"> <Modifier name = "attack" value ="6"/> <Modifier name = "agility" value ="10"/> </Item>
+        <Item name = "Spear" type = "equipment" slot = "weapon"> <Modifier name = "attack" value ="6"/> <Modifier name = "agility" value ="3"/> </Item>
+        <Item name = "Short Bow" type = "equipment" slot = "weapon"> <Modifier name = "attack" value ="6"/> <Modifier name = "agility" value ="5"/> </Item>
+        <Item name = "Dagger" type = "equipment" slot = "weapon"> <Modifier name = "attack" value ="4"/> <Modifier name = "agility" value ="7"/> </Item>
+        <Item name = "Mace" type = "equipment" slot = "weapon"> <Modifier name = "attack" value ="6"/> </Item>
+        <Item name = "Handaxe" type = "equipment" slot = "weapon"> <Modifier name = "attack" value ="6"/> </Item>
+        <Item name = "Halberd" type = "equipment" slot = "weapon"> <Modifier name = "attack" value ="10"/> </Item>
+        <Item name = "Longsword" type = "equipment" slot = "weapon"> <Modifier name = "attack" value ="8"/> </Item>
+        <Item name = "Rapier" type = "equipment" slot = "weapon"> <Modifier name = "attack" value ="8"/> </Item>
+    </Items>
+</Data>

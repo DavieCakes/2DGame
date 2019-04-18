@@ -1,108 +1,139 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 using Creatures;
 using Items;
-using Attributes;
+using PlayerAbilities;
 using Databases;
 
 namespace Builders {
     public class Builder {
-        public Creature BuildCreature(string creatureName) {
+        public static Creature BuildCreature(string creatureName) {
 
             Database database = new Database();
             Dictionary<string, object> creatureData = database.GetCreatureData(creatureName);
-            // get creature id, get creature attributes, get item_ids, get items, equip items, return
+            // get creature id, get creature abilitiess, get item_ids, get items, equip items, return
             // long creatureId = (long)creatureData["id"];
             // List<long> item_ids = (List<long>)creatureData["item_ids"];
-            List<Item> inventory = new List<Item>();
-            Dictionary<AttributeType, Attribute> attributes = new Dictionary<AttributeType, Attribute>();
-            Creature creature;
+            List<Items.Equipment> inventory = new List<Items.Equipment>();
+            Dictionary<AbilityType, Ability> abilities = new Dictionary<AbilityType, Ability>();
+            Creatures.Creature creature;
 
-            foreach(long id in (List<long>)creatureData["item_ids"]) {
-                inventory.Add(BuildItem(id));
+            foreach(string item in (List<string>)creatureData["inventory"]) {
+                inventory.Add(BuildEquipment(item));
             }
 
-            foreach(KeyValuePair<string, long> entry in (Dictionary<string, long>)creatureData["attributes"]) {
+            foreach(KeyValuePair<string, long> entry in (Dictionary<string, long>)creatureData["Abilitys"]) {
                 // Debug.Log(entry.Key + " " + entry.Value);
-                attributes.Add(StringToAttributeType(entry.Key), new Attribute((float)entry.Value));
+                abilities.Add(StringToAbilityType(entry.Key), new Ability((int)entry.Value));
             }
 
-            creature = new Creature(attributes, (string)creatureData["name"], (long)creatureData["id"]);
-            foreach(Item item in inventory) {
-                creature.Equip(item);
+            creature = new Creatures.Creature(abilities, (string)creatureData["name"], (long)creatureData["id"]);
+            foreach(Items.Equipment item in inventory) {
+                creature.PickUp(item);
             }
             return creature;
         }
 
-        private AttributeType StringToAttributeType(string typeString) {
-                    AttributeType attributeType;
+        private static AbilityType StringToAbilityType(string typeString) {
+                    AbilityType AbilityType;
                     switch(typeString.ToLower()) {
-                    case "strength":
-                        attributeType = AttributeType.Strength;
-                        break;
-                    case "dexterity":
-                        attributeType = AttributeType.Dexterity;
-                        break;
-                    case "constitution":
-                        attributeType = AttributeType.Constitution;
-                        break;
-                    case "wisdom":
-                        attributeType = AttributeType.Wisdom;
-                        break;
-                    case "charisma":
-                        attributeType = AttributeType.Charisma;
-                        break;
-                    case "intelligence":
-                        attributeType = AttributeType.Intelligence;
-                        break;
-                    case "initiative":
-                        attributeType = AttributeType.Initiative;
-                        break;
-                    case "tohit":
-                        attributeType = AttributeType.Attack;
+                    case "agility":
+                        AbilityType = AbilityType.AGILITY;
                         break;
                     case "attack":
-                        attributeType = AttributeType.Attack;
-                        break;
-                    case "damage":
-                        attributeType = AttributeType.Damage;
+                        AbilityType = AbilityType.ATTACK;
                         break;
                     case "health":
-                        attributeType = AttributeType.Health;
+                        AbilityType = AbilityType.HEALTH;
+                        break;
+                    case "defense":
+                        AbilityType = AbilityType.DEFENSE;
                         break;
                     default:
-                        throw new System.Exception("String '" + typeString + "' does not match known AttributeType");
+                        throw new System.Exception("String '" + typeString + "' does not match known AbilityType");
                 }
-                return attributeType;
+                return AbilityType;
         }
 
-        public Item BuildItem(string itemName) {
-            Database database = new Database();
-            Dictionary<string, object> itemData = database.GetItemData(itemName);
-            List<Modifier> modifiers = new List<Modifier>();
-            Item item = new Item((string)itemData["name"], (long)itemData["id"]);
-
-            foreach(KeyValuePair<string, long> row in (Dictionary<string, long>)itemData["modifiers"]) {
-                // Debug.Log(row.Key + row.Value);
-                item.AddStatMod(new Modifier((float)row.Value, ModifierType.Flat, item, StringToAttributeType(row.Key)));
+        private static EquipSlot StringToEquipSlot(string slotString) {
+            EquipSlot equipSlot;
+            switch(slotString.ToLower()) {
+                case "helmet":
+                    equipSlot = EquipSlot.HELMET;
+                    break;
+                case "armor":
+                    equipSlot = EquipSlot.ARMOR;
+                    break;
+                case "weapon":
+                    equipSlot = EquipSlot.WEAPON;
+                    break;
+                case "boots":
+                    equipSlot = EquipSlot.BOOTS;
+                    break;
+                default:
+                    throw new SystemException("String '" + slotString + "' does not match known equip slot");
             }
+            return equipSlot;
+        }
+
+        public static Equipment BuildEquipment(string equipmentName) {
+            Database database = new Database();
+            Dictionary<string, object> itemData = database.GetItemData(equipmentName);
+            List<Modifier> modifiers = new List<Modifier>();
+            Items.Equipment item = new Items.Equipment((string)itemData["name"], StringToEquipSlot((string)itemData["slot"]));
+            foreach(KeyValuePair<string, long> row in (Dictionary<string, long>)itemData["modifiers"]) {
+                item.AddStatMod(new Modifier((int)row.Value, ModifierType.Flat, item, StringToAbilityType(row.Key)));
+            }
+
+            Debug.Log("Building: " + item.ToString());
 
             return item;
         }
 
-        public Item BuildItem(long itemId) {
-            Database database = new Database();
-            Dictionary<string, object> itemData = database.GetItemData(itemId);
-            List<Modifier> modifiers = new List<Modifier>();
-            Item item = new Item((string)itemData["name"], (long)itemData["id"]);
+        public static List<Item> BuildRandomItemDrop() {
 
-            foreach(KeyValuePair<string, long> row in (Dictionary<string, long>)itemData["modifiers"]) {
-                // Debug.Log(row.Key + row.Value);
-                item.AddStatMod(new Modifier((float)row.Value, ModifierType.Flat, item, StringToAttributeType(row.Key)));
+            List<Item> items = new List<Item>();
+            System.Random rand = new System.Random();
+            int size = rand.Next(1, 5);
+            Database data = new Database();
+            Dictionary<string, object> itemData;
+
+            for (int i = 0; i < size; i++) {
+                int choice = rand.Next(1, 100);
+                if (choice <= 40) {
+                    items.Add(new HealthPotion());
+                } if (choice >= 90) {
+                    items.Add(new Key());
+                    items.Add(new Gold(10));
+                } else {
+                    itemData = data.GetRandomEquipmentData(rand);
+                    List<Modifier> modifiers = new List<Modifier>();
+                    Items.Equipment item = BuildEquipment((string)itemData["name"]);
+                    items.Add(item);
+                }
             }
 
-            return item;
+            Debug.Log("Building Random Drop List");
+            foreach (Item i in items) {
+                Debug.Log("Building: " + i.ToString());
+            }
+            return items;
         }
+
+        // public Item BuildItem(long itemId) {
+        //     XMLDatabase database = new XMLDatabase();
+        //     Dictionary<string, object> itemData = database.GetItemData(itemId);
+        //     List<Modifier> modifiers = new List<Modifier>();
+        //     Item item = new Item((string)itemData["name"], (long)itemData["id"]);
+
+        //     foreach(KeyValuePair<string, long> row in (Dictionary<string, long>)itemData["modifiers"]) {
+        //         // Debug.Log(row.Key + row.Value);
+        //         item.AddStatMod(new Modifier((float)row.Value, ModifierType.Flat, item, StringToAbilityType(row.Key)));
+        //     }
+
+        //     return item;
+        // }
     }
 }

@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Items;
+
 public class Encounters : MonoBehaviour
 {
     public EncounterHandler handler;
     public GameObject[] enemies;
     protected PlayerController pc;
-    public Its[] drops;
+    public List<string> drops;
     public int encounterRate = 200;
     public float delay = 5f, waitTime = 5f;
 
@@ -42,7 +44,7 @@ public class Encounters : MonoBehaviour
 
     public void clear()
     {
-        drops = new Its[0];
+        drops = new List<string>();
         delay = 0f;
     }
 }

@@ -1,44 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+// using UnityEngine;
 
 using Creatures;
 using Items;
-using Attributes;
+using PlayerAbilities;
 using Databases;
 using Builders;
 
-public class Tester : MonoBehaviour
+public class Tester
 {
-    Database data;
     // Start is called before the first frame update
-    void Start()
+    static Database data;
+    static void Main()
     {
-        
         // TestDataInsertCreature();
         // TestDataInsertItem();
         // TestGetItemData();
         // TestGetCreatureData();
         // TestBuildItem();
-        TestBuildCreature();
+        // TestBuildCreature();
+        data = new Database();
+        TestBuildRandomDrop();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+    }
+
+    static void TestBuildRandomDrop() {
+        Builder b = new Builder();
+        Database data = new Database();
+        List<Item> items = Builder.BuildRandomItemDrop();
+        foreach (Item item in items) {
+            System.Console.Write(item.ToString());
+        }
     }
 
     void TestBuildCreature() {
         Builder builder = new Builder();
-        Creature creature = builder.BuildCreature("Greater Kobold");
-        Debug.Log(creature.ToString());
+        Creatures.Creature creature = Builder.BuildCreature("Warrior Drow");
+        // Debug.Log(creature.ToString());
     }
 
     void TestBuildItem() {
         Builder builder = new Builder();
-        Item item = builder.BuildItem("IceSword");
-        Debug.Log(item.ToString());
+        Items.Equipment item = Builder.BuildEquipment("IceSword");
+        // Debug.Log(item.ToString());
     }
 
     void TestGetItemData() {
@@ -50,7 +59,7 @@ public class Tester : MonoBehaviour
         data = new Database();
         Dictionary<string, object> creature_data = data.GetCreatureData("Greater Kobold");
         foreach( KeyValuePair<string, object> row in creature_data) {
-            Debug.Log(row.Key);
+            // Debug.Log(row.Key);
         }
     }
 
@@ -75,13 +84,13 @@ public class Tester : MonoBehaviour
             {"modifiers", itemModifiers}
         };
 
-        data.InsertItem(itemData);
+        // data.InsertItem(itemData);
     }
 
     void TestDataInsertCreature() {
         data = new Database();
-        data.LogRow("*", "items", "name" , "sword");
-        Debug.Log("out");
+        // data.LogRow("*", "items", "name" , "sword");
+        // Debug.Log("out");
         Dictionary<string, int> enemy_attributes = new Dictionary<string, int>()
         {
             {"Strength", 10},
@@ -106,6 +115,6 @@ public class Tester : MonoBehaviour
             {"inventory", enemy_items}
 
         };
-        data.InsertCreature(enemy_data);
+        // data.InsertCreature(enemy_data);
     }
 }
