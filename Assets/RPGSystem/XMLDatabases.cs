@@ -66,7 +66,7 @@ namespace Databases {
             XmlDocument doc = new XmlDocument();
             doc.Load(Database.path);
             // Debug.Log(doc.InnerXml);
-            XmlNode itemNode = doc.SelectSingleNode("Data/Items//Item[@name = '" + itemName + "']");
+            XmlNode itemNode = doc.SelectSingleNode("Data/Items//Item[@display_name = '" + itemName + "']");
 
             // Debug.Log(itemName);
             // Debug.Log(itemNode.Attributes["id"].Value);
@@ -74,8 +74,9 @@ namespace Databases {
                 itemModifiers.Add(node.Attributes["name"].Value, Int64.Parse(node.Attributes["value"].Value));
             }
 
-            itemData.Add("name", itemName);
+            itemData.Add("display_name", itemName);
             itemData.Add("type", itemNode.Attributes["type"].Value);
+            itemData.Add("icon_name", itemNode.Attributes["icon_name"].Value);
             if ((string)itemData["type"] == "equipment") {
                 itemData.Add("slot", itemNode.Attributes["slot"].Value);
             }

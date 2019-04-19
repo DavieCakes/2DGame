@@ -182,7 +182,7 @@ namespace Inventories
         public Test()
         {
             EquipmentInventory i = new EquipmentInventory();
-            Items.Equipment item = new Items.Equipment("name", EquipSlot.ARMOR);
+            Items.Equipment item = new Items.Equipment("name","armor_1", EquipSlot.ARMOR);
             i.Add(item); // success
         }
     }

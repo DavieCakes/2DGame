@@ -7,20 +7,20 @@ using Items;
 using Creatures;
 using Builders;
 
-[System.Serializable]
-public class Abilities
-{
+// [System.Serializable]
+// public class Abilities
+// {
 
-    public int bHealth = 20,
-        maxHealth,
-        bAttack = 1,
-        bDefense = 1,
-        bAgility = 1;
+//     public int bHealth = 20,
+//         maxHealth,
+//         bAttack = 1,
+//         bDefense = 1,
+//         bAgility = 1;
 
-    public int health,
-        attack,
-        defense,
-        agility;
+//     public int health,
+//         attack,
+//         defense,
+//         agility;
 
     //     public int boostedHealth, boostedAttack, boostedDefense, boostedAgility;
 
@@ -32,21 +32,19 @@ public class Abilities
     //         defense = bDefense;
     //         agility = bAgility;
     //     }
-}
-
+// }
 public class PlayerController : MonoBehaviour
 {
 
     /* Player Starting Values */
-
-    public string PlayerName;
+    public string PlayerName = "Player Name";
     public List<string> StartingEquipment;
-    public int StartingHealth;
-    public int StartingAgility;
+    public int StartingHealth = 20;
+    public int StartingAgility = 1;
 
-    public int StartingDefense;
+    public int StartingDefense = 1;
 
-    public int StartingAttack;
+    public int StartingAttack = 1;
     public int StartingKeys = 0, StartingGold = 0;
     public Creature playerModel;
 

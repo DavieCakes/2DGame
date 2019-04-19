@@ -5,9 +5,11 @@ namespace Items {
 
     public abstract class Item {
         public readonly string name;
+        public readonly string iconName;
         public readonly ItemType itemType;
 
-        public Item (string name, ItemType itemType) {
+        public Item (string name, string iconName,  ItemType itemType) {
+            this.iconName = iconName;
             this.name = name;
             this.itemType = itemType;
         }
@@ -32,7 +34,7 @@ namespace Items {
                 amount = value;
             }
         }
-        public Gold(int amount) : base ("gold", ItemType.GOLD) {
+        public Gold(int amount) : base ("Gold", "gold", ItemType.GOLD) {
             this.amount = amount;
         }
 
@@ -43,7 +45,7 @@ namespace Items {
     }
 
     public class Key : Item {
-        public Key() : base ("key", ItemType.KEY) {}
+        public Key() : base ("Key", "key", ItemType.KEY) {}
 
         public override string ToString()
         {
@@ -52,7 +54,7 @@ namespace Items {
     }
 
     public class HealthPotion : Item {
-       public HealthPotion() : base ("Health Potion", ItemType.HEALTHPOTION) {}
+       public HealthPotion() : base ("Health Potion", "health_potion", ItemType.HEALTHPOTION) {}
 
        public int healAmount = 5;
 
@@ -81,20 +83,20 @@ namespace Items {
         public readonly List<Modifier> StatMods;
         public EquipSlot equipSlot;
 
-        public Equipment(IEnumerable<Modifier> StatMods, string name, EquipSlot equipSlot) : base (name, ItemType.EQUIPMENT) {
+        public Equipment(IEnumerable<Modifier> StatMods, string name, string iconName,  EquipSlot equipSlot) : base (name, iconName,  ItemType.EQUIPMENT) {
             this.StatMods = new List<Modifier>();
             this.equipSlot = equipSlot;
             foreach (Modifier mod in StatMods) {
                 this.StatMods.Add(mod);
             }
         }
-        public Equipment(Modifier StatMod, string name, EquipSlot equipSlot) : base (name, ItemType.EQUIPMENT) {
+        public Equipment(Modifier StatMod, string name, string iconName,  EquipSlot equipSlot) : base (name, iconName, ItemType.EQUIPMENT) {
             this.StatMods = new List<Modifier>();
             this.equipSlot = equipSlot;
             this.StatMods.Add(StatMod);
         }
 
-        public Equipment(string name, EquipSlot equipSlot) : base (name, ItemType.EQUIPMENT) {
+        public Equipment(string name, string iconName,  EquipSlot equipSlot) : base (name, iconName, ItemType.EQUIPMENT) {
             this.StatMods = new List<Modifier>();
             this.equipSlot = equipSlot;
         }
@@ -102,17 +104,17 @@ namespace Items {
         public void AddStatMod(Modifier StatMod) {
             this.StatMods.Add(StatMod);
         }
-
+// Assets/_Alpha/Textures/34x34RPGIcons.png
         override
         public string ToString() {
             string result = "";
-            result += "name: " + this.name + "\n";
-            result += "Modifiers: \n";
+            result += this.equipSlot.ToString().ToLower() + "\n" + this.name;
+            // result += "Modifiers: \n";
             foreach(Modifier mod in StatMods) {
                 if(mod.Value > 0) {
-                    result += "+";
+                    result += "\n+";
                 }
-                result += mod.Value + " (" + mod.Type.ToString() + ") " + mod.attType.ToString() + "\n";
+                result += mod.Value + mod.attType.ToString().ToLower() + "\n";
             }
             return result;
         }

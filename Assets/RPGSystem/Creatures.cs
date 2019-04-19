@@ -30,12 +30,10 @@ namespace Creatures
 
         public CreatureAbilities(Dictionary<AbilityType, Ability> _attributes)
         {
-
             this.Agility = _attributes[AbilityType.AGILITY];
             this.Attack = _attributes[AbilityType.ATTACK];
             this.Health = (HealthAbility)_attributes[AbilityType.HEALTH];
             this.Defense = _attributes[AbilityType.DEFENSE];
-
         }
     }
     public class Creature
@@ -45,7 +43,6 @@ namespace Creatures
         public CreatureAbilities abilities;
         public Inventory inventory;
         public Dictionary<EquipSlot, Items.Equipment> currentlyEquipped = new Dictionary<EquipSlot, Items.Equipment>();
-
 
         public Creature()
         {
@@ -151,7 +148,6 @@ namespace Creatures
             target.TakeDamage(this.abilities.Attack.Value);
             return true;
         }
-
 
         /*
             Applies damage to the creature,

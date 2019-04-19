@@ -78,11 +78,14 @@ namespace Builders {
             return equipSlot;
         }
 
+        /*
+            Only Builds Equipment
+        */
         public static Equipment BuildEquipment(string equipmentName) {
             Database database = new Database();
             Dictionary<string, object> itemData = database.GetItemData(equipmentName);
             List<Modifier> modifiers = new List<Modifier>();
-            Items.Equipment item = new Items.Equipment((string)itemData["name"], StringToEquipSlot((string)itemData["slot"]));
+            Items.Equipment item = new Items.Equipment((string)itemData["display_name"], (string)itemData["icon_name"], StringToEquipSlot((string)itemData["slot"]));
             foreach(KeyValuePair<string, long> row in (Dictionary<string, long>)itemData["modifiers"]) {
                 item.AddStatMod(new Modifier((int)row.Value, ModifierType.Flat, item, StringToAbilityType(row.Key)));
             }
@@ -91,7 +94,9 @@ namespace Builders {
 
             return item;
         }
-
+        /*
+            Builds a random list of items, can include any item type (gold, potions, keys, equipment)
+         */
         public static List<Item> BuildRandomItemDrop() {
 
             List<Item> items = new List<Item>();

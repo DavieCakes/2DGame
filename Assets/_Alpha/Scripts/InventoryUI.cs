@@ -20,7 +20,7 @@ public class InventoryUI : MonoBehaviour
     private List<GameObject> InventoryItemDisplays = new List<GameObject>();
 
 
-    void Awake()
+    void Start()
     {
         
         Transform trans = GetComponent<Transform>();
@@ -34,6 +34,9 @@ public class InventoryUI : MonoBehaviour
         UI_EquipmentIcons.Add(EquipSlot.ARMOR, GameObject.Find("ArmorIcon"));
         UI_EquipmentIcons.Add(EquipSlot.WEAPON, GameObject.Find("WeaponIcon"));
         UI_EquipmentIcons.Add(EquipSlot.BOOTS, GameObject.Find("BootsIcon"));
+
+        UpdateEquipmentPanel();
+        UpdateInventoryPanel();
         Debug.Log("Testing");
     }
 
@@ -97,9 +100,11 @@ public class InventoryUI : MonoBehaviour
     void UpdateInventoryPanel() {
         foreach (Equipment equipment in player.playerModel.inventory.equipmentInventory) {
             GameObject tempDisplay = Instantiate(this.Prefab_InventoryItemDisplay);
-            (tempDisplay.GetComponent<Text>()).text = equipment.ToString();
+            // Text tempText = tempDisplay.GetComponentInChildren<Text>();
+            Debug.Log("Updating Inventory Item Display");
+            (tempDisplay.GetComponentInChildren<Text>()).text = equipment.ToString();
             tempDisplay.transform.SetParent(UI_InventoryPanel.transform);
-            tempDisplay.GetComponent<Button>().onClick.AddListener(() => );
+            tempDisplay.GetComponent<Button>().onClick.AddListener(() => Debug.Log("Inventory Item Clicked!"));
             this.InventoryItemDisplays.Add (tempDisplay);
         }
     }
