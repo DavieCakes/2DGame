@@ -17,8 +17,8 @@ public class InventoryUI : MonoBehaviour
     Inventory IU_InventoryCopy;
 
     public GameObject Prefab_InventoryItemDisplay;
-    private List<GameObject> InventoryItemDisplays = new List<GameObject>();
 
+    private List<GameObject> InventoryItemDisplays = new List<GameObject>();
 
     void Start()
     {
@@ -89,11 +89,12 @@ public class InventoryUI : MonoBehaviour
         //     Debug.Log("boots");
         //     }
         foreach (KeyValuePair<EquipSlot, GameObject> UI_icon in this.UI_EquipmentIcons) {
-            ((this.UI_EquipmentIcons[UI_icon.Key]).GetComponent<Image>()).color = Color.white;
+            ((this.UI_EquipmentIcons[UI_icon.Key]).GetComponent<Image>()).color = Color.gray;
         }
 
         foreach (KeyValuePair<EquipSlot, Equipment> entry in player.playerModel.currentlyEquipped) {
-            ((this.UI_EquipmentIcons[entry.Key]).GetComponent<Image>()).color = Color.black;
+            ((this.UI_EquipmentIcons[entry.Key]).GetComponent<Image>()).color = Color.white;
+            ((this.UI_EquipmentIcons[entry.Key]).GetComponent<Image>()).sprite = Resources.Load<Sprite>("Icons/armor_1");
         }
     }
 
