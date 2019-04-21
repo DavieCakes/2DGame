@@ -4,6 +4,7 @@ using Items;
 
 namespace Inventories
 {
+    // This is just a class that is a list of equipment objects, it is included in the general 'Inventory' class
     public class EquipmentInventory : List<Items.Equipment>
     {
         public EquipmentInventory()
@@ -19,46 +20,17 @@ namespace Inventories
         }
     }
 
+    // A container class, it holds all possible types of items in one container, 
+    //this can be used for item drops, chests, enemy inventories, shopkeep inventories, 
+    //the player inventory, or any other collection of in game items
     public class Inventory
     {
         public int keys;
-        // {
-        //     set
-        //     {
-        //         // keys should not be negative
-        //         keys = value;
-        //         Debug.Log("keys set: " + keys);
-        //     }
-        //     get
-        //     {
-        //         Debug.Log("get keys : " + keys);
-        //         return keys;
-        //     }
-        // }
+
         public int gold;
-        // {
-        //     set
-        //     {
-        //         // gold should not be negative
-        //         gold = value;
-        //     }
-        //     get
-        //     {
-        //         return gold;
-        //     }
-        // }
+
         public int potions;
-        // {
-        //     set
-        //     {
-        //         // potions should not be negative
-        //         potions = (value < 0) ? 0 : value;
-        //     }
-        //     get
-        //     {
-        //         return potions;
-        //     }
-        // }
+ 
         public EquipmentInventory equipmentInventory;
 
         public Inventory()
@@ -69,6 +41,7 @@ namespace Inventories
             this.equipmentInventory = new EquipmentInventory();
         }
 
+        // Adds a single item, of any subtype, to the inventory
         public void Add(Item item)
         {
             switch (item.itemType)
@@ -88,6 +61,7 @@ namespace Inventories
             }
         }
 
+        // copies the contents of the given inventory into this inventory
         public void Add(Inventory inventory)
         {
             this.gold += inventory.gold;
@@ -99,6 +73,7 @@ namespace Inventories
             }
         }
 
+        // removies a single instances of the given item, of any subtype, from this inventory
         public void Remove(Item item)
         {
             switch (item.itemType)
@@ -117,6 +92,29 @@ namespace Inventories
                     break;
             }
         }
+
+        // Checks whether this inventory contains at least a single instance of the given item
+        public bool Contains(Item item) {
+            if (item.GetType() == typeof(Equipment)) {
+                return this.equipmentInventory.Contains((Equipment)item);
+            }
+            if (item.GetType() == typeof(Gold)) {
+                return this.gold != 0;
+            }
+            if (item.GetType() == typeof(HealthPotion)) {
+                return this.potions != 0;
+            }
+            if (item.GetType() == typeof(Key)) {
+                return this.keys != 0;
+            }
+            return false;
+        }
+
+        /*
+            The following methods add or remove amounts from keys, potions, and gold. This
+            may be unweidly, but they're here to make the inventory interface easy and flexible
+            to use.
+         */
 
         public void AddGold(int amount)
         {

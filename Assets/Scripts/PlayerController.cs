@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     /* Player Starting Values */
     public string PlayerName = "Player Name";
-    public List<string> StartingEquipment;
+    public List<string> StartingEquipment = new List<string>();
     public int StartingHealth = 20;
     public int StartingAgility = 1;
 
@@ -63,7 +63,8 @@ public class PlayerController : MonoBehaviour
     public Text keyCount, goldCount;
     public Slider health;
 
-    private void Awake()
+
+    void Start()
     {
         InitPlayerModel();
         UpdateUI();
@@ -76,6 +77,7 @@ public class PlayerController : MonoBehaviour
 
     private void InitPlayerModel()
     {
+        Debug.Log("test");
         playerModel = new Creature(StartingHealth, StartingAgility, StartingDefense, StartingAttack, PlayerName);
         playerModel.inventory.AddGold(StartingGold);
         playerModel.inventory.AddKeys(StartingKeys);
@@ -83,10 +85,14 @@ public class PlayerController : MonoBehaviour
         {
             playerModel.Equip(Builder.BuildEquipment(itemName));
         }
-        playerModel.Equip(Builder.BuildEquipment("Armor1"));
-        playerModel.Equip(Builder.BuildEquipment("Spear"));
-        playerModel.PickUp(Builder.BuildEquipment("Rapier"));
-        playerModel.PickUp(Builder.BuildEquipment("Armor2"));
+        Debug.Log("Adding Equipment");
+        List<Equipment> items = Builder.BuildAllEquipment();
+        Debug.Log(items.Count);
+        foreach (Equipment item in items) {
+            Debug.Log("test");
+            playerModel.Equip(item);
+        }
+        playerModel.inventory.AddPotions(20);
     }
     private void FixedUpdate()
     {
@@ -188,7 +194,7 @@ public class PlayerController : MonoBehaviour
         UpdateUI();
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
         health.maxValue = playerModel.abilities.Health.maxHealth;
         health.value = playerModel.abilities.Health.Value;

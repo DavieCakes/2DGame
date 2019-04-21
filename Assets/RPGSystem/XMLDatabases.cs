@@ -16,20 +16,20 @@ namespace Databases {
 
         // private static string path = "Data.xml";
 
-        public bool WriteData(string data) {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(Database.path);
-            // Console.WriteLine(doc.DocumentElement.SelectSingleNode("Creatures").SelectSingleNode("Creature").OuterXml);
-            // XmlNode match = doc.SelectSingleNode("Creatures");
-            // match = match.FirstChild;
-            // Console.WriteLine(match.ChildNodes.Count);
-            XmlNodeList creatures = doc.SelectNodes("Data/Creatures/Creature");
-            foreach (XmlNode node in creatures) {
-                Console.Write(node.Attributes["name"].Value);
-            }
-            // Console.Write(val);
-            return true;
-        }
+        // public bool WriteData(string data) {
+        //     XmlDocument doc = new XmlDocument();
+        //     doc.Load(Database.path);
+        //     // Console.WriteLine(doc.DocumentElement.SelectSingleNode("Creatures").SelectSingleNode("Creature").OuterXml);
+        //     // XmlNode match = doc.SelectSingleNode("Creatures");
+        //     // match = match.FirstChild;
+        //     // Console.WriteLine(match.ChildNodes.Count);
+        //     XmlNodeList creatures = doc.SelectNodes("Data/Creatures/Creature");
+        //     foreach (XmlNode node in creatures) {
+        //         Console.Write(node.Attributes["name"].Value);
+        //     }
+        //     // Console.Write(val);
+        //     return true;
+        // }
 
         public Dictionary<string, object> GetCreatureData(string creatureName) {
             XmlDocument doc = new XmlDocument();
@@ -69,7 +69,7 @@ namespace Databases {
             XmlNode itemNode = doc.SelectSingleNode("Data/Items//Item[@display_name = '" + itemName + "']");
 
             // Debug.Log(itemName);
-            // Debug.Log(itemNode.Attributes["id"].Value);
+            // Debug.Log(itemNode.Attributes["display_name"].Value);
             foreach(XmlNode node in itemNode.SelectNodes("Modifier")) {
                 itemModifiers.Add(node.Attributes["name"].Value, Int64.Parse(node.Attributes["value"].Value));
             }
@@ -87,6 +87,18 @@ namespace Databases {
             return itemData;
         }
 
+        public List<Dictionary<string, object>> GetAllEquipmentData() {
+            List<Dictionary<string, object>> itemList = new List<Dictionary<string, object>>();
+            XmlDocument doc = new XmlDocument();
+            doc.Load(Database.path);
+            // Debug.Log(doc.InnerXml);
+            XmlNodeList itemNodes = doc.SelectNodes("Data/Items//Item[@type = 'equipment']");
+            foreach (XmlNode node in itemNodes) {
+                itemList.Add(GetItemData(node.Attributes["display_name"].Value));
+            }
+            return itemList;
+        }
+
         public Dictionary<string, object> GetRandomEquipmentData(System.Random rand) {
             Dictionary<string, object> itemData = new Dictionary<string, object>();
             Dictionary <string, long> itemModifiers = new Dictionary<string, long>();
@@ -97,7 +109,7 @@ namespace Databases {
             XmlNodeList itemNodes = doc.SelectNodes("Data/Items//Item[@type = '" + Items.ItemType.EQUIPMENT.ToString().ToLower() + "']");
             randIndex = rand.Next(0, itemNodes.Count - 1);
             XmlNode selectedNode = itemNodes.Item(randIndex);
-            return GetItemData(selectedNode.Attributes["name"].Value);
+            return GetItemData(selectedNode.Attributes["icon_name"].Value);
         }
     }
 }

@@ -80,29 +80,29 @@ namespace Items {
     }
     public class Equipment : Item
     { 
-        public readonly List<Modifier> StatMods;
+        public readonly List<Modifier> modifiers;
         public EquipSlot equipSlot;
 
         public Equipment(IEnumerable<Modifier> StatMods, string name, string iconName,  EquipSlot equipSlot) : base (name, iconName,  ItemType.EQUIPMENT) {
-            this.StatMods = new List<Modifier>();
+            this.modifiers = new List<Modifier>();
             this.equipSlot = equipSlot;
             foreach (Modifier mod in StatMods) {
-                this.StatMods.Add(mod);
+                this.modifiers.Add(mod);
             }
         }
         public Equipment(Modifier StatMod, string name, string iconName,  EquipSlot equipSlot) : base (name, iconName, ItemType.EQUIPMENT) {
-            this.StatMods = new List<Modifier>();
+            this.modifiers = new List<Modifier>();
             this.equipSlot = equipSlot;
-            this.StatMods.Add(StatMod);
+            this.modifiers.Add(StatMod);
         }
 
         public Equipment(string name, string iconName,  EquipSlot equipSlot) : base (name, iconName, ItemType.EQUIPMENT) {
-            this.StatMods = new List<Modifier>();
+            this.modifiers = new List<Modifier>();
             this.equipSlot = equipSlot;
         }
 
         public void AddStatMod(Modifier StatMod) {
-            this.StatMods.Add(StatMod);
+            this.modifiers.Add(StatMod);
         }
 // Assets/_Alpha/Textures/34x34RPGIcons.png
         override
@@ -110,11 +110,11 @@ namespace Items {
             string result = "";
             result += this.equipSlot.ToString().ToLower() + "\n" + this.name;
             // result += "Modifiers: \n";
-            foreach(Modifier mod in StatMods) {
+            foreach(Modifier mod in modifiers) {
                 if(mod.Value > 0) {
                     result += "\n+";
                 }
-                result += mod.Value + mod.attType.ToString().ToLower() + "\n";
+                result += mod.Value + " " + mod.attType.ToString().ToLower() + "\n";
             }
             return result;
         }

@@ -38,11 +38,11 @@ public class Tester
         }
     }
 
-    void TestBuildCreature() {
-        Builder builder = new Builder();
-        Creatures.Creature creature = Builder.BuildCreature("Warrior Drow");
-        // Debug.Log(creature.ToString());
-    }
+    // void TestBuildCreature() {
+    //     Builder builder = new Builder();
+    //     Creatures.Creature creature = Builder.BuildCreature("Warrior Drow");
+    //     // Debug.Log(creature.ToString());
+    // }
 
     void TestBuildItem() {
         Builder builder = new Builder();

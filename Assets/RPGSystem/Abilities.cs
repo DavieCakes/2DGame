@@ -21,6 +21,8 @@ namespace PlayerAbilities {
         public int BaseValue; // base stat value
         private readonly List<Modifier> _modifiers;
         public readonly ReadOnlyCollection<Modifier> Modifiers; // mirrors stateModifiers for access, keeps original values private
+
+        
         public int Value {
             get {
                 if(isDirty){
@@ -107,7 +109,7 @@ namespace PlayerAbilities {
  */
     public class HealthAbility : Ability
     {
-        public int damageTaken;
+        private int damageTaken;
 
         public int maxHealth {
              get {
@@ -126,17 +128,36 @@ namespace PlayerAbilities {
                     _value = CalculateFinalValue() - damageTaken;
                     isDirty = false;
                 }
-                return _value;
+                return _value - damageTaken;
             }
         }
 
         public bool Heal(int amount) {
+            if (amount < 0) {
+                throw new ArgumentException("Heal amount: " + amount.ToString() + " cannot be negative.");
+            }
             if (damageTaken < 1) {
                 return false;
+            } if (damageTaken - amount < 0) {
+                damageTaken = 0;
+                // this.isDirty = true;
+                return true;
             }
             damageTaken -= amount;
+            // this.isDirty = true;
             return true;
-            
+        }
+
+        public void TakeDamage(int amount) {
+            if (amount < 0) {
+                throw new ArgumentException("Damage amount: " + amount.ToString() + " cannot be negative.");
+            }
+            this.damageTaken += amount;
+            // this.isDirty = true;
+        }
+
+        public bool IsDead() {
+            return this.Value < 1;
         }
 
         public HealthAbility(int baseValue) : base(baseValue)
@@ -144,6 +165,11 @@ namespace PlayerAbilities {
 
         }
 
+        public override string ToString() {
+            string result ="";
+            result += "Health: " + this.Value + "/" + this.maxHealth;
+            return result;
+        }
 
     }
 

@@ -38,13 +38,8 @@ public class GameController : MonoBehaviour
         // ADDED, opens Inventory UI from key 'i'
         if ( Input.GetKeyDown(KeyCode.I)) 
         {
-            Debug.Log(pc.playerModel.ToString());
-            ToggleInventoryUI();
-        }
-    }
-
-    public void ToggleInventoryUI() {
             this.inventoryUI.SetActive(!this.inventoryUI.activeSelf);
+        }
     }
 
     public void GameOver()

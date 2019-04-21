@@ -42,11 +42,12 @@ namespace Creatures
         public Dictionary<AbilityType, Ability> abilitiesHash;
         public CreatureAbilities abilities;
         public Inventory inventory;
-        public Dictionary<EquipSlot, Items.Equipment> currentlyEquipped = new Dictionary<EquipSlot, Items.Equipment>();
+        public Dictionary<EquipSlot, Items.Equipment> currentlyEquipped;
 
         public Creature()
         {
             this.inventory = new Inventory();
+            this.currentlyEquipped = new Dictionary<EquipSlot, Items.Equipment>();
             this.abilities = new CreatureAbilities(10, 10, 10, 10);
             InitAttributeHash();
         }
@@ -55,6 +56,7 @@ namespace Creatures
         {
             this.name = name;
             this.inventory = new Inventory();
+            this.currentlyEquipped = new Dictionary<EquipSlot, Items.Equipment>();
             this.abilities = new CreatureAbilities(_attributes);
             InitAttributeHash();
         }
@@ -63,6 +65,7 @@ namespace Creatures
         {
             this.name = name;
             this.inventory = new Inventory();
+            this.currentlyEquipped = new Dictionary<EquipSlot, Items.Equipment>();
             this.abilities = new CreatureAbilities(agility, attack, health, defense);
             InitAttributeHash();
         }
@@ -85,31 +88,49 @@ namespace Creatures
 
         /// Equips an item into the currentlyEquipped dictionary,
         /// also adds the items ability modifiers to the creature
+        // If equip slot is filled, currently equiped item goes into
+        // the inventory, and the given item is equiped in it's place
         public void Equip(Items.Equipment item)
         {
-            Debug.Log("Equipping: " + item.ToString());
-            foreach (Modifier mod in item.StatMods)
+            // Debug.Log("Equipping: " + item.ToString());
+            foreach (Modifier mod in item.modifiers)
             {
                 this.abilitiesHash[mod.attType].AddModifier(mod);
             }
-            if (!currentlyEquipped.ContainsKey(item.equipSlot))
+            if (!this.currentlyEquipped.ContainsKey(item.equipSlot))
             {
-                currentlyEquipped.Add(item.equipSlot, item);
+                this.currentlyEquipped.Add(item.equipSlot, item);
             }
             else
             {
-                currentlyEquipped.Remove(item.equipSlot);
-                currentlyEquipped.Add(item.equipSlot, item);
+                Unequip(item.equipSlot);
+                this.currentlyEquipped.Add(item.equipSlot, item);
             }
         }
 
         /*
             Unequips an item, unequiping also removes any
-            ability bonuses that item has
+            ability bonuses that item has.
+            Places item into inventory
+         */
+        public void Unequip(EquipSlot equipSlot) {
+            if (this.currentlyEquipped.ContainsKey(equipSlot)) {
+                foreach (Modifier mod in currentlyEquipped[equipSlot].modifiers) {
+                    this.abilitiesHash[mod.attType].RemoveAllModifiersFromSource(currentlyEquipped[equipSlot]);
+                }
+                inventory.Add(currentlyEquipped[equipSlot]);
+                currentlyEquipped.Remove(equipSlot);
+            }
+        }
+
+        /*
+            Unequips an item, unequiping also removes any
+            ability bonuses that item has.
+            Places item into inventory
          */
         public void Unequip(Items.Equipment item)
         {
-            foreach (Modifier mod in item.StatMods)
+            foreach (Modifier mod in item.modifiers)
             {
                 this.abilitiesHash[mod.attType].RemoveAllModifiersFromSource(item);
             }
@@ -119,8 +140,7 @@ namespace Creatures
         }
 
         /*
-            Removes an Item from the inventory, and places it into
-             the worn-equipment dictionary (through Equip() )
+            Removes an Item from the inventory, and sends it to Equip()
          */
         public bool EquipFromInventory(Items.Equipment item)
         {
@@ -131,6 +151,16 @@ namespace Creatures
             inventory.Remove(item);
             Equip(item);
             return true;
+        }
+
+        public bool EquipFromInventory(string iconName) {
+            foreach (Equipment equipment in this.inventory.equipmentInventory) {
+                if (equipment.iconName.Equals(iconName)) {
+                    EquipFromInventory(equipment);
+                    return true;
+                }
+            }
+            return false;
         }
 
         /*
@@ -157,16 +187,16 @@ namespace Creatures
          */
         public void TakeDamage(int value)
         {
-            if (value < 1)
-            {
-                return;
-            }
-            this.abilities.Health.damageTaken += value;
+            this.abilities.Health.TakeDamage(value);
         }
 
         public bool isDead()
         {
-            return this.abilities.Health.Value <= 0;
+            return this.abilities.Health.IsDead();
+        }
+
+        public bool TryHealthPotion() {
+            return this.abilities.Health.Heal(5);
         }
 
         override public string ToString()
@@ -176,16 +206,19 @@ namespace Creatures
             result += "attributes:\n";
             foreach (KeyValuePair<AbilityType, Ability> entry in this.abilitiesHash)
             {
-                result += entry.Key.ToString() + ": " + entry.Value.ToString() + "\n";
+                if (entry.Key == AbilityType.HEALTH) {
+                    result += entry.Value.ToString() + "\n";
+                } else {
+                    result += entry.Key.ToString() + ": " + entry.Value.ToString() + "\n";
+                }
             }
-            result += "inventory:\n";
-            result += this.inventory.ToString();
-            result += currentlyEquipped.Count + "Items ";
-            result += "Currently Equipped\n";
-            foreach (KeyValuePair<EquipSlot, Equipment> entry in this.currentlyEquipped)
-            {
-                result += entry.Key.ToString() + ": " + entry.Value.ToString() + "\n";
-            }
+            // result += "inventory:\n";
+            // result += this.inventory.ToString();
+            // result += currentlyEquipped.Count + " Items Currently Equipped\n";
+            // foreach (KeyValuePair<EquipSlot, Equipment> entry in this.currentlyEquipped)
+            // {
+            //     result += entry.Key.ToString() + ": " + entry.Value.ToString() + "\n";
+            // }
             return result;
 
         }

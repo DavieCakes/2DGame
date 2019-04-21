@@ -9,32 +9,32 @@ using Databases;
 
 namespace Builders {
     public class Builder {
-        public static Creature BuildCreature(string creatureName) {
+        // public static Creature BuildCreature(string creatureName) {
 
-            Database database = new Database();
-            Dictionary<string, object> creatureData = database.GetCreatureData(creatureName);
-            // get creature id, get creature abilitiess, get item_ids, get items, equip items, return
-            // long creatureId = (long)creatureData["id"];
-            // List<long> item_ids = (List<long>)creatureData["item_ids"];
-            List<Items.Equipment> inventory = new List<Items.Equipment>();
-            Dictionary<AbilityType, Ability> abilities = new Dictionary<AbilityType, Ability>();
-            Creatures.Creature creature;
+        //     Database database = new Database();
+        //     Dictionary<string, object> creatureData = database.GetCreatureData(creatureName);
+        //     // get creature id, get creature abilitiess, get item_ids, get items, equip items, return
+        //     // long creatureId = (long)creatureData["id"];
+        //     // List<long> item_ids = (List<long>)creatureData["item_ids"];
+        //     List<Items.Equipment> inventory = new List<Items.Equipment>();
+        //     Dictionary<AbilityType, Ability> abilities = new Dictionary<AbilityType, Ability>();
+        //     Creatures.Creature creature;
 
-            foreach(string item in (List<string>)creatureData["inventory"]) {
-                inventory.Add(BuildEquipment(item));
-            }
+        //     foreach(string item in (List<string>)creatureData["inventory"]) {
+        //         inventory.Add(BuildEquipment(item));
+        //     }
 
-            foreach(KeyValuePair<string, long> entry in (Dictionary<string, long>)creatureData["Abilitys"]) {
-                // Debug.Log(entry.Key + " " + entry.Value);
-                abilities.Add(StringToAbilityType(entry.Key), new Ability((int)entry.Value));
-            }
+        //     foreach(KeyValuePair<string, long> entry in (Dictionary<string, long>)creatureData["Abilitys"]) {
+        //         // Debug.Log(entry.Key + " " + entry.Value);
+        //         abilities.Add(StringToAbilityType(entry.Key), new Ability((int)entry.Value));
+        //     }
 
-            creature = new Creatures.Creature(abilities, (string)creatureData["name"], (long)creatureData["id"]);
-            foreach(Items.Equipment item in inventory) {
-                creature.PickUp(item);
-            }
-            return creature;
-        }
+        //     creature = new Creatures.Creature(abilities, (string)creatureData["name"], (long)creatureData["id"]);
+        //     foreach(Items.Equipment item in inventory) {
+        //         creature.PickUp(item);
+        //     }
+        //     return creature;
+        // }
 
         private static AbilityType StringToAbilityType(string typeString) {
                     AbilityType AbilityType;
@@ -84,7 +84,6 @@ namespace Builders {
         public static Equipment BuildEquipment(string equipmentName) {
             Database database = new Database();
             Dictionary<string, object> itemData = database.GetItemData(equipmentName);
-            List<Modifier> modifiers = new List<Modifier>();
             Items.Equipment item = new Items.Equipment((string)itemData["display_name"], (string)itemData["icon_name"], StringToEquipSlot((string)itemData["slot"]));
             foreach(KeyValuePair<string, long> row in (Dictionary<string, long>)itemData["modifiers"]) {
                 item.AddStatMod(new Modifier((int)row.Value, ModifierType.Flat, item, StringToAbilityType(row.Key)));
@@ -93,6 +92,22 @@ namespace Builders {
             Debug.Log("Building: " + item.ToString());
 
             return item;
+        }
+
+        public static List<Equipment> BuildAllEquipment() {
+            Database database = new Database();
+            List<Equipment> result = new List<Equipment>();
+            List<Dictionary<string, object>> itemDataList = database.GetAllEquipmentData();
+            Debug.Log(itemDataList.Count);
+            foreach (Dictionary<string, object> itemData in itemDataList) {
+            Items.Equipment temp = new Items.Equipment((string)itemData["display_name"], (string)itemData["icon_name"], StringToEquipSlot((string)itemData["slot"]));
+                foreach(KeyValuePair<string, long> row in (Dictionary<string, long>)itemData["modifiers"]) {
+                    temp.AddStatMod(new Modifier((int)row.Value, ModifierType.Flat, temp, StringToAbilityType(row.Key)));
+                }
+                result.Add(temp);
+                // Debug.Log(temp.ToString());
+            }
+            return result;
         }
         /*
             Builds a random list of items, can include any item type (gold, potions, keys, equipment)
