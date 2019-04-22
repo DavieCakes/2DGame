@@ -4,13 +4,13 @@ using System.Collections.Generic;
 namespace Items {
 
     public abstract class Item {
+        public readonly string displayName;
         public readonly string name;
-        public readonly string iconName;
         public readonly ItemType itemType;
 
-        public Item (string name, string iconName,  ItemType itemType) {
-            this.iconName = iconName;
+        public Item (string displayName, string name, ItemType itemType) {
             this.name = name;
+            this.displayName = displayName;
             this.itemType = itemType;
         }
 
@@ -25,16 +25,11 @@ namespace Items {
     }
 
     public class Gold : Item {
-        public int amount {
-            get {
-                return amount;
-            }
-            // currently only settable in constructor
-            private set {
-                amount = value;
-            }
-        }
+        public int amount;
         public Gold(int amount) : base ("Gold", "gold", ItemType.GOLD) {
+            if (amount < 0) {
+                throw new System.Exception("Gold can't be initialized with a negative value");
+            }
             this.amount = amount;
         }
 
@@ -83,20 +78,20 @@ namespace Items {
         public readonly List<Modifier> modifiers;
         public EquipSlot equipSlot;
 
-        public Equipment(IEnumerable<Modifier> StatMods, string name, string iconName,  EquipSlot equipSlot) : base (name, iconName,  ItemType.EQUIPMENT) {
+        public Equipment(IEnumerable<Modifier> StatMods, string displayName, string name,  EquipSlot equipSlot) : base (displayName, name,  ItemType.EQUIPMENT) {
             this.modifiers = new List<Modifier>();
             this.equipSlot = equipSlot;
             foreach (Modifier mod in StatMods) {
                 this.modifiers.Add(mod);
             }
         }
-        public Equipment(Modifier StatMod, string name, string iconName,  EquipSlot equipSlot) : base (name, iconName, ItemType.EQUIPMENT) {
+        public Equipment(Modifier StatMod, string displayName, string name,  EquipSlot equipSlot) : base (displayName, name, ItemType.EQUIPMENT) {
             this.modifiers = new List<Modifier>();
             this.equipSlot = equipSlot;
             this.modifiers.Add(StatMod);
         }
 
-        public Equipment(string name, string iconName,  EquipSlot equipSlot) : base (name, iconName, ItemType.EQUIPMENT) {
+        public Equipment(string displayName, string name,  EquipSlot equipSlot) : base (displayName, name, ItemType.EQUIPMENT) {
             this.modifiers = new List<Modifier>();
             this.equipSlot = equipSlot;
         }
@@ -108,7 +103,7 @@ namespace Items {
         override
         public string ToString() {
             string result = "";
-            result += this.equipSlot.ToString().ToLower() + "\n" + this.name;
+            result += this.equipSlot.ToString().ToLower() + "\n" + this.displayName;
             // result += "Modifiers: \n";
             foreach(Modifier mod in modifiers) {
                 if(mod.Value > 0) {

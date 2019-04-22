@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     public int StartingDefense = 1;
 
     public int StartingAttack = 1;
-    public int StartingKeys = 0, StartingGold = 0;
+    public int StartingKeys = 0, StartingGold = 0, StartingPotions = 0;
     public Creature playerModel;
 
     /* Controller Init Variables */
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
     public Slider health;
 
 
-    void Start()
+    void Awake()
     {
         InitPlayerModel();
         UpdateUI();
@@ -78,21 +78,22 @@ public class PlayerController : MonoBehaviour
     private void InitPlayerModel()
     {
         Debug.Log("test");
-        playerModel = new Creature(StartingHealth, StartingAgility, StartingDefense, StartingAttack, PlayerName);
+        playerModel = new Creature(StartingHealth, StartingAgility, StartingDefense, 100, PlayerName);
         playerModel.inventory.AddGold(StartingGold);
         playerModel.inventory.AddKeys(StartingKeys);
+        playerModel.inventory.AddPotions(StartingPotions);
         foreach (string itemName in StartingEquipment)
         {
             playerModel.Equip(Builder.BuildEquipment(itemName));
         }
-        Debug.Log("Adding Equipment");
-        List<Equipment> items = Builder.BuildAllEquipment();
-        Debug.Log(items.Count);
-        foreach (Equipment item in items) {
-            Debug.Log("test");
-            playerModel.Equip(item);
-        }
-        playerModel.inventory.AddPotions(20);
+        // Debug.Log("Adding Equipment");
+        // List<Equipment> items = Builder.BuildAllEquipment();
+        // Debug.Log(items.Count);
+        // foreach (Equipment item in items) {
+        //     Debug.Log("test");
+        //     playerModel.Equip(item);
+        // }
+        // playerModel.inventory.AddPotions(20);
     }
     private void FixedUpdate()
     {

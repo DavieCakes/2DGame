@@ -7,8 +7,10 @@ using Items;
 using PlayerAbilities;
 using Databases;
 
-namespace Builders {
-    public class Builder {
+namespace Builders
+{
+    public class Builder
+    {
         // public static Creature BuildCreature(string creatureName) {
 
         //     Database database = new Database();
@@ -36,30 +38,34 @@ namespace Builders {
         //     return creature;
         // }
 
-        private static AbilityType StringToAbilityType(string typeString) {
-                    AbilityType AbilityType;
-                    switch(typeString.ToLower()) {
-                    case "agility":
-                        AbilityType = AbilityType.AGILITY;
-                        break;
-                    case "attack":
-                        AbilityType = AbilityType.ATTACK;
-                        break;
-                    case "health":
-                        AbilityType = AbilityType.HEALTH;
-                        break;
-                    case "defense":
-                        AbilityType = AbilityType.DEFENSE;
-                        break;
-                    default:
-                        throw new System.Exception("String '" + typeString + "' does not match known AbilityType");
-                }
-                return AbilityType;
+        private static AbilityType StringToAbilityType(string typeString)
+        {
+            AbilityType AbilityType;
+            switch (typeString.ToLower())
+            {
+                case "agility":
+                    AbilityType = AbilityType.AGILITY;
+                    break;
+                case "attack":
+                    AbilityType = AbilityType.ATTACK;
+                    break;
+                case "health":
+                    AbilityType = AbilityType.HEALTH;
+                    break;
+                case "defense":
+                    AbilityType = AbilityType.DEFENSE;
+                    break;
+                default:
+                    throw new System.Exception("String '" + typeString + "' does not match known AbilityType");
+            }
+            return AbilityType;
         }
 
-        private static EquipSlot StringToEquipSlot(string slotString) {
+        private static EquipSlot StringToEquipSlot(string slotString)
+        {
             EquipSlot equipSlot;
-            switch(slotString.ToLower()) {
+            switch (slotString.ToLower())
+            {
                 case "helmet":
                     equipSlot = EquipSlot.HELMET;
                     break;
@@ -81,11 +87,13 @@ namespace Builders {
         /*
             Only Builds Equipment
         */
-        public static Equipment BuildEquipment(string equipmentName) {
+        public static Equipment BuildEquipment(string equipmentName)
+        {
             Database database = new Database();
             Dictionary<string, object> itemData = database.GetItemData(equipmentName);
-            Items.Equipment item = new Items.Equipment((string)itemData["display_name"], (string)itemData["icon_name"], StringToEquipSlot((string)itemData["slot"]));
-            foreach(KeyValuePair<string, long> row in (Dictionary<string, long>)itemData["modifiers"]) {
+            Items.Equipment item = new Items.Equipment((string)itemData["display_name"], (string)itemData["name"], StringToEquipSlot((string)itemData["slot"]));
+            foreach (KeyValuePair<string, long> row in (Dictionary<string, long>)itemData["modifiers"])
+            {
                 item.AddStatMod(new Modifier((int)row.Value, ModifierType.Flat, item, StringToAbilityType(row.Key)));
             }
 
@@ -94,14 +102,17 @@ namespace Builders {
             return item;
         }
 
-        public static List<Equipment> BuildAllEquipment() {
+        public static List<Equipment> BuildAllEquipment()
+        {
             Database database = new Database();
             List<Equipment> result = new List<Equipment>();
             List<Dictionary<string, object>> itemDataList = database.GetAllEquipmentData();
             Debug.Log(itemDataList.Count);
-            foreach (Dictionary<string, object> itemData in itemDataList) {
-            Items.Equipment temp = new Items.Equipment((string)itemData["display_name"], (string)itemData["icon_name"], StringToEquipSlot((string)itemData["slot"]));
-                foreach(KeyValuePair<string, long> row in (Dictionary<string, long>)itemData["modifiers"]) {
+            foreach (Dictionary<string, object> itemData in itemDataList)
+            {
+                Items.Equipment temp = new Items.Equipment((string)itemData["display_name"], (string)itemData["name"], StringToEquipSlot((string)itemData["slot"]));
+                foreach (KeyValuePair<string, long> row in (Dictionary<string, long>)itemData["modifiers"])
+                {
                     temp.AddStatMod(new Modifier((int)row.Value, ModifierType.Flat, temp, StringToAbilityType(row.Key)));
                 }
                 result.Add(temp);
@@ -112,7 +123,8 @@ namespace Builders {
         /*
             Builds a random list of items, can include any item type (gold, potions, keys, equipment)
          */
-        public static List<Item> BuildRandomItemDrop() {
+        public static List<Item> BuildRandomItemDrop()
+        {
 
             List<Item> items = new List<Item>();
             System.Random rand = new System.Random();
@@ -120,23 +132,29 @@ namespace Builders {
             Database data = new Database();
             Dictionary<string, object> itemData;
 
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++)
+            {
                 int choice = rand.Next(1, 100);
-                if (choice <= 40) {
+                if (choice <= 40)
+                {
                     items.Add(new HealthPotion());
-                } if (choice >= 90) {
+                }
+                if (choice >= 90)
+                {
                     items.Add(new Key());
                     items.Add(new Gold(10));
-                } else {
+                }
+                else
+                {
                     itemData = data.GetRandomEquipmentData(rand);
-                    List<Modifier> modifiers = new List<Modifier>();
                     Items.Equipment item = BuildEquipment((string)itemData["name"]);
                     items.Add(item);
                 }
             }
 
             Debug.Log("Building Random Drop List");
-            foreach (Item i in items) {
+            foreach (Item i in items)
+            {
                 Debug.Log("Building: " + i.ToString());
             }
             return items;

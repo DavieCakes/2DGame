@@ -38,7 +38,7 @@ public class EncounterHandler : MonoBehaviour
     public void StartEncounter(Encounters enc)
     {
         this.enc = enc;
-        drops.AddRange(Builder.BuildRandomItemDrop());
+        
         foreach (var item in drops)
             Debug.Log(item.ToString());
         enemies = enc.enemies;
@@ -151,6 +151,7 @@ public class EncounterHandler : MonoBehaviour
 
     private void Drops()
     {
+        drops.AddRange(Builder.BuildRandomItemDrop());
         txtBox.text = "";
         foreach (Item s in this.drops)
         {
@@ -164,6 +165,7 @@ public class EncounterHandler : MonoBehaviour
             txtBox.text += pc.GetName() + " received " + temp.GetItemName() + ".\n";
             pc.ReceiveDrop(temp);
         }
+        drops.Clear();
     }
 
     public void BtnAttack()

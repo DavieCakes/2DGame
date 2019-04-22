@@ -66,7 +66,7 @@ namespace Databases {
             XmlDocument doc = new XmlDocument();
             doc.Load(Database.path);
             // Debug.Log(doc.InnerXml);
-            XmlNode itemNode = doc.SelectSingleNode("Data/Items//Item[@display_name = '" + itemName + "']");
+            XmlNode itemNode = doc.SelectSingleNode("Data/Items//Item[@name = '" + itemName + "']");
 
             // Debug.Log(itemName);
             // Debug.Log(itemNode.Attributes["display_name"].Value);
@@ -76,7 +76,7 @@ namespace Databases {
 
             itemData.Add("display_name", itemName);
             itemData.Add("type", itemNode.Attributes["type"].Value);
-            itemData.Add("icon_name", itemNode.Attributes["icon_name"].Value);
+            itemData.Add("name", itemNode.Attributes["name"].Value);
             if ((string)itemData["type"] == "equipment") {
                 itemData.Add("slot", itemNode.Attributes["slot"].Value);
             }
@@ -94,7 +94,7 @@ namespace Databases {
             // Debug.Log(doc.InnerXml);
             XmlNodeList itemNodes = doc.SelectNodes("Data/Items//Item[@type = 'equipment']");
             foreach (XmlNode node in itemNodes) {
-                itemList.Add(GetItemData(node.Attributes["display_name"].Value));
+                itemList.Add(GetItemData(node.Attributes["name"].Value));
             }
             return itemList;
         }
@@ -109,7 +109,7 @@ namespace Databases {
             XmlNodeList itemNodes = doc.SelectNodes("Data/Items//Item[@type = '" + Items.ItemType.EQUIPMENT.ToString().ToLower() + "']");
             randIndex = rand.Next(0, itemNodes.Count - 1);
             XmlNode selectedNode = itemNodes.Item(randIndex);
-            return GetItemData(selectedNode.Attributes["icon_name"].Value);
+            return GetItemData(selectedNode.Attributes["name"].Value);
         }
     }
 }

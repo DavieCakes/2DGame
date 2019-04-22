@@ -180,7 +180,7 @@ namespace Inventories
         public Test()
         {
             EquipmentInventory i = new EquipmentInventory();
-            Items.Equipment item = new Items.Equipment("name","armor_1", EquipSlot.ARMOR);
+            Items.Equipment item = new Items.Equipment("armor_1","test", EquipSlot.ARMOR);
             i.Add(item); // success
         }
     }

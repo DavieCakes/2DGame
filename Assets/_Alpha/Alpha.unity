@@ -5638,7 +5638,7 @@ GameObject:
   - component: {fileID: 361616643}
   - component: {fileID: 361616642}
   m_Layer: 5
-  m_Name: WeaponIcon
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7704,7 +7704,7 @@ GameObject:
   - component: {fileID: 467675806}
   - component: {fileID: 467675805}
   m_Layer: 5
-  m_Name: ArmorIcon
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10170,7 +10170,7 @@ GameObject:
   - component: {fileID: 578655197}
   - component: {fileID: 578655196}
   m_Layer: 5
-  m_Name: ArmorLabel
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10784,7 +10784,7 @@ GameObject:
   - component: {fileID: 602182070}
   - component: {fileID: 602182069}
   m_Layer: 5
-  m_Name: IconBackground
+  m_Name: Backdrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13564,7 +13564,7 @@ GameObject:
   - component: {fileID: 690917577}
   - component: {fileID: 690917576}
   m_Layer: 5
-  m_Name: BootsIcon
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16068,7 +16068,7 @@ GameObject:
   - component: {fileID: 845609323}
   - component: {fileID: 845609322}
   m_Layer: 5
-  m_Name: WeaponLabel
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20438,7 +20438,7 @@ GameObject:
   - component: {fileID: 1083025173}
   - component: {fileID: 1083025172}
   m_Layer: 5
-  m_Name: HelmetIcon
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22127,7 +22127,7 @@ GameObject:
   - component: {fileID: 1170606420}
   - component: {fileID: 1170606419}
   m_Layer: 5
-  m_Name: IconBackground
+  m_Name: Backdrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32331,7 +32331,7 @@ GameObject:
   - component: {fileID: 1657150983}
   - component: {fileID: 1657150982}
   m_Layer: 5
-  m_Name: BootsLabel
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36702,7 +36702,7 @@ GameObject:
   - component: {fileID: 1921602966}
   - component: {fileID: 1921602965}
   m_Layer: 5
-  m_Name: IconBackground
+  m_Name: Backdrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36867,7 +36867,7 @@ GameObject:
   - component: {fileID: 1925629259}
   - component: {fileID: 1925629258}
   m_Layer: 5
-  m_Name: IconBackground
+  m_Name: Backdrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38359,7 +38359,7 @@ GameObject:
   - component: {fileID: 1997008371}
   - component: {fileID: 1997008370}
   m_Layer: 5
-  m_Name: HelmetLabel
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,5 +1,5 @@
 <Data>
-    <Creatures>
+    <!-- <Creatures>
         <Creature name = "Warrior Drow">
             <Attribute name = "Strength" value = "10"/>
             <Attribute name = "Dexterity" value = "10"/>
@@ -16,126 +16,126 @@
                 <Item name = "Mushrooms"/>
             </Inventory>
         </Creature>
-    </Creatures>
+    </Creatures> -->
     <Items>
-        <Item icon_name = "key" display_name = "key" type="key"/>
-        <Item icon_name = "health_potion" display_name = "Health Potion" type = "healthpotion"/>
-        <Item icon_name = "armor_1" display_name = "Armor 1" type = "equipment" slot = "armor">
+        <!-- <Item name = "key" display_name = "key" type="key"/>
+        <Item name = "health_potion" display_name = "Health Potion" type = "healthpotion"/> -->
+        <Item name = "armor_1" display_name = "Armor 1" type = "equipment" slot = "armor">
             <Modifier name = "defense" value ="1"/>
         </Item>
-        <Item icon_name = "armor_2" display_name = "Armor 2" type = "equipment" slot = "armor">
+        <Item name = "armor_2" display_name = "Armor 2" type = "equipment" slot = "armor">
             <Modifier name = "defense" value ="2"/>
         </Item>
-        <Item icon_name = "armor_3" display_name = "Armor 3" type = "equipment" slot = "armor">
+        <Item name = "armor_3" display_name = "Armor 3" type = "equipment" slot = "armor">
             <Modifier name = "defense" value ="3"/>
         </Item>
-        <Item icon_name = "armor_4" display_name = "Armor 4" type = "equipment" slot = "armor">
+        <Item name = "armor_4" display_name = "Armor 4" type = "equipment" slot = "armor">
             <Modifier name = "defense" value ="4"/>
         </Item>
-        <Item icon_name = "armor_5" display_name = "Armor 5" type = "equipment" slot = "armor">
+        <Item name = "armor_5" display_name = "Armor 5" type = "equipment" slot = "armor">
             <Modifier name = "defense" value ="5"/>
         </Item>
-        <Item icon_name = "armor_6" display_name = "Armor 6" type = "equipment" slot = "armor">
+        <Item name = "armor_6" display_name = "Armor 6" type = "equipment" slot = "armor">
             <Modifier name = "defense" value ="6"/>
         </Item>
-        <Item icon_name = "armor_7" display_name = "Armor 7" type = "equipment" slot = "armor">
+        <Item name = "armor_7" display_name = "Armor 7" type = "equipment" slot = "armor">
             <Modifier name = "defense" value ="7"/>
         </Item>
-        <!-- <Item icon_name = "armor_8" display_name = "Armor 8" type = "equipment" slot = "armor">
+        <!-- <Item name = "armor_8" display_name = "Armor 8" type = "equipment" slot = "armor">
             <Modifier name = "defense" value ="8"/>
         </Item> -->
-        <Item icon_name = "boots_1" display_name = "Boots 1" type = "equipment" slot = "boots">
+        <Item name = "boots_1" display_name = "Boots 1" type = "equipment" slot = "boots">
             <Modifier name = "agility" value ="1"/>
         </Item>
-        <Item icon_name = "boots_2" display_name = "Boots 2" type = "equipment" slot = "boots">
+        <Item name = "boots_2" display_name = "Boots 2" type = "equipment" slot = "boots">
             <Modifier name = "agility" value ="2"/>
         </Item>
-        <Item icon_name = "boots_3" display_name = "Boots 3" type = "equipment" slot = "boots">
+        <Item name = "boots_3" display_name = "Boots 3" type = "equipment" slot = "boots">
             <Modifier name = "agility" value ="3"/>
         </Item>
-        <Item icon_name = "boots_4" display_name = "Boots 4" type = "equipment" slot = "boots">
+        <Item name = "boots_4" display_name = "Boots 4" type = "equipment" slot = "boots">
             <Modifier name = "agility" value ="4"/>
         </Item>
-        <Item icon_name = "boots_5" display_name = "Boots 5" type = "equipment" slot = "boots">
+        <Item name = "boots_5" display_name = "Boots 5" type = "equipment" slot = "boots">
             <Modifier name = "agility" value ="5"/>
         </Item>
-        <Item icon_name = "boots_6" display_name = "Boots 6" type = "equipment" slot = "boots">
+        <Item name = "boots_6" display_name = "Boots 6" type = "equipment" slot = "boots">
             <Modifier name = "agility" value ="6"/>
         </Item>
-        <Item icon_name = "boots_7" display_name = "Boots 7" type = "equipment" slot = "boots">
+        <Item name = "boots_7" display_name = "Boots 7" type = "equipment" slot = "boots">
             <Modifier name = "agility" value ="7"/>
         </Item>
-        <!-- <Item icon_name = "boots_8" display_name = "Boots 8" type = "equipment" slot = "boots">
+        <!-- <Item name = "boots_8" display_name = "Boots 8" type = "equipment" slot = "boots">
             <Modifier name = "agility" value ="8"/>
         </Item> -->
 
-        <Item icon_name = "helmet_1" display_name = "Helm of Awe" type = "equipment" slot = "helmet">
+        <Item name = "helmet_1" display_name = "Helm of Awe" type = "equipment" slot = "helmet">
             <Modifier name = "health" value ="1"/>
             <Modifier name = "agility" value ="1"/>
         </Item>
-        <Item icon_name = "helmet_2" display_name = "Tarnhelm" type = "equipment" slot = "helmet">
+        <Item name = "helmet_2" display_name = "Tarnhelm" type = "equipment" slot = "helmet">
             <Modifier name = "health" value ="2"/>
             <Modifier name = "agility" value ="2"/>
         </Item>
-        <Item icon_name = "helmet_3" display_name = "Goswhit" type = "equipment" slot = "helmet">
+        <Item name = "helmet_3" display_name = "Goswhit" type = "equipment" slot = "helmet">
             <Modifier name = "health" value ="3"/>
             <Modifier name = "agility" value ="3"/>
         </Item>
-        <Item icon_name = "helmet_4" display_name = "Hulishjalmr" type = "equipment" slot = "helmet">
+        <Item name = "helmet_4" display_name = "Hulishjalmr" type = "equipment" slot = "helmet">
             <Modifier name = "health" value ="4"/>
             <Modifier name = "agility" value ="4"/>
         </Item>
-        <Item icon_name = "helmet_5" display_name = "Veil of Isis" type = "equipment" slot = "helmet">
+        <Item name = "helmet_5" display_name = "Veil of Isis" type = "equipment" slot = "helmet">
             <Modifier name = "health" value ="5"/>
             <Modifier name = "agility" value ="5"/>
         </Item>
-        <Item icon_name = "helmet_6" display_name = "Kappas Plate" type = "equipment" slot = "helmet">
+        <Item name = "helmet_6" display_name = "Kappas Plate" type = "equipment" slot = "helmet">
             <Modifier name = "health" value ="6"/>
             <Modifier name = "agility" value ="6"/>
         </Item>
-        <Item icon_name = "helmet_7" display_name = "Veil of Veronica" type = "equipment" slot = "helmet">
+        <Item name = "helmet_7" display_name = "Veil of Veronica" type = "equipment" slot = "helmet">
             <Modifier name = "health" value ="7"/>
             <Modifier name = "agility" value ="7"/>
         </Item>
-        
-        <!-- <Item icon_name = "helmet_8" display_name = "Iron Crown of Lombardy" type = "equipment" slot = "helmet">
+
+        <!-- <Item name = "helmet_8" display_name = "Iron Crown of Lombardy" type = "equipment" slot = "helmet">
             <Modifier name = "health" value ="8"/>
             <Modifier name = "agility" value ="8"/>
         </Item>
-        <Item icon_name = "helmet_9" display_name = "Ariadnes Diadem" type = "equipment" slot = "helmet">
+        <Item name = "helmet_9" display_name = "Ariadnes Diadem" type = "equipment" slot = "helmet">
             <Modifier name = "health" value ="9"/>
             <Modifier name = "agility" value ="9"/>
         </Item> -->
 
-        <Item icon_name = "weapon_1" display_name = "Trident" type = "equipment" slot = "weapon">
+        <Item name = "weapon_1" display_name = "Trident" type = "equipment" slot = "weapon">
             <Modifier name = "attack" value ="6"/>
             <Modifier name = "agility" value ="10"/>
         </Item>
-        <Item icon_name = "weapon_2" display_name = "Spear" type = "equipment" slot = "weapon">
+        <Item name = "weapon_2" display_name = "Spear" type = "equipment" slot = "weapon">
             <Modifier name = "attack" value ="6"/>
             <Modifier name = "agility" value ="3"/>
         </Item>
-        <Item icon_name = "weapon_3" display_name = "Short Bow" type = "equipment" slot = "weapon">
+        <Item name = "weapon_3" display_name = "Short Bow" type = "equipment" slot = "weapon">
             <Modifier name = "attack" value ="6"/>
             <Modifier name = "agility" value ="5"/>
         </Item>
-        <Item icon_name = "weapon_4" display_name = "Dagger" type = "equipment" slot = "weapon">
+        <Item name = "weapon_4" display_name = "Dagger" type = "equipment" slot = "weapon">
             <Modifier name = "attack" value ="4"/>
             <Modifier name = "agility" value ="7"/>
         </Item>
-        <Item icon_name = "weapon_5" display_name = "Mace" type = "equipment" slot = "weapon">
+        <Item name = "weapon_5" display_name = "Mace" type = "equipment" slot = "weapon">
             <Modifier name = "attack" value ="6"/>
         </Item>
-        <Item icon_name = "weapon_6" display_name = "Handaxe" type = "equipment" slot = "weapon">
+        <Item name = "weapon_6" display_name = "Handaxe" type = "equipment" slot = "weapon">
             <Modifier name = "attack" value ="6"/>
         </Item>
-        <Item icon_name = "weapon_7" display_name = "Halberd" type = "equipment" slot = "weapon">
+        <Item name = "weapon_7" display_name = "Halberd" type = "equipment" slot = "weapon">
             <Modifier name = "attack" value ="10"/>
         </Item>
-        <Item icon_name = "weapon_8" display_name = "Longsword" type = "equipment" slot = "weapon">
+        <Item name = "weapon_8" display_name = "Longsword" type = "equipment" slot = "weapon">
             <Modifier name = "attack" value ="8"/>
         </Item>
-        <Item icon_name = "weapon_9" display_name = "Rapier" type = "equipment" slot = "weapon">
+        <Item name = "weapon_9" display_name = "Rapier" type = "equipment" slot = "weapon">
             <Modifier name = "attack" value ="8"/>
         </Item>
     </Items>

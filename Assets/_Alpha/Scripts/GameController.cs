@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
     public AudioClip[] clips;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         gameOverUI.SetActive(false);
         pc = player.GetComponent<PlayerController>();

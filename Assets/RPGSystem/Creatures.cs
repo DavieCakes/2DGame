@@ -5,7 +5,6 @@ using Items;
 using Inventories;
 using PlayerAbilities;
 
-
 namespace Creatures
 {
     public struct CreatureAbilities
@@ -36,6 +35,7 @@ namespace Creatures
             this.Defense = _attributes[AbilityType.DEFENSE];
         }
     }
+
     public class Creature
     {
         public string name;
@@ -113,9 +113,12 @@ namespace Creatures
             ability bonuses that item has.
             Places item into inventory
          */
-        public void Unequip(EquipSlot equipSlot) {
-            if (this.currentlyEquipped.ContainsKey(equipSlot)) {
-                foreach (Modifier mod in currentlyEquipped[equipSlot].modifiers) {
+        public void Unequip(EquipSlot equipSlot)
+        {
+            if (this.currentlyEquipped.ContainsKey(equipSlot))
+            {
+                foreach (Modifier mod in currentlyEquipped[equipSlot].modifiers)
+                {
                     this.abilitiesHash[mod.attType].RemoveAllModifiersFromSource(currentlyEquipped[equipSlot]);
                 }
                 inventory.Add(currentlyEquipped[equipSlot]);
@@ -153,9 +156,12 @@ namespace Creatures
             return true;
         }
 
-        public bool EquipFromInventory(string iconName) {
-            foreach (Equipment equipment in this.inventory.equipmentInventory) {
-                if (equipment.iconName.Equals(iconName)) {
+        public bool EquipFromInventory(string iconName)
+        {
+            foreach (Equipment equipment in this.inventory.equipmentInventory)
+            {
+                if (equipment.name.Equals(iconName))
+                {
                     EquipFromInventory(equipment);
                     return true;
                 }
@@ -195,8 +201,15 @@ namespace Creatures
             return this.abilities.Health.IsDead();
         }
 
-        public bool TryHealthPotion() {
-            return this.abilities.Health.Heal(5);
+        public bool TryHealthPotion()
+        {
+            if (this.inventory.potions > 0 && this.abilities.Health.Heal(5))
+            {
+                this.inventory.RemovePotion();
+                Debug.Log("Using Potion");
+                return true;
+            }
+            return false;
         }
 
         override public string ToString()
@@ -206,12 +219,16 @@ namespace Creatures
             result += "attributes:\n";
             foreach (KeyValuePair<AbilityType, Ability> entry in this.abilitiesHash)
             {
-                if (entry.Key == AbilityType.HEALTH) {
+                if (entry.Key == AbilityType.HEALTH)
+                {
                     result += entry.Value.ToString() + "\n";
-                } else {
+                }
+                else
+                {
                     result += entry.Key.ToString() + ": " + entry.Value.ToString() + "\n";
                 }
             }
+            result += this.inventory.potions;
             // result += "inventory:\n";
             // result += this.inventory.ToString();
             // result += currentlyEquipped.Count + " Items Currently Equipped\n";
