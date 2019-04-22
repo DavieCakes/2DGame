@@ -11896,7 +11896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 642557875}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: IconContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13821,7 +13821,7 @@ GameObject:
   m_Component:
   - component: {fileID: 706314188}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: IconContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24267,7 +24267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1287250416}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: IconContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35543,7 +35543,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1860930674}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: IconContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35907,6 +35907,11 @@ PrefabInstance:
       propertyPath: handler
       value: 
       objectReference: {fileID: 1506789767}
+    - target: {fileID: 8964732035574448016, guid: 0a203e058ef9a244ea24d5e87870be07,
+        type: 3}
+      propertyPath: encounterRate
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a203e058ef9a244ea24d5e87870be07, type: 3}
 --- !u!1001 &1868299131

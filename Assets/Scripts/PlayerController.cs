@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using Items;
-using Creatures;
+using Models;
 using Builders;
 
 // [System.Serializable]
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
     public int StartingAttack = 1;
     public int StartingKeys = 0, StartingGold = 0, StartingPotions = 0;
-    public Creature playerModel;
+    public PlayerModel playerModel;
 
     /* Controller Init Variables */
 
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
     private void InitPlayerModel()
     {
         Debug.Log("test");
-        playerModel = new Creature(StartingHealth, StartingAgility, StartingDefense, 100, PlayerName);
+        playerModel = new PlayerModel(StartingHealth, StartingAgility, StartingDefense, StartingAttack, PlayerName);
         playerModel.inventory.AddGold(StartingGold);
         playerModel.inventory.AddKeys(StartingKeys);
         playerModel.inventory.AddPotions(StartingPotions);

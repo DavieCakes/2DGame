@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
-using Creatures;
+using Models;
 using Items;
 using PlayerAbilities;
 using Databases;
@@ -102,6 +102,7 @@ namespace Builders
             return item;
         }
 
+        // builds all equipment in data.xml, for testing
         public static List<Equipment> BuildAllEquipment()
         {
             Database database = new Database();

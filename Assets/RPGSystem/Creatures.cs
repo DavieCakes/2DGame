@@ -5,16 +5,16 @@ using Items;
 using Inventories;
 using PlayerAbilities;
 
-namespace Creatures
+namespace Models
 {
-    public struct CreatureAbilities
+    public struct PlayerAbilities
     {
         public Ability Agility;
         public Ability Attack;
         public HealthAbility Health;
         public Ability Defense;
 
-        public CreatureAbilities(
+        public PlayerAbilities(
             int agility,
             int attack,
             int health,
@@ -27,7 +27,7 @@ namespace Creatures
             this.Defense = new Ability(defense);
         }
 
-        public CreatureAbilities(Dictionary<AbilityType, Ability> _attributes)
+        public PlayerAbilities(Dictionary<AbilityType, Ability> _attributes)
         {
             this.Agility = _attributes[AbilityType.AGILITY];
             this.Attack = _attributes[AbilityType.ATTACK];
@@ -36,37 +36,37 @@ namespace Creatures
         }
     }
 
-    public class Creature
+    public class PlayerModel
     {
         public string name;
         public Dictionary<AbilityType, Ability> abilitiesHash;
-        public CreatureAbilities abilities;
+        public PlayerAbilities abilities;
         public Inventory inventory;
         public Dictionary<EquipSlot, Items.Equipment> currentlyEquipped;
 
-        public Creature()
+        public PlayerModel()
         {
             this.inventory = new Inventory();
             this.currentlyEquipped = new Dictionary<EquipSlot, Items.Equipment>();
-            this.abilities = new CreatureAbilities(10, 10, 10, 10);
+            this.abilities = new PlayerAbilities(10, 10, 10, 10);
             InitAttributeHash();
         }
 
-        public Creature(Dictionary<AbilityType, Ability> _attributes, string name, long id)
+        public PlayerModel(Dictionary<AbilityType, Ability> _attributes, string name, long id)
         {
             this.name = name;
             this.inventory = new Inventory();
             this.currentlyEquipped = new Dictionary<EquipSlot, Items.Equipment>();
-            this.abilities = new CreatureAbilities(_attributes);
+            this.abilities = new PlayerAbilities(_attributes);
             InitAttributeHash();
         }
 
-        public Creature(int health, int agility, int defense, int attack, string name)
+        public PlayerModel(int health, int agility, int defense, int attack, string name)
         {
             this.name = name;
             this.inventory = new Inventory();
             this.currentlyEquipped = new Dictionary<EquipSlot, Items.Equipment>();
-            this.abilities = new CreatureAbilities(agility, attack, health, defense);
+            this.abilities = new PlayerAbilities(agility, attack, health, defense);
             InitAttributeHash();
         }
 
@@ -173,7 +173,7 @@ namespace Creatures
             Uses standard D20 attack roll to determine attack success,
             currently it is attack vs defense
          */
-        public bool Attack(Creature target)
+        public bool Attack(PlayerModel target)
         {
             System.Random rand = new System.Random();
             int hitVal = rand.Next(1, 20) + (int)this.abilities.Attack.Value;
