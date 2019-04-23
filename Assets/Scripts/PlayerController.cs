@@ -3,67 +3,98 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public class Abilities
-{
+using Items;
+using Models;
+using Builders;
 
-    public int bHealth = 20,
-        maxHealth,
-        bAttack = 1,
-        bDefense = 1,
-        bAgility = 1;
+// [System.Serializable]
+// public class Abilities
+// {
 
-    public int health,
-        attack,
-        defense,
-        agility;
+//     public int bHealth = 20,
+//         maxHealth,
+//         bAttack = 1,
+//         bDefense = 1,
+//         bAgility = 1;
 
-    public void SetUp()
-    {
-        maxHealth = bHealth;
-        health = bHealth;
-        attack = bAttack;
-        defense = bDefense;
-        agility = bAgility;
-    }
-}
+//     public int health,
+//         attack,
+//         defense,
+//         agility;
 
+    //     public int boostedHealth, boostedAttack, boostedDefense, boostedAgility;
+
+    //     public void SetUp()
+    //     {
+    //         maxHealth = bHealth;
+    //         health = bHealth;
+    //         attack = bAttack;
+    //         defense = bDefense;
+    //         agility = bAgility;
+    //     }
+// }
 public class PlayerController : MonoBehaviour
 {
-    public Equipment[] equip = new Equipment[4];
 
-    public Abilities abilities;
+    /* Player Starting Values */
+    public string PlayerName = "Player Name";
+    public List<string> StartingEquipment = new List<string>();
+    public int StartingHealth = 20;
+    public int StartingAgility = 1;
 
-    public string playerName = "Player";
-    public int keys = 0, gold = 0;
+    public int StartingDefense = 1;
+
+    public int StartingAttack = 1;
+    public int StartingKeys = 0, StartingGold = 0, StartingPotions = 0;
+    public PlayerModel playerModel;
+
+    /* Controller Init Variables */
+
     public float moveSpeed = 2.5f;
     bool moving = false;
     public bool pause;
+    
     private Rigidbody rb;
     GameController gc;
-    ItemsList items;
+    // ItemsList items;
     Animator anim;
     int cDir = 0, pDir = 0;
 
     public Text keyCount, goldCount;
     public Slider health;
 
-    private void Start()
+
+    void Awake()
     {
-        abilities.SetUp();
-        foreach (Equipment e in equip)
-        {
-            if(e != null)
-                e.AbilitiesBoost(this);
-        }
+        InitPlayerModel();
         UpdateUI();
-        items = new ItemsList();
+        // items = new ItemsList();
         gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         anim = transform.GetChild(1).GetComponent<Animator>();
     }
 
+    private void InitPlayerModel()
+    {
+        Debug.Log("test");
+        playerModel = new PlayerModel(StartingHealth, StartingAgility, StartingDefense, StartingAttack, PlayerName);
+        playerModel.inventory.AddGold(StartingGold);
+        playerModel.inventory.AddKeys(StartingKeys);
+        playerModel.inventory.AddPotions(StartingPotions);
+        foreach (string itemName in StartingEquipment)
+        {
+            playerModel.Equip(Builder.BuildEquipment(itemName));
+        }
+        // Debug.Log("Adding Equipment");
+        // List<Equipment> items = Builder.BuildAllEquipment();
+        // Debug.Log(items.Count);
+        // foreach (Equipment item in items) {
+        //     Debug.Log("test");
+        //     playerModel.Equip(item);
+        // }
+        // playerModel.inventory.AddPotions(20);
+    }
     private void FixedUpdate()
     {
         float mHor = 0f;
@@ -72,22 +103,22 @@ public class PlayerController : MonoBehaviour
         {
             mHor = Input.GetAxisRaw("Horizontal");
             mVer = Input.GetAxisRaw("Vertical");
-            
+
             Vector3 move = new Vector3(mHor, 0, mVer);
 
             rb.velocity = move * moveSpeed;
-            
+
             if (moving)
             {
                 switch (mVer)
                 {
                     case 1:
                         if (mHor == 0 || anim.GetInteger("Direction") == 0)
-                        cDir = 1;
+                            cDir = 1;
                         break;
                     case -1:
                         if (mHor == 0 || anim.GetInteger("Direction") == 0)
-                        cDir = 3;
+                            cDir = 3;
                         break;
                     case 0:
                         switch (mHor)
@@ -123,9 +154,9 @@ public class PlayerController : MonoBehaviour
 
     public bool UseKey()
     {
-        if (keys > 0)
+        if (playerModel.inventory.keys > 0)
         {
-            keys--;
+            playerModel.inventory.RemoveKey();
             UpdateUI();
             return true;
         }
@@ -135,84 +166,86 @@ public class PlayerController : MonoBehaviour
 
     public bool TakeDamage(int damage)
     {
-        abilities.health -= damage;
+        playerModel.TakeDamage(damage);
+        // abilities.health -= damage;
         UpdateUI();
-        if (abilities.health <= 0)
+        // if (abilities.health <= 0)
+        if (playerModel.isDead())
         {
-            abilities.health = 0;
+            //     abilities.health = 0;
             gc.GameOver();
             return false;
         }
         return true;
     }
 
-    public string GetName() { return playerName; }
+    public string GetName() { return playerModel.name; }
 
-    public Its UseItem()
+    public Item UseItem()
     {
-        if(items.Length == 0)
-            return null;
-        return items.Remove(0);
+        // if(items.Length == 0)
+        //     return null;
+        // return items.Remove(0);
+        return null;
     }
 
-    public void ReceiveDrop(Its item)
+    public void ReceiveDrop(Item item)
     {
-        if (item.Equals("Key"))
-            keys++;
-        else
-        {
-            items.Append(item);
-        }
+        playerModel.PickUp(item);
         UpdateUI();
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
-        health.maxValue = abilities.maxHealth;
-        health.value = abilities.health;
-        keyCount.text = "KEYS: " + keys.ToString();
-        goldCount.text = "GOLD: " + gold.ToString();
+        health.maxValue = playerModel.abilities.Health.maxHealth;
+        health.value = playerModel.abilities.Health.Value;
+        keyCount.text = "KEYS: " + playerModel.inventory.keys.ToString();
+        goldCount.text = "GOLD: " + playerModel.inventory.gold.ToString();
     }
 }
 
-class ItemsList
-{
-    class Node
-    {
-        public Node next;
-        public Its data;
+// class ItemsList : List<Item> {
 
-        public Node(Its data)
-        {
-            this.data = data;
-        }
-    }
+// }
 
-    Node head;
-    public int Length = 0;
+// class ItemsList : List<Item>
+// {
+//     class Node
+//     {
+//         public Node next;
+//         public Its data;
 
-    public void Append(Its data)
-    {
-        Node newNode = new Node(data);
-        Length++;
-        if (head == null)
-        {
-            head = newNode;
-        }
-        else
-        {
-            Node cur = head;
-            while (cur.next != null) cur = cur.next;
-            cur.next = newNode;
-        }
-    }
-    
-    public Its Remove(int index)
-    {
-        if (index >= Length)
-            return null;
-        Node cur = head;
-        for (int i = 0; i < index; i++) cur = cur.next;
-        return cur.data;
-    }
-}
+//         public Node(Its data)
+//         {
+//             this.data = data;
+//         }
+//     }
+
+//     Node head;
+//     public int Length = 0;
+
+//     public void Append(Item data)
+//     {
+//         Node newNode = new Node(data);
+//         Length++;
+//         if (head == null)
+//         {
+//             head = newNode;
+//         }
+//         else
+//         {
+//             Node cur = head;
+//             while (cur.next != null) cur = cur.next;
+//             cur.next = newNode;
+//         }
+//     }
+
+//     public Item Remove(int index)
+//     {
+//         if (index >= Length)
+//             return null;
+//         Node cur = head;
+//         for (int i = 0; i < index; i++) cur = cur.next;
+//         return cur.data;
+//     }
+// }

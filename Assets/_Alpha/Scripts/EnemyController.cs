@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Items;
+using Builders;
+
 public class EnemyController : MonoBehaviour
 {
     public string enemyName = "Enemy";
@@ -12,7 +15,8 @@ public class EnemyController : MonoBehaviour
         agility = 1;
     private int health;
     public Slider slider;
-    public Its[] drops;
+    // public List<string> gauranteedDrops;
+    public List<string> drops;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +24,10 @@ public class EnemyController : MonoBehaviour
         health = maxHealth;
         slider.maxValue = maxHealth;
         slider.value = health;
+        // drops = Builder.BuildRandomItemDrop();
+        // foreach (string drop in gauranteedDrops) {
+        //     drops.Add(Builder.BuildItem(drop));
+        // }
     }
 
     // Update is called once per frame

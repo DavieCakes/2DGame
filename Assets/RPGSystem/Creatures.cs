@@ -1,144 +1,243 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 using Items;
 using Inventories;
-using Attributes;
+using PlayerAbilities;
 
+namespace Models
+{
+    public struct PlayerAbilities
+    {
+        public Ability Agility;
+        public Ability Attack;
+        public HealthAbility Health;
+        public Ability Defense;
 
-namespace Creatures {
-    public class Creature {
-        public long id;
+        public PlayerAbilities(
+            int agility,
+            int attack,
+            int health,
+            int defense)
+        {
+
+            this.Attack = new Ability(attack);
+            this.Agility = new Ability(agility);
+            this.Health = new HealthAbility(health);
+            this.Defense = new Ability(defense);
+        }
+
+        public PlayerAbilities(Dictionary<AbilityType, Ability> _attributes)
+        {
+            this.Agility = _attributes[AbilityType.AGILITY];
+            this.Attack = _attributes[AbilityType.ATTACK];
+            this.Health = (HealthAbility)_attributes[AbilityType.HEALTH];
+            this.Defense = _attributes[AbilityType.DEFENSE];
+        }
+    }
+
+    public class PlayerModel
+    {
         public string name;
-        // public List<Attribute> Attributes;
-        public Dictionary<AttributeType, Attribute> attributes;
-        // // creature.Attributes.Strength = ...
-        // public struct _Attributes {
-        //     Attribute Strength;
-        //     Attribute Dexterity;
-        //     Attribute Constitution;
-        //     Attribute Wisdom;
-        //     Attribute Charisma;
-        //     Attribute Intelligence;
-        //     Attribute Initiative;
-        //     Attribute Attack;
-        //     Attribute Damage;
-        // }
-        // private _Attributes a = new _Attributes();
+        public Dictionary<AbilityType, Ability> abilitiesHash;
+        public PlayerAbilities abilities;
         public Inventory inventory;
+        public Dictionary<EquipSlot, Items.Equipment> currentlyEquipped;
 
-        public Creature() {
-            inventory = new Inventory();
-            this.attributes = new Dictionary<AttributeType, Attribute>()
-            {
-                {AttributeType.Strength, new Attribute(10)},
-                {AttributeType.Dexterity, new Attribute(10)},
-                {AttributeType.Constitution, new Attribute(10)},
-                {AttributeType.Wisdom, new Attribute(10)},
-                {AttributeType.Charisma, new Attribute(10)},
-                {AttributeType.Intelligence, new Attribute(10)},
-                // calculate secondary attributes separately
-                {AttributeType.Initiative, new Attribute(10)},
-                {AttributeType.Attack, new Attribute(10)},
-                {AttributeType.Damage, new Attribute(10)},
-            };
-
-        // this.Attributes = new List<Attribute>()
-        //     {
-        //         {new Attribute(10, AttributeType.Strength)},
-        //         {new Attribute(10, AttributeType.Dexterity)},
-        //         {new Attribute(10, AttributeType.Constitution)},
-        //         {new Attribute(10, AttributeType.Wisdom)},
-        //         {new Attribute(10, AttributeType.Charisma)},
-        //         {new Attribute(10, AttributeType.Intelligence)},
-        //         {new Attribute(10, AttributeType.Initiative)},
-        //         {new Attribute(10, AttributeType.Attack)},
-        //         {new Attribute(10, AttributeType.Damage)},
-        //     };
+        public PlayerModel()
+        {
+            this.inventory = new Inventory();
+            this.currentlyEquipped = new Dictionary<EquipSlot, Items.Equipment>();
+            this.abilities = new PlayerAbilities(10, 10, 10, 10);
+            InitAttributeHash();
         }
 
-        public Creature(Dictionary<AttributeType, Attribute> _attributes, string name, long id) {
+        public PlayerModel(Dictionary<AbilityType, Ability> _attributes, string name, long id)
+        {
             this.name = name;
-            this.id = id;
-            inventory = new Inventory();
+            this.inventory = new Inventory();
+            this.currentlyEquipped = new Dictionary<EquipSlot, Items.Equipment>();
+            this.abilities = new PlayerAbilities(_attributes);
+            InitAttributeHash();
+        }
 
-            // attribute enforcement
-            this.attributes = new Dictionary<AttributeType, Attribute>()
+        public PlayerModel(int health, int agility, int defense, int attack, string name)
+        {
+            this.name = name;
+            this.inventory = new Inventory();
+            this.currentlyEquipped = new Dictionary<EquipSlot, Items.Equipment>();
+            this.abilities = new PlayerAbilities(agility, attack, health, defense);
+            InitAttributeHash();
+        }
+
+        private void InitAttributeHash()
+        {
+            this.abilitiesHash = new Dictionary<AbilityType, Ability>()
             {
-                {AttributeType.Strength, _attributes[AttributeType.Strength]},
-                {AttributeType.Dexterity, _attributes[AttributeType.Dexterity]},
-                {AttributeType.Constitution, _attributes[AttributeType.Constitution]},
-                {AttributeType.Wisdom, _attributes[AttributeType.Wisdom]},
-                {AttributeType.Charisma, _attributes[AttributeType.Charisma]},
-                {AttributeType.Intelligence, _attributes[AttributeType.Intelligence]},
-                {AttributeType.Initiative, _attributes[AttributeType.Initiative]},
-                {AttributeType.Attack, _attributes[AttributeType.Attack]},
-                {AttributeType.Damage, _attributes[AttributeType.Damage]},
-                {AttributeType.Health, _attributes[AttributeType.Health]},
+                {AbilityType.AGILITY, this.abilities.Agility},
+                {AbilityType.ATTACK, this.abilities.Attack},
+                {AbilityType.HEALTH, this.abilities.Health},
+                {AbilityType.DEFENSE, this.abilities.Defense},
             };
         }
 
-        public void Equip(Item item)
+        public void PickUp(Item item)
         {
-            foreach (Modifier mod in item.StatMods)
-            {
-                this.attributes[mod.attType].AddModifier(mod);
-            }
-            inventory.Add(item); //TODO these should equip into equip slots
+            inventory.Add(item);
         }
 
-        public void Unequip(Item item)
+        /// Equips an item into the currentlyEquipped dictionary,
+        /// also adds the items ability modifiers to the creature
+        // If equip slot is filled, currently equiped item goes into
+        // the inventory, and the given item is equiped in it's place
+        public void Equip(Items.Equipment item)
         {
-            foreach (Modifier mod in item.StatMods)
+            // Debug.Log("Equipping: " + item.ToString());
+            foreach (Modifier mod in item.modifiers)
             {
-                this.attributes[mod.attType].RemoveAllModifiersFromSource(item);
+                this.abilitiesHash[mod.attType].AddModifier(mod);
             }
-
-            inventory.Remove(item); //TODO these should unequip from equip slots
+            if (!this.currentlyEquipped.ContainsKey(item.equipSlot))
+            {
+                this.currentlyEquipped.Add(item.equipSlot, item);
+            }
+            else
+            {
+                Unequip(item.equipSlot);
+                this.currentlyEquipped.Add(item.equipSlot, item);
+            }
         }
 
-        // public void CalculateSecondaryStats() {
-        //     // primary attributes => secondary attributes
-        //     // reconsider items
-        //     // reconsider abilities
-        // }
+        /*
+            Unequips an item, unequiping also removes any
+            ability bonuses that item has.
+            Places item into inventory
+         */
+        public void Unequip(EquipSlot equipSlot)
+        {
+            if (this.currentlyEquipped.ContainsKey(equipSlot))
+            {
+                foreach (Modifier mod in currentlyEquipped[equipSlot].modifiers)
+                {
+                    this.abilitiesHash[mod.attType].RemoveAllModifiersFromSource(currentlyEquipped[equipSlot]);
+                }
+                inventory.Add(currentlyEquipped[equipSlot]);
+                currentlyEquipped.Remove(equipSlot);
+            }
+        }
 
-        public bool Attack(Creature target) {
-            System.Random rand = new System.Random();
-            int hitVal = rand.Next(1, 20) + (int)this.attributes[AttributeType.Attack].Value;
-            if (hitVal < target.attributes[AttributeType.AC].Value) {
+        /*
+            Unequips an item, unequiping also removes any
+            ability bonuses that item has.
+            Places item into inventory
+         */
+        public void Unequip(Items.Equipment item)
+        {
+            foreach (Modifier mod in item.modifiers)
+            {
+                this.abilitiesHash[mod.attType].RemoveAllModifiersFromSource(item);
+            }
+
+            currentlyEquipped.Remove(item.equipSlot);
+            inventory.Add(item);
+        }
+
+        /*
+            Removes an Item from the inventory, and sends it to Equip()
+         */
+        public bool EquipFromInventory(Items.Equipment item)
+        {
+            if (!inventory.equipmentInventory.Contains(item))
+            {
                 return false;
             }
-            target.attributes[AttributeType.Health].AddModifier(new Modifier((this.attributes[AttributeType.Damage].Value * -1), ModifierType.Flat));
+            inventory.Remove(item);
+            Equip(item);
             return true;
         }
 
-        public void TakeDamage(int value) {
-            // TODO This could cause issues
-            if (value < 1) {
-                return;
+        public bool EquipFromInventory(string iconName)
+        {
+            foreach (Equipment equipment in this.inventory.equipmentInventory)
+            {
+                if (equipment.name.Equals(iconName))
+                {
+                    EquipFromInventory(equipment);
+                    return true;
+                }
             }
-            this.attributes[AttributeType.Health].AddModifier(new Modifier(value * -1, ModifierType.Flat));
+            return false;
         }
 
-        public bool isDead() {
-            return this.attributes[AttributeType.Health].Value <= 0.0f;
+        /*
+            Uses standard D20 attack roll to determine attack success,
+            currently it is attack vs defense
+         */
+        public bool Attack(PlayerModel target)
+        {
+            System.Random rand = new System.Random();
+            int hitVal = rand.Next(1, 20) + (int)this.abilities.Attack.Value;
+            if (hitVal < target.abilities.Defense.Value)
+            {
+                return false;
+            }
+            target.TakeDamage(this.abilities.Attack.Value);
+            return true;
         }
 
-        override public string ToString() {
+        /*
+            Applies damage to the creature,
+            damage is a special case, it is added to
+            HealthAbility.damageTaken. Look there for 
+            more information
+         */
+        public void TakeDamage(int value)
+        {
+            this.abilities.Health.TakeDamage(value);
+        }
+
+        public bool isDead()
+        {
+            return this.abilities.Health.IsDead();
+        }
+
+        public bool TryHealthPotion()
+        {
+            if (this.inventory.potions > 0 && this.abilities.Health.Heal(5))
+            {
+                this.inventory.RemovePotion();
+                Debug.Log("Using Potion");
+                return true;
+            }
+            return false;
+        }
+
+        override public string ToString()
+        {
             string result = "";
-            result += "id: " + this.id + "\n";
             result += "name: " + this.name + "\n";
             result += "attributes:\n";
-            foreach(KeyValuePair<AttributeType, Attribute> entry in this.attributes) {
-                result += entry.Key.ToString() + ": " + entry.Value.ToString() + "\n";
+            foreach (KeyValuePair<AbilityType, Ability> entry in this.abilitiesHash)
+            {
+                if (entry.Key == AbilityType.HEALTH)
+                {
+                    result += entry.Value.ToString() + "\n";
+                }
+                else
+                {
+                    result += entry.Key.ToString() + ": " + entry.Value.ToString() + "\n";
+                }
             }
-            
-            result +="inventory:\n";
-            foreach(Item item in this.inventory) {
-                result += item.ToString() + "\n";
-            }
+            result += this.inventory.potions;
+            // result += "inventory:\n";
+            // result += this.inventory.ToString();
+            // result += currentlyEquipped.Count + " Items Currently Equipped\n";
+            // foreach (KeyValuePair<EquipSlot, Equipment> entry in this.currentlyEquipped)
+            // {
+            //     result += entry.Key.ToString() + ": " + entry.Value.ToString() + "\n";
+            // }
             return result;
-            
+
         }
     }
 }

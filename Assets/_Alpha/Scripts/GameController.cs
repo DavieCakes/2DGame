@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject gameOverUI, pauseUI, overWorldUI;
+    public GameObject gameOverUI, pauseUI, overWorldUI, inventoryUI;
     public GameObject player;
     private PlayerController pc;
     bool inEncounter;
@@ -13,11 +13,12 @@ public class GameController : MonoBehaviour
     public AudioClip[] clips;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         gameOverUI.SetActive(false);
         pc = player.GetComponent<PlayerController>();
         pauseUI.SetActive(false);
+        inventoryUI.SetActive(false);
         aud = GetComponent<AudioSource>();
         if (clips.Length > 0)
         {
@@ -32,6 +33,12 @@ public class GameController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             Pause();
+        }
+
+        // ADDED, opens Inventory UI from key 'i'
+        if ( Input.GetKeyDown(KeyCode.I)) 
+        {
+            this.inventoryUI.SetActive(!this.inventoryUI.activeSelf);
         }
     }
 
