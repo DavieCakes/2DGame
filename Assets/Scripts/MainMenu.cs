@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene("Alpha");
+        SceneManager.LoadScene("Beta");
     }
 
     public void Audio()
