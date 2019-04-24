@@ -1,25 +1,5 @@
 <Data>
-    <!-- <Creatures>
-        <Creature name = "Warrior Drow">
-            <Attribute name = "Strength" value = "10"/>
-            <Attribute name = "Dexterity" value = "10"/>
-            <Attribute name = "Constitution" value = "10"/>
-            <Attribute name = "Wisdom" value = "10"/>
-            <Attribute name = "Charisma" value = "10"/>
-            <Attribute name = "Intelligence" value = "10"/>
-            <Attribute name = "Initiative" value = "10"/>
-            <Attribute name = "Attack" value = "10"/>
-            <Attribute name = "Damage" value = "10"/>
-            <Attribute name = "Health" value = "10"/>
-            <Attribute name = "AC" value = "10"/>
-            <Inventory>
-                <Item name = "Mushrooms"/>
-            </Inventory>
-        </Creature>
-    </Creatures> -->
     <Items>
-        <!-- <Item name = "key" display_name = "key" type="key"/>
-        <Item name = "health_potion" display_name = "Health Potion" type = "healthpotion"/> -->
         <Item name = "armor_1" display_name = "Armor 1" type = "equipment" slot = "armor">
             <Modifier name = "defense" value ="1"/>
         </Item>
@@ -41,9 +21,6 @@
         <Item name = "armor_7" display_name = "Armor 7" type = "equipment" slot = "armor">
             <Modifier name = "defense" value ="7"/>
         </Item>
-        <!-- <Item name = "armor_8" display_name = "Armor 8" type = "equipment" slot = "armor">
-            <Modifier name = "defense" value ="8"/>
-        </Item> -->
         <Item name = "boots_1" display_name = "Boots 1" type = "equipment" slot = "boots">
             <Modifier name = "agility" value ="1"/>
         </Item>
@@ -65,10 +42,6 @@
         <Item name = "boots_7" display_name = "Boots 7" type = "equipment" slot = "boots">
             <Modifier name = "agility" value ="7"/>
         </Item>
-        <!-- <Item name = "boots_8" display_name = "Boots 8" type = "equipment" slot = "boots">
-            <Modifier name = "agility" value ="8"/>
-        </Item> -->
-
         <Item name = "helmet_1" display_name = "Helm of Awe" type = "equipment" slot = "helmet">
             <Modifier name = "health" value ="1"/>
             <Modifier name = "agility" value ="1"/>
@@ -97,15 +70,6 @@
             <Modifier name = "health" value ="7"/>
             <Modifier name = "agility" value ="7"/>
         </Item>
-
-        <!-- <Item name = "helmet_8" display_name = "Iron Crown of Lombardy" type = "equipment" slot = "helmet">
-            <Modifier name = "health" value ="8"/>
-            <Modifier name = "agility" value ="8"/>
-        </Item>
-        <Item name = "helmet_9" display_name = "Ariadnes Diadem" type = "equipment" slot = "helmet">
-            <Modifier name = "health" value ="9"/>
-            <Modifier name = "agility" value ="9"/>
-        </Item> -->
 
         <Item name = "weapon_1" display_name = "Trident" type = "equipment" slot = "weapon">
             <Modifier name = "attack" value ="6"/>

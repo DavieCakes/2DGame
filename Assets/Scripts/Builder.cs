@@ -117,7 +117,6 @@ namespace Builders
                     temp.AddStatMod(new Modifier((int)row.Value, ModifierType.Flat, temp, StringToAbilityType(row.Key)));
                 }
                 result.Add(temp);
-                // Debug.Log(temp.ToString());
             }
             return result;
         }
@@ -129,13 +128,14 @@ namespace Builders
 
             List<Item> items = new List<Item>();
             System.Random rand = new System.Random();
-            int size = rand.Next(1, 5);
+            // int size = rand.Next(1, 5);
             Database data = new Database();
-            Dictionary<string, object> itemData;
-            items.Add(new HealthPotion());
-            itemData = data.GetRandomEquipmentData(rand);
-            itemData = data.GetRandomEquipmentData(rand);
+            // Dictionary<string, object> itemData;
 
+            items.Add(new HealthPotion());
+
+            items.Add(BuildEquipment((string)data.GetRandomEquipmentData(rand)["name"]));
+  
 
             // for (int i = 0; i < size; i++)
             // {
@@ -163,19 +163,5 @@ namespace Builders
             }
             return items;
         }
-
-        // public Item BuildItem(long itemId) {
-        //     XMLDatabase database = new XMLDatabase();
-        //     Dictionary<string, object> itemData = database.GetItemData(itemId);
-        //     List<Modifier> modifiers = new List<Modifier>();
-        //     Item item = new Item((string)itemData["name"], (long)itemData["id"]);
-
-        //     foreach(KeyValuePair<string, long> row in (Dictionary<string, long>)itemData["modifiers"]) {
-        //         // Debug.Log(row.Key + row.Value);
-        //         item.AddStatMod(new Modifier((float)row.Value, ModifierType.Flat, item, StringToAbilityType(row.Key)));
-        //     }
-
-        //     return item;
-        // }
     }
 }

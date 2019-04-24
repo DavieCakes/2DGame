@@ -100,9 +100,6 @@ namespace Items {
             this.equipSlot = equipSlot;
         }
 
-        public string GetDisplayName() {
-            return this.displayName;
-        }
 
         public void AddStatMod(Modifier StatMod) {
             this.modifiers.Add(StatMod);

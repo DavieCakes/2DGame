@@ -15694,17 +15694,17 @@ PrefabInstance:
     - target: {fileID: 3815764110773467824, guid: 7306494aa0f814948aede66ff08b1e8d,
         type: 3}
       propertyPath: StartingAgility
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3815764110773467824, guid: 7306494aa0f814948aede66ff08b1e8d,
         type: 3}
       propertyPath: StartingDefense
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3815764110773467824, guid: 7306494aa0f814948aede66ff08b1e8d,
         type: 3}
       propertyPath: StartingAttack
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3815764110934569803, guid: 7306494aa0f814948aede66ff08b1e8d,
         type: 3}
@@ -26375,7 +26375,7 @@ MonoBehaviour:
   handler: {fileID: 1506789767}
   enemies:
   - {fileID: 1153941493023002134, guid: bee931f2ac06aaf4db488f67e151c1c2, type: 3}
-  drops: []
+  key: 0
   encounterRate: 0
   delay: 10
   waitTime: 5
