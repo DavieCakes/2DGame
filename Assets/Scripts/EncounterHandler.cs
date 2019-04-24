@@ -159,6 +159,7 @@ public class EncounterHandler : MonoBehaviour
             pc.ReceiveDrop(s);
         }
         if (enc.key) {
+            txtBox.text += pc.GetName() + " recieved a key!\n";
             pc.RecieveKey();
         }
         // foreach (string s in ec.drops)

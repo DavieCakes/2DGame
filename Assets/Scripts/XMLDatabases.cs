@@ -24,9 +24,9 @@ namespace Databases {
                 itemModifiers.Add(node.Attributes["name"].Value, Int64.Parse(node.Attributes["value"].Value));
             }
 
-            itemData.Add("display_name", itemName);
+            itemData.Add("name", itemName);
             itemData.Add("type", itemNode.Attributes["type"].Value);
-            itemData.Add("name", itemNode.Attributes["name"].Value);
+            itemData.Add("display_name", itemNode.Attributes["display_name"].Value);
             if ((string)itemData["type"] == "equipment") {
                 itemData.Add("slot", itemNode.Attributes["slot"].Value);
             }

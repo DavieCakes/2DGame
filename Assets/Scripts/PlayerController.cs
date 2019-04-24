@@ -181,6 +181,7 @@ public class PlayerController : MonoBehaviour
 
     public void RecieveKey() {
         this.playerModel.inventory.AddKey();
+        UpdateUI();
     }
 
     public string GetName() { return playerModel.name; }
