@@ -12,7 +12,7 @@ namespace Databases {
     public class Database {
 
         // private static System.IO.Stream path =  new System.IO.Stream();
-        private static string path = Application.dataPath + "/RPGSystem/Data.xml";
+        private static string path = Application.dataPath + "/Scripts/Data.xml";
 
         // private static string path = "Data.xml";
 

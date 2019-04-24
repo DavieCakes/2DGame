@@ -155,16 +155,19 @@ public class EncounterHandler : MonoBehaviour
         txtBox.text = "";
         foreach (Item s in this.drops)
         {
-            txtBox.text += pc.GetName() + " received " + s.GetItemName() + ".\n";
+            txtBox.text += pc.GetName() + " received " + s.GetDisplayName() + ".\n";
             pc.ReceiveDrop(s);
         }
-        foreach (string s in ec.drops)
-        {
-            Debug.Log(s);
-            Item temp = Builder.BuildEquipment(s);
-            txtBox.text += pc.GetName() + " received " + temp.GetItemName() + ".\n";
-            pc.ReceiveDrop(temp);
+        if (enc.key) {
+            pc.RecieveKey();
         }
+        // foreach (string s in ec.drops)
+        // {
+        //     Debug.Log(s);
+        //     Item temp = Builder.BuildEquipment(s);
+        //     txtBox.text += pc.GetName() + " received " + temp.GetItemName() + ".\n";
+        //     pc.ReceiveDrop(temp);
+        // }
         drops.Clear();
     }
 

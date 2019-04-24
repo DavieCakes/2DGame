@@ -10,7 +10,9 @@ public class Encounters : MonoBehaviour
     public EncounterHandler handler;
     public GameObject[] enemies;
     protected PlayerController pc;
-    public List<string> drops;
+    public bool key = false;
+    // public List<string> drops;
+
     public int encounterRate = 200;
     public float delay = 5f, waitTime = 5f;
 
@@ -44,7 +46,7 @@ public class Encounters : MonoBehaviour
 
     public void clear()
     {
-        drops = new List<string>();
+        this.key = false;
         delay = 0f;
     }
 }

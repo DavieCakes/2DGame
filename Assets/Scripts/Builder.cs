@@ -132,26 +132,29 @@ namespace Builders
             int size = rand.Next(1, 5);
             Database data = new Database();
             Dictionary<string, object> itemData;
+            items.Add(new HealthPotion());
+            itemData = data.GetRandomEquipmentData(rand);
+            itemData = data.GetRandomEquipmentData(rand);
 
-            for (int i = 0; i < size; i++)
-            {
-                int choice = rand.Next(1, 100);
-                if (choice <= 40)
-                {
-                    items.Add(new HealthPotion());
-                }
-                if (choice >= 90)
-                {
-                    items.Add(new Key());
-                    items.Add(new Gold(10));
-                }
-                else
-                {
-                    itemData = data.GetRandomEquipmentData(rand);
-                    Items.Equipment item = BuildEquipment((string)itemData["name"]);
-                    items.Add(item);
-                }
-            }
+
+            // for (int i = 0; i < size; i++)
+            // {
+            //     int choice = rand.Next(1, 100);
+            //     if (choice <= 40)
+            //     {
+            //         items.Add(new HealthPotion());
+            //     }
+            //     if (choice >= 90)
+            //     {
+            //         items.Add(new Gold(10));
+            //     }
+            //     else
+            //     {
+            //         itemData = data.GetRandomEquipmentData(rand);
+            //         Items.Equipment item = BuildEquipment((string)itemData["name"]);
+            //         items.Add(item);
+            //     }
+            // }
 
             Debug.Log("Building Random Drop List");
             foreach (Item i in items)

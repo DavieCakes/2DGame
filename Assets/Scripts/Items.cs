@@ -14,6 +14,10 @@ namespace Items {
             this.itemType = itemType;
         }
 
+        public string GetDisplayName() {
+            return this.displayName;
+        }
+
         override
         public abstract string ToString();
 
@@ -94,6 +98,10 @@ namespace Items {
         public Equipment(string displayName, string name,  EquipSlot equipSlot) : base (displayName, name, ItemType.EQUIPMENT) {
             this.modifiers = new List<Modifier>();
             this.equipSlot = equipSlot;
+        }
+
+        public string GetDisplayName() {
+            return this.displayName;
         }
 
         public void AddStatMod(Modifier StatMod) {

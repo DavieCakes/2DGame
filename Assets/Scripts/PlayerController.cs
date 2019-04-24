@@ -179,6 +179,10 @@ public class PlayerController : MonoBehaviour
         return true;
     }
 
+    public void RecieveKey() {
+        this.playerModel.inventory.AddKey();
+    }
+
     public string GetName() { return playerModel.name; }
 
     public Item UseItem()
