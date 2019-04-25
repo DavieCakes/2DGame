@@ -7,17 +7,20 @@ using System.Collections.Generic;
 
 using Items;
 
-// path => Path.Combine(Application.DataPath, "RPGSystem/Data.xml")
 namespace Databases {
     public class Database {
 
-        private static string path = Application.dataPath + "/Data.xml";
+        private static XmlDocument GetXMLDoc() {
+            XmlDocument doc = new XmlDocument();
+            TextAsset text = (TextAsset) Resources.Load("Data");
+            doc.LoadXml(text.text);
+            return doc;
+        }
 
         public Dictionary<string, object> GetItemData(string itemName) {
             Dictionary<string, object> itemData = new Dictionary<string, object>();
             Dictionary <string, long> itemModifiers = new Dictionary<string, long>();
-            XmlDocument doc = new XmlDocument();
-            doc.Load(Database.path);
+            XmlDocument doc = GetXMLDoc();
             XmlNode itemNode = doc.SelectSingleNode("Data/Items//Item[@name = '" + itemName + "']");
 
             foreach(XmlNode node in itemNode.SelectNodes("Modifier")) {
@@ -37,8 +40,7 @@ namespace Databases {
 
         public List<Dictionary<string, object>> GetAllEquipmentData() {
             List<Dictionary<string, object>> itemList = new List<Dictionary<string, object>>();
-            XmlDocument doc = new XmlDocument();
-            doc.Load(Database.path);
+            XmlDocument doc = GetXMLDoc();
             XmlNodeList itemNodes = doc.SelectNodes("Data/Items//Item[@type = 'equipment']");
             foreach (XmlNode node in itemNodes) {
                 itemList.Add(GetItemData(node.Attributes["name"].Value));
@@ -49,10 +51,9 @@ namespace Databases {
         public Dictionary<string, object> GetRandomEquipmentData(System.Random rand) {
             Dictionary<string, object> itemData = new Dictionary<string, object>();
             Dictionary <string, long> itemModifiers = new Dictionary<string, long>();
-            XmlDocument doc = new XmlDocument();
+            XmlDocument doc = GetXMLDoc();
             int randIndex;
 
-            doc.Load(Database.path);
             XmlNodeList itemNodes = doc.SelectNodes("Data/Items//Item[@type = '" + Items.ItemType.EQUIPMENT.ToString().ToLower() + "']");
             randIndex = rand.Next(0, itemNodes.Count - 1);
             XmlNode selectedNode = itemNodes.Item(randIndex);
