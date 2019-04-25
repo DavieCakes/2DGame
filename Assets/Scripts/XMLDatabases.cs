@@ -11,7 +11,7 @@ using Items;
 namespace Databases {
     public class Database {
 
-        private static string path = Application.dataPath + "/Scripts/Data.xml";
+        private static string path = Application.dataPath + "/Data.xml";
 
         public Dictionary<string, object> GetItemData(string itemName) {
             Dictionary<string, object> itemData = new Dictionary<string, object>();
