@@ -22,16 +22,16 @@ using Builders;
 //         defense,
 //         agility;
 
-    //     public int boostedHealth, boostedAttack, boostedDefense, boostedAgility;
+//     public int boostedHealth, boostedAttack, boostedDefense, boostedAgility;
 
-    //     public void SetUp()
-    //     {
-    //         maxHealth = bHealth;
-    //         health = bHealth;
-    //         attack = bAttack;
-    //         defense = bDefense;
-    //         agility = bAgility;
-    //     }
+//     public void SetUp()
+//     {
+//         maxHealth = bHealth;
+//         health = bHealth;
+//         attack = bAttack;
+//         defense = bDefense;
+//         agility = bAgility;
+//     }
 // }
 public class PlayerController : MonoBehaviour
 {
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 2.5f;
     bool moving = false;
     public bool pause;
-    
+
     private Rigidbody rb;
     GameController gc;
     // ItemsList items;
@@ -164,6 +164,19 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    public bool UsePotion()
+    {
+        if (!playerModel.TryHealthPotion())
+        {
+            return false;
+        }
+        else
+        {
+            UpdateUI();
+            return true;
+        }
+    }
+
     public bool TakeDamage(int damage)
     {
         playerModel.TakeDamage(damage);
@@ -179,7 +192,8 @@ public class PlayerController : MonoBehaviour
         return true;
     }
 
-    public void RecieveKey() {
+    public void RecieveKey()
+    {
         this.playerModel.inventory.AddKey();
         UpdateUI();
     }

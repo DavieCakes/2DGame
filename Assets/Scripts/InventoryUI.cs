@@ -130,6 +130,7 @@ public class InventoryUI : MonoBehaviour
         UpdateEquipmentPanel();
         ClearInventoryUI();
         UpdateInventoryPanel();
+        playerController.UpdateUI();
     }
 
     /*
@@ -139,6 +140,7 @@ public class InventoryUI : MonoBehaviour
     {
         Debug.Log("Equipment Slot Clicked: " + slot.ToString());
         this.playerController.playerModel.Unequip(slot);
+        playerController.UpdateUI();
         UpdateEquipmentPanel();
         ClearInventoryUI();
         UpdateInventoryPanel();
@@ -150,11 +152,9 @@ public class InventoryUI : MonoBehaviour
     private void PotionItemClicked()
     {
         Debug.Log("Potions Clicked");
-        // Health potion gets used up to full health, and only if not at full health already
-        if (this.playerController.playerModel.TryHealthPotion())
+        if (playerController.UsePotion())
         { 
             UpdateEquipmentPanel();
-            this.playerController.UpdateUI();
         }
     }
 }

@@ -190,6 +190,7 @@ public class EncounterHandler : MonoBehaviour
                 yield return new WaitForSeconds(1.5f);
                 txtBox.text += "\n" + ec.GetName() + " attacked!";
                 pc.TakeDamage(ec.Attack());
+                txtBox.text += "\nYou have " + pc.playerModel.abilities.Health.Value + " health";
                 foreach (Button btn in btnArray)
                     btn.interactable = true;
             }
@@ -198,6 +199,7 @@ public class EncounterHandler : MonoBehaviour
         {
             anim.SetTrigger(boss ? "Attacking" : "TrigAttack");
             txtBox.text = ec.GetName() + " attacked!";
+            txtBox.text += "\nYou have " + pc.playerModel.abilities.Health.Value + " health";
             yield return new WaitForSeconds(1.5f);
             if (pc.TakeDamage(ec.Attack()))
             {
@@ -218,13 +220,13 @@ public class EncounterHandler : MonoBehaviour
     IEnumerator Item()
     {
         Debug.Log("Items() was called!");
-        if (pc.UseItem() != null)
+        if (pc.UsePotion())
         {
-
+            txtBox.text += "\nYou used a potion!\nYou have " + pc.playerModel.abilities.Health.Value + " health";
         }
         else
         {
-            txtBox.text = "You have no items!";
+            txtBox.text += "\nYou have no potions!\n";
         }
         btnArray[1].Select();
         yield return null;
