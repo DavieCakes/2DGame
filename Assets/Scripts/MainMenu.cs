@@ -6,11 +6,10 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject mainMenu, audioMenu, helpMenu;
+    public GameObject mainMenu, helpMenu;
 
     private void Start()
     {
-        audioMenu.SetActive(false);
         helpMenu.SetActive(false);
         mainMenu.transform.GetChild(0).GetChild(0).GetComponent<Button>().Select();
     }
@@ -18,12 +17,6 @@ public class MainMenu : MonoBehaviour
     public void Play()
     {
         SceneManager.LoadScene("Beta");
-    }
-
-    public void Audio()
-    {
-        mainMenu.SetActive(false);
-        audioMenu.SetActive(true);
     }
 
     public void Help()
@@ -34,7 +27,6 @@ public class MainMenu : MonoBehaviour
 
     public void Back()
     {
-        audioMenu.SetActive(false);
         helpMenu.SetActive(false);
         mainMenu.SetActive(true);
     }
