@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
     public int StartingAttack = 1;
     public int StartingKeys = 0, StartingGold = 0, StartingPotions = 0;
-    public PlayerModel playerModel;
+    public Creature playerModel;
 
     /* Controller Init Variables */
 
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
     private void InitPlayerModel()
     {
         Debug.Log("test");
-        playerModel = new PlayerModel(StartingHealth, StartingAgility, StartingDefense, StartingAttack, PlayerName);
+        playerModel = new Creature(StartingHealth, StartingAgility, StartingDefense, StartingAttack, PlayerName);
         playerModel.inventory.AddGold(StartingGold);
         playerModel.inventory.AddKeys(StartingKeys);
         playerModel.inventory.AddPotions(StartingPotions);
