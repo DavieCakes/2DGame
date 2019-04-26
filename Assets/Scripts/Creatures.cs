@@ -7,12 +7,14 @@ using PlayerAbilities;
 
 namespace Models
 {
-    public struct CreatureAbilities
+    public class CreatureAbilities
     {
         public Ability Agility;
         public Ability Attack;
         public HealthAbility Health;
         public Ability Defense;
+
+        private int combatMetric;
 
         public CreatureAbilities(
             int agility,
@@ -33,6 +35,10 @@ namespace Models
             this.Attack = _attributes[AbilityType.ATTACK];
             this.Health = (HealthAbility)_attributes[AbilityType.HEALTH];
             this.Defense = _attributes[AbilityType.DEFENSE];
+        }
+
+        public int CombatMetric() {
+            return 0;
         }
     }
 
