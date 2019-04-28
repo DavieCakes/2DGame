@@ -105,7 +105,7 @@ public class InventoryUI : MonoBehaviour
 
     void UpdateInventoryPanel()
     {
-        foreach (Equipment equipment in playerController.playerModel.inventory.equipmentInventory)
+        foreach (Equipment equipment in playerController.playerModel.inventory.EquipmentInventory)
         {
             GameObject tempDisplay = Instantiate(this.Prefab_InventoryItemDisplay);
             // Text tempText = tempDisplay.GetComponentInChildren<Text>();

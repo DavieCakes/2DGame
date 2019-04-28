@@ -147,7 +147,7 @@ namespace Models
          */
         public bool EquipFromInventory(Items.Equipment item)
         {
-            if (!inventory.equipmentInventory.Contains(item))
+            if (!inventory.EquipmentInventory.Contains(item))
             {
                 return false;
             }
@@ -158,7 +158,7 @@ namespace Models
 
         public bool EquipFromInventory(string iconName)
         {
-            foreach (Equipment equipment in this.inventory.equipmentInventory)
+            foreach (Equipment equipment in this.inventory.EquipmentInventory)
             {
                 if (equipment.name.Equals(iconName))
                 {

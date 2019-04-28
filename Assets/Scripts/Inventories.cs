@@ -1,22 +1,87 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Items;
+using System.Collections;
+using System.Collections.ObjectModel;
 
 namespace Inventories
 {
     // This is just a class that is a list of equipment objects, it is included in the general 'Inventory' class
-    public class EquipmentInventory : List<Items.Equipment>
+    public class EquipmentInventory : IList<Items.Equipment>
     {
-        public EquipmentInventory()
+        private List<Items.Equipment> internalList = new List<Equipment>();
+
+        public Equipment this[int index] { get => ((IList<Equipment>)internalList)[index]; set => ((IList<Equipment>)internalList)[index] = value; }
+
+        public int Count => ((IList<Equipment>)internalList).Count;
+
+        public bool IsReadOnly => ((IList<Equipment>)internalList).IsReadOnly;
+
+        public void Add(Equipment item)
         {
+            ((IList<Equipment>)internalList).Add(item);
         }
 
-        public EquipmentInventory(IEnumerable<Items.Equipment> collection) : base(collection)
+        public void Clear()
         {
+            ((IList<Equipment>)internalList).Clear();
         }
 
-        public EquipmentInventory(int capacity) : base(capacity)
+        public bool Contains(Equipment item)
         {
+            return ((IList<Equipment>)internalList).Contains(item);
+        }
+
+        public void CopyTo(Equipment[] array, int arrayIndex)
+        {
+            ((IList<Equipment>)internalList).CopyTo(array, arrayIndex);
+        }
+
+        public IEnumerator<Equipment> GetEnumerator()
+        {
+            return ((IList<Equipment>)internalList).GetEnumerator();
+        }
+
+        public int IndexOf(Equipment item)
+        {
+            return ((IList<Equipment>)internalList).IndexOf(item);
+        }
+
+        public void Insert(int index, Equipment item)
+        {
+            ((IList<Equipment>)internalList).Insert(index, item);
+        }
+
+        public bool Remove(Equipment item)
+        {
+            return ((IList<Equipment>)internalList).Remove(item);
+        }
+
+        public void RemoveAt(int index)
+        {
+            ((IList<Equipment>)internalList).RemoveAt(index);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IList<Equipment>)internalList).GetEnumerator();
+        }
+
+        public bool TryGetEquipment(Equipment _in, Equipment _out) {
+            Equipment temp;
+            for (int i = 0; i < this.Count; i++) {
+                temp = this[i];
+                if (temp.name.Equals(_in.name)) {
+                    _out = temp;
+                    this.RemoveAt(i);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public ReadOnlyCollection<Equipment> AsReadOnly() {
+            return new ReadOnlyCollection<Equipment>(this);
         }
     }
 
@@ -25,13 +90,14 @@ namespace Inventories
     //the player inventory, or any other collection of in game items
     public class Inventory
     {
-        public int keys;
+        public int keys {get; private set;}
 
-        public int gold;
+        public int gold {get; private set;}
 
-        public int potions;
- 
-        public EquipmentInventory equipmentInventory;
+        public int potions {get; private set;}
+        public readonly ReadOnlyCollection<Equipment> EquipmentInventory;
+        private readonly EquipmentInventory equipmentInventory;
+        
 
         public Inventory()
         {
@@ -39,6 +105,7 @@ namespace Inventories
             this.gold = 0;
             this.potions = 0;
             this.equipmentInventory = new EquipmentInventory();
+            this.EquipmentInventory = equipmentInventory.AsReadOnly();
         }
 
         // Adds a single item, of any subtype, to the inventory
