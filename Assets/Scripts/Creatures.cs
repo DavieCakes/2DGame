@@ -147,7 +147,7 @@ namespace Models
          */
         public bool EquipFromInventory(Items.Equipment item)
         {
-            if (!inventory.equipmentInventory.Contains(item))
+            if (!inventory.EquipmentInventory.Contains(item))
             {
                 return false;
             }
@@ -158,7 +158,7 @@ namespace Models
 
         public bool EquipFromInventory(string iconName)
         {
-            foreach (Equipment equipment in this.inventory.equipmentInventory)
+            foreach (Equipment equipment in this.inventory.EquipmentInventory)
             {
                 if (equipment.name.Equals(iconName))
                 {
@@ -203,7 +203,7 @@ namespace Models
 
         public bool TryHealthPotion()
         {
-            if (this.inventory.potions > 0 && this.abilities.Health.Heal(5))
+            if (this.inventory.Potions > 0 && this.abilities.Health.Heal(5))
             {
                 this.inventory.RemovePotion();
                 Debug.Log("Using Potion");
@@ -229,7 +229,7 @@ namespace Models
                     result += entry.Key.ToString() + ": " + entry.Value.ToString() + "\n";
                 }
             }
-            result += this.inventory.potions;
+            result += this.inventory.Potions;
             // result += "inventory:\n";
             // result += this.inventory.ToString();
             // result += currentlyEquipped.Count + " Items Currently Equipped\n";
