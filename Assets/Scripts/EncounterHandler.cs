@@ -60,7 +60,7 @@ public class EncounterHandler : MonoBehaviour
         Debug.Log("Encounter Started");
         pc.pause = true;
         gc.InEncounter();
-        overWorldUI.SetActive(false);
+        // overWorldUI.SetActive(false);
 
         if (transition != null)
         {
@@ -193,7 +193,6 @@ public class EncounterHandler : MonoBehaviour
                 {
                     gc.GameOver();
                 }
-                txtBox.text += "\nYou have " + pc.playerModel.abilities.Health.Value + " health";
                 foreach (Button btn in btnArray)
                     btn.interactable = true;
             }
@@ -202,7 +201,6 @@ public class EncounterHandler : MonoBehaviour
         {
             anim.SetTrigger(boss ? "Attacking" : "TrigAttack");
             txtBox.text = ec.GetName() + " attacked!";
-            txtBox.text += "\nYou have " + pc.playerModel.abilities.Health.Value + " health";
             if (pc.TakeDamage(ec.Attack()))
             {
                 yield return new WaitForSeconds(1.5f);
@@ -229,7 +227,7 @@ public class EncounterHandler : MonoBehaviour
         Debug.Log("Items() was called!");
         if (pc.UsePotion())
         {
-            txtBox.text += "\nYou used a potion!\nYou have " + pc.playerModel.abilities.Health.Value + " health";
+            txtBox.text += "\nYou used a potion!";
         }
         else
         {
