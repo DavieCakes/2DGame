@@ -1,9 +1,11 @@
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 using Items;
 using Inventories;
 using PlayerAbilities;
+
 
 namespace Models
 {
@@ -36,30 +38,31 @@ namespace Models
         }
     }
 
-    public class PlayerModel
+    public class PlayerModel : IObserver<Ability>, IObserver<Inventory>, IObservable<PlayerModel>
     {
         public string name;
-        public Dictionary<AbilityType, Ability> abilitiesHash;
+        public Dictionary<AbilityType, Ability> abilitiesDict;
         public PlayerAbilities abilities;
         public Inventory inventory;
         public Dictionary<EquipSlot, Items.Equipment> currentlyEquipped;
+        private List<IObserver<PlayerModel>> observers;
 
-        public PlayerModel()
-        {
-            this.inventory = new Inventory();
-            this.currentlyEquipped = new Dictionary<EquipSlot, Items.Equipment>();
-            this.abilities = new PlayerAbilities(10, 10, 10, 10);
-            InitAttributeHash();
-        }
+        // public PlayerModel()
+        // {
+        //     this.inventory = new Inventory();
+        //     this.currentlyEquipped = new Dictionary<EquipSlot, Items.Equipment>();
+        //     this.abilities = new PlayerAbilities(10, 10, 10, 10);
+        //     InitAttributeHash();
+        // }
 
-        public PlayerModel(Dictionary<AbilityType, Ability> _attributes, string name, long id)
-        {
-            this.name = name;
-            this.inventory = new Inventory();
-            this.currentlyEquipped = new Dictionary<EquipSlot, Items.Equipment>();
-            this.abilities = new PlayerAbilities(_attributes);
-            InitAttributeHash();
-        }
+        // public PlayerModel(Dictionary<AbilityType, Ability> _attributes, string name, long id)
+        // {
+        //     this.name = name;
+        //     this.inventory = new Inventory();
+        //     this.currentlyEquipped = new Dictionary<EquipSlot, Items.Equipment>();
+        //     this.abilities = new PlayerAbilities(_attributes);
+        //     InitAttributeHash();
+        // }
 
         public PlayerModel(int health, int agility, int defense, int attack, string name)
         {
@@ -67,18 +70,27 @@ namespace Models
             this.inventory = new Inventory();
             this.currentlyEquipped = new Dictionary<EquipSlot, Items.Equipment>();
             this.abilities = new PlayerAbilities(agility, attack, health, defense);
-            InitAttributeHash();
+            observers = new List<IObserver<PlayerModel>>();
+            InitAttributeDict();
+            InitObservables();
         }
 
-        private void InitAttributeHash()
+        private void InitAttributeDict()
         {
-            this.abilitiesHash = new Dictionary<AbilityType, Ability>()
+            this.abilitiesDict = new Dictionary<AbilityType, Ability>()
             {
                 {AbilityType.AGILITY, this.abilities.Agility},
                 {AbilityType.ATTACK, this.abilities.Attack},
                 {AbilityType.HEALTH, this.abilities.Health},
                 {AbilityType.DEFENSE, this.abilities.Defense},
             };
+        }
+
+        private void InitObservables() {
+            foreach (KeyValuePair<AbilityType, Ability> ability in abilitiesDict) {
+                ability.Value.Subscribe(this);
+            }
+            inventory.Subscribe(this);
         }
 
         public void PickUp(Item item)
@@ -95,7 +107,7 @@ namespace Models
             // Debug.Log("Equipping: " + item.ToString());
             foreach (Modifier mod in item.modifiers)
             {
-                this.abilitiesHash[mod.attType].AddModifier(mod);
+                this.abilitiesDict[mod.attType].AddModifier(mod);
             }
             if (!this.currentlyEquipped.ContainsKey(item.equipSlot))
             {
@@ -119,7 +131,7 @@ namespace Models
             {
                 foreach (Modifier mod in currentlyEquipped[equipSlot].modifiers)
                 {
-                    this.abilitiesHash[mod.attType].RemoveAllModifiersFromSource(currentlyEquipped[equipSlot]);
+                    this.abilitiesDict[mod.attType].RemoveAllModifiersFromSource(currentlyEquipped[equipSlot]);
                 }
                 inventory.Add(currentlyEquipped[equipSlot]);
                 currentlyEquipped.Remove(equipSlot);
@@ -135,7 +147,7 @@ namespace Models
         {
             foreach (Modifier mod in item.modifiers)
             {
-                this.abilitiesHash[mod.attType].RemoveAllModifiersFromSource(item);
+                this.abilitiesDict[mod.attType].RemoveAllModifiersFromSource(item);
             }
 
             currentlyEquipped.Remove(item.equipSlot);
@@ -156,6 +168,7 @@ namespace Models
             return true;
         }
 
+        /*  */
         public bool EquipFromInventory(string iconName)
         {
             foreach (Equipment equipment in this.inventory.EquipmentInventory)
@@ -218,7 +231,7 @@ namespace Models
             string result = "";
             result += "name: " + this.name + "\n";
             result += "attributes:\n";
-            foreach (KeyValuePair<AbilityType, Ability> entry in this.abilitiesHash)
+            foreach (KeyValuePair<AbilityType, Ability> entry in this.abilitiesDict)
             {
                 if (entry.Key == AbilityType.HEALTH)
                 {
@@ -239,6 +252,63 @@ namespace Models
             // }
             return result;
 
+        }
+
+        public void OnCompleted()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnError(Exception error)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnNext(Inventory value)
+        {
+            NotifyObservers();
+        }
+
+        public void OnNext(Ability value)
+        {
+            NotifyObservers();
+        }
+
+        private void NotifyObservers() {
+            if (observers != null) {
+                foreach (var observer in observers) {
+                    observer.OnNext(this);
+                }
+            }
+        }
+
+        public IDisposable Subscribe(IObserver<PlayerModel> observer)
+        {
+            if (!observers.Contains(observer))
+            {
+                observers.Add(observer);
+                observer.OnNext(this);/// 
+            }
+            return new Unsubscriber<PlayerModel>(observers, observer);
+        }
+    }
+
+    internal class Unsubscriber<PlayerModel> : IDisposable
+    {
+        private List<IObserver<PlayerModel>> _observers;
+        private IObserver<PlayerModel> _observer;
+        public Unsubscriber(List<IObserver<PlayerModel>> observers, IObserver<PlayerModel> observer)
+        {
+            this._observers = observers;
+            this._observer = observer;
+        }
+
+        public void Dispose()
+        {
+            if (_observers.Contains(_observer))
+            {
+                _observers.Remove(_observer);
+            }
         }
     }
 }

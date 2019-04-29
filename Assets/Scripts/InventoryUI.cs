@@ -41,14 +41,18 @@ public class InventoryUI : MonoBehaviour
             entry.Value.GetComponent<Button>().onClick.AddListener(() => EquipmentSlotItemClicked(entry.Key));
         }
 
-
-
         GameObject.Find("PotionsIcon").GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/potion");
         this.UI_PotionsRemainingLabel = GameObject.Find("PotionsRemainingLabel");
         GameObject.Find("PotionPanel").GetComponent<Button>().onClick.AddListener(() => PotionItemClicked());
 
+        
+
         // UpdateEquipmentPanel();
         // UpdateInventoryPanel();
+    }
+
+    public void notifyPlayerAbilityChange(){
+
     }
 
     /// <summary>
@@ -140,6 +144,7 @@ public class InventoryUI : MonoBehaviour
     {
         Debug.Log("Equipment Slot Clicked: " + slot.ToString());
         this.playerController.playerModel.Unequip(slot);
+        
         playerController.UpdateUI();
         UpdateEquipmentPanel();
         ClearInventoryUI();

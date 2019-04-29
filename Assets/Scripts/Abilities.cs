@@ -18,12 +18,13 @@ namespace PlayerAbilities
             creature.ability.RemoveAllModifiersFromSource(item)
             
      */
-    public class Ability
+    public class Ability : IObservable<Ability>
     {
         public int BaseValue; // base stat value
         private readonly List<Modifier> _modifiers;
         public readonly ReadOnlyCollection<Modifier> Modifiers; // mirrors stateModifiers for access, keeps original values private
 
+        private List<IObserver<Ability>> observers;
 
         public int Value
         {
@@ -47,12 +48,14 @@ namespace PlayerAbilities
             BaseValue = baseValue;
             _modifiers = new List<Modifier>();
             Modifiers = _modifiers.AsReadOnly();
+            observers = new List<IObserver<Ability>>();
         }
 
         public void AddModifier(Modifier mod)
         {
             isDirty = true;
             _modifiers.Add(mod);
+            NotifyObservers();
         }
 
         public bool RemoveModifier(Modifier mod)
@@ -60,6 +63,7 @@ namespace PlayerAbilities
             if (_modifiers.Remove(mod))
             {
                 isDirty = true;
+                NotifyObservers();
                 return true;
             }
             return false;
@@ -97,6 +101,10 @@ namespace PlayerAbilities
                     _modifiers.RemoveAt(i);
                 }
             }
+            if (didRemove)
+            {
+                NotifyObservers();
+            }
             return didRemove;
         }
 
@@ -115,6 +123,43 @@ namespace PlayerAbilities
             }
             return result;
         }
+
+        public IDisposable Subscribe(IObserver<Ability> observer)
+        {
+            if (!observers.Contains(observer))
+            {
+                observers.Add(observer);
+                observer.OnNext(this);
+            }
+            return new Unsubscriber<Ability>(observers, observer);
+        }
+
+        protected void NotifyObservers()
+        {
+            foreach (var observer in observers)
+            {
+                observer.OnNext(this);
+            }
+        }
+    }
+
+    internal class Unsubscriber<Ability> : IDisposable
+    {
+        private List<IObserver<Ability>> _observers;
+        private IObserver<Ability> _observer;
+        public Unsubscriber(List<IObserver<Ability>> observers, IObserver<Ability> observer)
+        {
+            this._observers = observers;
+            this._observer = observer;
+        }
+
+        public void Dispose()
+        {
+            if (_observers.Contains(_observer))
+            {
+                _observers.Remove(_observer);
+            }
+        }
     }
 
     /*
@@ -127,7 +172,7 @@ namespace PlayerAbilities
         healing => damage taken - heal amount
 
      */
-    public class HealthAbility : Ability
+    public class HealthAbility : Ability, IObservable<HealthAbility>
     {
         private int damageTaken;
 
@@ -172,10 +217,12 @@ namespace PlayerAbilities
             {
                 damageTaken = 0;
                 // this.isDirty = true;
+                NotifyObservers();
                 return true;
             }
             damageTaken = damageTaken - amount;
             // this.isDirty = true;
+            NotifyObservers();
             return true;
         }
 
@@ -186,6 +233,7 @@ namespace PlayerAbilities
                 throw new ArgumentException("Damage amount: " + amount.ToString() + " cannot be negative.");
             }
             this.damageTaken += amount;
+            NotifyObservers();
             // this.isDirty = true;
         }
 
@@ -206,6 +254,10 @@ namespace PlayerAbilities
             return result;
         }
 
+        public IDisposable Subscribe(IObserver<HealthAbility> observer)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public enum ModifierType

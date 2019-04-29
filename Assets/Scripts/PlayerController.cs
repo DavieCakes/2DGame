@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 using Items;
+using PlayerAbilities;
 using Models;
 using Builders;
 
@@ -33,7 +35,7 @@ using Builders;
 //         agility = bAgility;
 //     }
 // }
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IObserver<PlayerModel>
 {
 
     /* Player Starting Values */
@@ -67,6 +69,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         InitPlayerModel();
+        playerModel.Subscribe(this);
         UpdateUI();
         // items = new ItemsList();
         gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
@@ -212,6 +215,7 @@ public class PlayerController : MonoBehaviour
     {
         playerModel.PickUp(item);
         UpdateUI();
+
     }
 
     public void UpdateUI()
@@ -221,50 +225,17 @@ public class PlayerController : MonoBehaviour
         keyCount.text = "KEYS: " + playerModel.inventory.Keys.ToString();
         goldCount.text = "GOLD: " + playerModel.inventory.Gold.ToString();
     }
+
+    public void OnCompleted()
+    {
+    }
+
+    public void OnError(Exception error)
+    {
+    }
+
+    public void OnNext(PlayerModel value)
+    {
+        UpdateUI();
+    }
 }
-
-// class ItemsList : List<Item> {
-
-// }
-
-// class ItemsList : List<Item>
-// {
-//     class Node
-//     {
-//         public Node next;
-//         public Its data;
-
-//         public Node(Its data)
-//         {
-//             this.data = data;
-//         }
-//     }
-
-//     Node head;
-//     public int Length = 0;
-
-//     public void Append(Item data)
-//     {
-//         Node newNode = new Node(data);
-//         Length++;
-//         if (head == null)
-//         {
-//             head = newNode;
-//         }
-//         else
-//         {
-//             Node cur = head;
-//             while (cur.next != null) cur = cur.next;
-//             cur.next = newNode;
-//         }
-//     }
-
-//     public Item Remove(int index)
-//     {
-//         if (index >= Length)
-//             return null;
-//         Node cur = head;
-//         for (int i = 0; i < index; i++) cur = cur.next;
-//         return cur.data;
-//     }
-// }
