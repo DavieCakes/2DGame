@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -30,13 +31,13 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(!inEncounter && Input.GetKeyDown(KeyCode.Escape))
         {
             Pause();
         }
 
         // ADDED, opens Inventory UI from key 'i'
-        if ( Input.GetKeyDown(KeyCode.I)) 
+        if (!inEncounter && Input.GetKeyDown(KeyCode.I)) 
         {
             this.inventoryUI.SetActive(!this.inventoryUI.activeSelf);
         }
@@ -47,6 +48,19 @@ public class GameController : MonoBehaviour
         Debug.Log("Game Over called");
         gameOverUI.SetActive(true);
         gameOverUI.transform.GetChild(1).GetComponent<Text>().text = "Game Over!";
+        StartCoroutine(GameOverLoop());
+    }
+
+    IEnumerator GameOverLoop()
+    {
+        Debug.Log("Player Died!");
+        gameOverUI.SetActive(true);
+        while (true)
+        {
+            if (Input.GetKey(KeyCode.R))
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            yield return null;
+        }
     }
 
     public void Pause()
