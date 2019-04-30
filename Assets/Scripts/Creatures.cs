@@ -5,8 +5,32 @@ using Items;
 using Inventories;
 using PlayerAbilities;
 
-namespace Models
+namespace Creatures
 {
+    public class Dice {
+        private static Dice instance = null;
+        private static readonly object padlock = new Object();
+        private System.Random rand;
+
+        Dice(){
+            rand = new System.Random();
+        }
+
+        public int RollD20(){
+            return this.rand.Next(1, 20);
+        }
+
+        public static Dice Instance {
+            get {
+                lock (padlock) {
+                    if (instance == null) {
+                        instance = new Dice();
+                    }
+                    return instance;
+                }
+            }
+        }
+    }
     public class CreatureAbilities
     {
         public Ability Agility;
@@ -37,9 +61,6 @@ namespace Models
             this.Defense = _attributes[AbilityType.DEFENSE];
         }
 
-        public int CombatMetric() {
-            return 0;
-        }
     }
 
     public class PlayerModel : Creature
@@ -59,6 +80,7 @@ namespace Models
         public CreatureAbilities abilities;
         public Inventory inventory;
         public Dictionary<EquipSlot, Items.Equipment> currentlyEquipped;
+        private Dice dice = Dice.Instance;
 
         public Creature()
         {
@@ -95,6 +117,20 @@ namespace Models
                 {AbilityType.HEALTH, this.abilities.Health},
                 {AbilityType.DEFENSE, this.abilities.Defense},
             };
+        }
+
+        public int CombatMetric() {
+
+            int metric = 0;
+            metric += abilities.Agility.Value*1;
+            metric += abilities.Attack.Value*3;
+            metric += abilities.Defense.Value*2;
+            metric += ((HealthAbility)abilities.Health).maxHealth*2;
+            return metric;
+        }
+
+        public int Initiative() {
+            return dice.RollD20() + abilities.Agility.Value;
         }
 
         public void PickUp(Item item)
@@ -191,9 +227,7 @@ namespace Models
          */
         public bool Attack(Creature target)
         {
-            System.Random rand = new System.Random();
-            int hitVal = rand.Next(1, 20) + (int)this.abilities.Attack.Value;
-            if (hitVal < target.abilities.Defense.Value)
+            if (dice.RollD20() + abilities.Attack.Value < target.abilities.Defense.Value)
             {
                 return false;
             }

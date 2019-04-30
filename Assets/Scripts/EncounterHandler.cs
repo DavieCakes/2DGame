@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 using Items;
 using Builders;
+using Creatures;
 
 public class EncounterHandler : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class EncounterHandler : MonoBehaviour
     GameObject enemy;
     GameObject[] enemies;
     EnemyController ec;
-    Animator anim;
+    Animator enemyAnim;
     List<Item> drops = new List<Item>();
     public bool boss = false;
 
@@ -72,7 +73,7 @@ public class EncounterHandler : MonoBehaviour
         SetUp();
         
         yield return new WaitForSeconds(1f);
-        anim.SetTrigger("TrigGesture");
+        enemyAnim.SetTrigger("TrigGesture");
         yield return new WaitForSeconds(1f);
         foreach (Button btn in btnArray)
             btn.interactable = true;
@@ -83,7 +84,7 @@ public class EncounterHandler : MonoBehaviour
             yield return null;
         }
         txtBox.text += "\n" + ec.GetName() + " was defeated!";
-        anim.SetTrigger("TrigDeath");
+        enemyAnim.SetTrigger("TrigDeath");
         yield return new WaitForSeconds(2f);
         Drops();
         Destroy(enemy);
@@ -106,7 +107,7 @@ public class EncounterHandler : MonoBehaviour
         SetUp();
 
         txtBox.text = ec.GetName() + " is attacking!";
-        anim.SetTrigger("Fight");
+        enemyAnim.SetTrigger("Fight");
         yield return new WaitForSeconds(1f);
         foreach (Button btn in btnArray)
             btn.interactable = true;
@@ -116,7 +117,7 @@ public class EncounterHandler : MonoBehaviour
             yield return null;
         }
         txtBox.text += "\n" + ec.GetName() + " was defeated!";
-        anim.SetTrigger("Death");
+        enemyAnim.SetTrigger("Death");
         yield return new WaitForSeconds(2f);
         Destroy(enemy);
         yield return new WaitForSeconds(1f);
@@ -134,7 +135,7 @@ public class EncounterHandler : MonoBehaviour
         encounterUI.SetActive(true);
         enemy = Instantiate(enemies[Random.Range(0, enemies.Length)], encounterUI.transform);
         ec = enemy.GetComponent<EnemyController>();
-        anim = enemy.transform.GetChild(0).GetComponent<Animator>();
+        enemyAnim = enemy.transform.GetChild(0).GetComponent<Animator>();
 
         txtBox.text = ec.GetName() + " is attacking!";
     }
@@ -181,40 +182,28 @@ public class EncounterHandler : MonoBehaviour
 
     IEnumerator Attack()
     {
-        if (pc.playerModel.abilities.Agility.Value > ec.agility || (pc.playerModel.abilities.Agility.Value == ec.agility && Random.Range(0, 2) == 0))
-        {
-            txtBox.text = pc.GetName() + " attacked!";
-            if (ec.TakeDamage(pc.playerModel.abilities.Attack.Value))
-            {
-                anim.SetTrigger(boss ? "Attacking" : "TrigAttack");
-                yield return new WaitForSeconds(1.5f);
-                txtBox.text += "\n" + ec.GetName() + " attacked!";
-                if(!pc.TakeDamage(ec.Attack()))
-                {
-                    gc.GameOver();
-                }
-                foreach (Button btn in btnArray)
-                    btn.interactable = true;
-            }
-        }
-        else
-        {
-            anim.SetTrigger(boss ? "Attacking" : "TrigAttack");
-            txtBox.text = ec.GetName() + " attacked!";
-            if (pc.TakeDamage(ec.Attack()))
-            {
-                yield return new WaitForSeconds(1.5f);
-                txtBox.text += "\n" + pc.GetName() + " attacked!";
-                if(ec.TakeDamage(pc.playerModel.abilities.Attack.Value))
-                    foreach (Button btn in btnArray)
-                        btn.interactable = true;
-            }
-            else
-            {
+        Creature c1 = (pc.playerModel.Initiative() > ec.enemyModel.Initiative()) ? pc.playerModel : ec.enemyModel;
+
+        // Object reference equality **should** compare the object hashes with equality checks
+        // i.e. true if pointing to same object in memory
+        Creature c2 = (c1 == pc.playerModel) ? ec.enemyModel : pc.playerModel;
+
+        if (c1 == ec.enemyModel) enemyAnim.SetTrigger(boss ? "Attacking" : "TrigAttack");
+        yield return new WaitForSeconds(1.5f);
+        txtBox.text = c1.name + " is attacking!";
+        txtBox.text += (c1.Attack(c2)) ? "\nHit!" : "\nMissed!";
+        txtBox.text = "\n" + c2.name + " is attacking!";
+        txtBox.text += (c2.Attack(c1)) ? "\nHit!" : "\nMissed!";
+
+        if (c2.isDead()) {
+            if (c2 == pc.playerModel) {
                 gc.GameOver();
             }
         }
-        btnArray[0].Select();
+
+        foreach (Button btn in btnArray) btn.interactable = true;
+
+
     }
 
     public void BtnItem()

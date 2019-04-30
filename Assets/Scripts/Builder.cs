@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
-using Models;
+using Creatures;
 using Items;
 using PlayerAbilities;
 using Databases;

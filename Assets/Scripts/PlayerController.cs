@@ -4,35 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using Items;
-using Models;
+using Creatures;
 using Builders;
 
-// [System.Serializable]
-// public class Abilities
-// {
-
-//     public int bHealth = 20,
-//         maxHealth,
-//         bAttack = 1,
-//         bDefense = 1,
-//         bAgility = 1;
-
-//     public int health,
-//         attack,
-//         defense,
-//         agility;
-
-//     public int boostedHealth, boostedAttack, boostedDefense, boostedAgility;
-
-//     public void SetUp()
-//     {
-//         maxHealth = bHealth;
-//         health = bHealth;
-//         attack = bAttack;
-//         defense = bDefense;
-//         agility = bAgility;
-//     }
-// }
 public class PlayerController : MonoBehaviour
 {
 
@@ -86,14 +60,7 @@ public class PlayerController : MonoBehaviour
         {
             playerModel.Equip(Builder.BuildEquipment(itemName));
         }
-        // Debug.Log("Adding Equipment");
-        // List<Equipment> items = Builder.BuildAllEquipment();
-        // Debug.Log(items.Count);
-        // foreach (Equipment item in items) {
-        //     Debug.Log("test");
-        //     playerModel.Equip(item);
-        // }
-        // playerModel.inventory.AddPotions(20);
+
     }
     private void FixedUpdate()
     {

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 using Items;
 using Builders;
+using Creatures;
 
 public class EnemyController : MonoBehaviour
 {
@@ -17,13 +18,15 @@ public class EnemyController : MonoBehaviour
     public Slider slider;
     // public List<string> gauranteedDrops;
     public List<string> drops;
+    public Creature enemyModel;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         health = maxHealth;
         slider.maxValue = maxHealth;
         slider.value = health;
+        enemyModel = new Creature(maxHealth, agility, defense, attack, enemyName);
         // drops = Builder.BuildRandomItemDrop();
         // foreach (string drop in gauranteedDrops) {
         //     drops.Add(Builder.BuildItem(drop));
@@ -38,12 +41,12 @@ public class EnemyController : MonoBehaviour
 
     public bool TakeDamage(int d)
     {
-        health -= d;
-        slider.value = health;
-        return (health > 0);
+        enemyModel.TakeDamage(d);
+        slider.value = enemyModel.abilities.Health.Value;
+        return (enemyModel.isDead());
     }
 
-    public int GetHealth() { return health; }
+    public int GetHealth() { return enemyModel.abilities.Health.Value; }
 
-    public string GetName() { return enemyName; }
+    public string GetName() { return enemyModel.name; }
 }
