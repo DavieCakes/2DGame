@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
 
     public bool UseKey()
     {
-        if (playerModel.inventory.keys > 0)
+        if (playerModel.inventory.Keys > 0)
         {
             playerModel.inventory.RemoveKey();
             UpdateUI();
@@ -218,8 +218,8 @@ public class PlayerController : MonoBehaviour
     {
         health.maxValue = playerModel.abilities.Health.maxHealth;
         health.value = playerModel.abilities.Health.Value;
-        keyCount.text = "KEYS: " + playerModel.inventory.keys.ToString();
-        goldCount.text = "GOLD: " + playerModel.inventory.gold.ToString();
+        keyCount.text = "KEYS: " + playerModel.inventory.Keys.ToString();
+        goldCount.text = "GOLD: " + playerModel.inventory.Gold.ToString();
     }
 }
 

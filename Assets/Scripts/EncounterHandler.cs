@@ -60,7 +60,7 @@ public class EncounterHandler : MonoBehaviour
         Debug.Log("Encounter Started");
         pc.pause = true;
         gc.InEncounter();
-        overWorldUI.SetActive(false);
+        // overWorldUI.SetActive(false);
 
         if (transition != null)
         {
@@ -189,8 +189,10 @@ public class EncounterHandler : MonoBehaviour
                 anim.SetTrigger(boss ? "Attacking" : "TrigAttack");
                 yield return new WaitForSeconds(1.5f);
                 txtBox.text += "\n" + ec.GetName() + " attacked!";
-                pc.TakeDamage(ec.Attack());
-                txtBox.text += "\nYou have " + pc.playerModel.abilities.Health.Value + " health";
+                if(!pc.TakeDamage(ec.Attack()))
+                {
+                    gc.GameOver();
+                }
                 foreach (Button btn in btnArray)
                     btn.interactable = true;
             }
@@ -199,14 +201,17 @@ public class EncounterHandler : MonoBehaviour
         {
             anim.SetTrigger(boss ? "Attacking" : "TrigAttack");
             txtBox.text = ec.GetName() + " attacked!";
-            txtBox.text += "\nYou have " + pc.playerModel.abilities.Health.Value + " health";
-            yield return new WaitForSeconds(1.5f);
             if (pc.TakeDamage(ec.Attack()))
             {
+                yield return new WaitForSeconds(1.5f);
                 txtBox.text += "\n" + pc.GetName() + " attacked!";
-                ec.TakeDamage(pc.playerModel.abilities.Attack.Value);
-                foreach (Button btn in btnArray)
-                    btn.interactable = true;
+                if(ec.TakeDamage(pc.playerModel.abilities.Attack.Value))
+                    foreach (Button btn in btnArray)
+                        btn.interactable = true;
+            }
+            else
+            {
+                gc.GameOver();
             }
         }
         btnArray[0].Select();
@@ -222,7 +227,7 @@ public class EncounterHandler : MonoBehaviour
         Debug.Log("Items() was called!");
         if (pc.UsePotion())
         {
-            txtBox.text += "\nYou used a potion!\nYou have " + pc.playerModel.abilities.Health.Value + " health";
+            txtBox.text += "\nYou used a potion!";
         }
         else
         {

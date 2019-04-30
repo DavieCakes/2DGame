@@ -100,12 +100,12 @@ public class InventoryUI : MonoBehaviour
             ((this.UI_EquipmentSlotPanels[equipped.Key]).transform.Find("IconContainer").Find("Icon").GetComponent<Image>()).sprite = Resources.Load<Sprite>("Icons/" + equipped.Value.name);
         }
 
-        this.UI_PotionsRemainingLabel.GetComponent<Text>().text = this.playerController.playerModel.inventory.potions.ToString();
+        this.UI_PotionsRemainingLabel.GetComponent<Text>().text = this.playerController.playerModel.inventory.Potions.ToString();
     }
 
     void UpdateInventoryPanel()
     {
-        foreach (Equipment equipment in playerController.playerModel.inventory.equipmentInventory)
+        foreach (Equipment equipment in playerController.playerModel.inventory.EquipmentInventory)
         {
             GameObject tempDisplay = Instantiate(this.Prefab_InventoryItemDisplay);
             // Text tempText = tempDisplay.GetComponentInChildren<Text>();
