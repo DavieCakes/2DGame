@@ -171,11 +171,9 @@ namespace PlayerAbilities
             if (damageTaken - amount < 0)
             {
                 damageTaken = 0;
-                // this.isDirty = true;
                 return true;
             }
             damageTaken = damageTaken - amount;
-            // this.isDirty = true;
             return true;
         }
 
@@ -186,7 +184,6 @@ namespace PlayerAbilities
                 throw new ArgumentException("Damage amount: " + amount.ToString() + " cannot be negative.");
             }
             this.damageTaken += amount;
-            // this.isDirty = true;
         }
 
         public bool IsDead()
