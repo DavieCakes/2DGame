@@ -30,7 +30,6 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
     GameController gc;
-    // ItemsList items;
     Animator anim;
     int cDir = 0, pDir = 0;
 
@@ -58,9 +57,14 @@ public class PlayerController : MonoBehaviour
         playerModel.inventory.AddPotions(StartingPotions);
         foreach (string itemName in StartingEquipment)
         {
-            playerModel.Equip(Builder.BuildEquipment(itemName));
-        }
+            Equipment temp = null;
 
+            // Only equipment if setting temp to Equipment was successfull
+            if (Builder.GetEquipment(itemName, temp))
+            {
+                playerModel.Equip(temp);
+            }
+        }
     }
     private void FixedUpdate()
     {
@@ -147,12 +151,9 @@ public class PlayerController : MonoBehaviour
     public bool TakeDamage(int damage)
     {
         playerModel.TakeDamage(damage);
-        // abilities.health -= damage;
         UpdateUI();
-        // if (abilities.health <= 0)
         if (playerModel.isDead())
         {
-            //     abilities.health = 0;
             gc.GameOver();
             return false;
         }
@@ -166,14 +167,6 @@ public class PlayerController : MonoBehaviour
     }
 
     public string GetName() { return playerModel.name; }
-
-    public Item UseItem()
-    {
-        // if(items.Length == 0)
-        //     return null;
-        // return items.Remove(0);
-        return null;
-    }
 
     public void ReceiveDrop(Item item)
     {
@@ -189,49 +182,3 @@ public class PlayerController : MonoBehaviour
         goldCount.text = "GOLD: " + playerModel.inventory.Gold.ToString();
     }
 }
-
-// class ItemsList : List<Item> {
-
-// }
-
-// class ItemsList : List<Item>
-// {
-//     class Node
-//     {
-//         public Node next;
-//         public Its data;
-
-//         public Node(Its data)
-//         {
-//             this.data = data;
-//         }
-//     }
-
-//     Node head;
-//     public int Length = 0;
-
-//     public void Append(Item data)
-//     {
-//         Node newNode = new Node(data);
-//         Length++;
-//         if (head == null)
-//         {
-//             head = newNode;
-//         }
-//         else
-//         {
-//             Node cur = head;
-//             while (cur.next != null) cur = cur.next;
-//             cur.next = newNode;
-//         }
-//     }
-
-//     public Item Remove(int index)
-//     {
-//         if (index >= Length)
-//             return null;
-//         Node cur = head;
-//         for (int i = 0; i < index; i++) cur = cur.next;
-//         return cur.data;
-//     }
-// }

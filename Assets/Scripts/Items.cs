@@ -1,4 +1,5 @@
 using PlayerAbilities;
+using System;
 using System.Collections.Generic;
 
 namespace Items {
@@ -77,7 +78,7 @@ namespace Items {
         HELMET
 
     }
-    public class Equipment : Item
+    public class Equipment : Item, IComparable<Equipment>
     { 
         public readonly List<Modifier> modifiers;
         public EquipSlot equipSlot;
@@ -104,7 +105,6 @@ namespace Items {
         public void AddStatMod(Modifier StatMod) {
             this.modifiers.Add(StatMod);
         }
-// Assets/_Alpha/Textures/34x34RPGIcons.png
         override
         public string ToString() {
             string result = "";
@@ -117,6 +117,26 @@ namespace Items {
                 result += mod.Value + " " + mod.attType.ToString().ToLower() + "\n";
             }
             return result;
+        }
+
+        public int CompareTo(Equipment other)
+        {
+            int modSumOther = 0;
+            int modSumThis = 0;
+            foreach (Modifier m in other.modifiers) {
+                modSumOther += m.Value;
+            }
+            foreach (Modifier m in this.modifiers) {
+                modSumThis += m.Value;
+            }
+
+            if (modSumOther == modSumThis) {
+                return 0;
+            } else if (modSumOther < modSumThis) {
+                return 1;
+            } else {
+                return -1;
+            }
         }
     }
 }

@@ -9,15 +9,102 @@ using Databases;
 
 namespace Builders
 {
+
+    /*
+        This is a Singleton that holds all of the equipment the player can recieve.
+
+        When a new Item drop is asked for, Builder asks this EquipmentQueue for the next
+        peice of equipment.
+
+        Pop() returns null elements when the list is empty, important to check for null when using this
+        container.
+
+     */
+    public class EquipmentQueue {
+        private static readonly EquipmentQueue instance = new EquipmentQueue();
+
+        /* 
+            The list is initialized once, so as soon as it is empty, Pop() will return null elements.
+        */
+        List <Equipment> equipment = new List<Equipment>();
+        bool equipmentAdded = false;
+        static EquipmentQueue() {}
+
+        private EquipmentQueue() {}
+
+        public static EquipmentQueue Instance {
+            get {
+                return instance;
+            }
+        }
+
+        public bool InitEquimentQueue(List<Equipment> inEquip) {
+            if (equipmentAdded) {
+                return false;
+            }
+
+            bool dupFound = false;
+            foreach (Equipment e in inEquip) {
+                foreach (Equipment j in equipment) {
+                    if( j.name == e.name) {
+                        dupFound = true;
+                        break;
+                    }
+                }
+                if (dupFound) {
+                    continue; // continue to next equipment in inEquip
+                } else {
+                    equipment.Add(e);
+                }
+            }
+
+            // no duplicates here, now sort by sum of modifiers
+            equipment.Sort();
+            equipmentAdded = true;
+            return true;
+        }
+
+        public Equipment Pop() {
+            Equipment result = null;
+            if (equipment.Count != 0) {
+                result = equipment[0];
+                equipment.RemoveAt(0);
+                
+            }
+            return result;
+        }
+
+        public Equipment Get(string name) {
+            Equipment result = null;
+
+            foreach (Equipment e in equipment) {
+                if(e.name == name) {
+                    result = e;
+                    equipment.Remove(e);
+                    break;
+                }
+            }
+
+            return result;
+        }
+
+        public int Count() {
+            return equipment.Count;
+        }    }
     public class Builder
     {
+        private static EquipmentQueue equipmentQueue = null; // starts null, checked if still null in builder methods
+
+
+        /* This isn't currently used, but I'm keeping it here in case we want to save Creature stats in xml */
+
         // public static Creature BuildCreature(string creatureName) {
 
         //     Database database = new Database();
         //     Dictionary<string, object> creatureData = database.GetCreatureData(creatureName);
-        //     // get creature id, get creature abilitiess, get item_ids, get items, equip items, return
-        //     // long creatureId = (long)creatureData["id"];
-        //     // List<long> item_ids = (List<long>)creatureData["item_ids"];
+        //     get creature id, get creature abilitiess, get item_ids, get items, equip items, return
+        //     long creatureId = (long)creatureData["id"];
+        //     List<long> item_ids = (List<long>)creatureData["item_ids"];
         //     List<Items.Equipment> inventory = new List<Items.Equipment>();
         //     Dictionary<AbilityType, Ability> abilities = new Dictionary<AbilityType, Ability>();
         //     Creatures.Creature creature;
@@ -27,7 +114,7 @@ namespace Builders
         //     }
 
         //     foreach(KeyValuePair<string, long> entry in (Dictionary<string, long>)creatureData["Abilitys"]) {
-        //         // Debug.Log(entry.Key + " " + entry.Value);
+        //         Debug.Log(entry.Key + " " + entry.Value);
         //         abilities.Add(StringToAbilityType(entry.Key), new Ability((int)entry.Value));
         //     }
 
@@ -84,10 +171,18 @@ namespace Builders
             return equipSlot;
         }
 
+        private static void InitEquipmentQueue() {
+            if (equipmentQueue == null) {
+                equipmentQueue = EquipmentQueue.Instance;
+            }
+            equipmentQueue.InitEquimentQueue(BuildAllEquipment());
+        }
+
         /*
-            Only Builds Equipment
+            Only Builds Equipment,
+            This may introduce duplicates, it doesn't route through the EquipmentQueue
         */
-        public static Equipment BuildEquipment(string equipmentName)
+        private static Equipment BuildEquipment(string equipmentName)
         {
             Database database = new Database();
             Dictionary<string, object> itemData = database.GetItemData(equipmentName);
@@ -102,8 +197,24 @@ namespace Builders
             return item;
         }
 
+        /* 
+            Safe builder method, attempts to place object of given itemName into
+            the 'toReturn' reference. On failures returns false, on success returns
+            true.
+         */
+        public static bool GetEquipment(string itemName, Equipment toReturn) {
+            if (equipmentQueue == null) {
+                InitEquipmentQueue();
+            }
+            toReturn = equipmentQueue.Get(itemName);
+            if (toReturn == null) {
+                return false;
+            } 
+            return true;
+        }
+
         // builds all equipment in data.xml, for testing
-        public static List<Equipment> BuildAllEquipment()
+        private static List<Equipment> BuildAllEquipment()
         {
             Database database = new Database();
             List<Equipment> result = new List<Equipment>();
@@ -125,36 +236,19 @@ namespace Builders
          */
         public static List<Item> BuildRandomItemDrop()
         {
-
+            if(equipmentQueue == null) {
+                InitEquipmentQueue();
+            }
             List<Item> items = new List<Item>();
             System.Random rand = new System.Random();
-            // int size = rand.Next(1, 5);
-            Database data = new Database();
-            // Dictionary<string, object> itemData;
+            int size = rand.Next(1, 3); // .Next(int, int) returns int between [int, int), inclusive -> exclusive
 
-            items.Add(new HealthPotion());
+            for (int i = 0; i < size; i++) {
+                items.Add(new HealthPotion());
+            }
 
-            items.Add(BuildEquipment((string)data.GetRandomEquipmentData(rand)["name"]));
-  
-
-            // for (int i = 0; i < size; i++)
-            // {
-            //     int choice = rand.Next(1, 100);
-            //     if (choice <= 40)
-            //     {
-            //         items.Add(new HealthPotion());
-            //     }
-            //     if (choice >= 90)
-            //     {
-            //         items.Add(new Gold(10));
-            //     }
-            //     else
-            //     {
-            //         itemData = data.GetRandomEquipmentData(rand);
-            //         Items.Equipment item = BuildEquipment((string)itemData["name"]);
-            //         items.Add(item);
-            //     }
-            // }
+            Equipment toAdd = equipmentQueue.Pop();
+            if (toAdd != null) items.Add(toAdd);
 
             Debug.Log("Building Random Drop List");
             foreach (Item i in items)
