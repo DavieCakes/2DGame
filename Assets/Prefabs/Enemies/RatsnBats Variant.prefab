@@ -12,32 +12,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RatsnBats Variant
       objectReference: {fileID: 0}
-    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
-        type: 3}
-      propertyPath: drops.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
-        type: 3}
-      propertyPath: maxHealth
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
-        type: 3}
-      propertyPath: enemyName
-      value: Rats N' Bats
-      objectReference: {fileID: 0}
-    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
-        type: 3}
-      propertyPath: drops.Array.data[0]
-      value: 
-      objectReference: {fileID: 2953432343826177969, guid: c3b468d26bff40d429d3c1f225ae201d,
-        type: 3}
-    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
-        type: 3}
-      propertyPath: agility
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 1841772342755481649, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -143,15 +117,30 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4754490897425902925, guid: 62174776a1833b14d99edbc15a70b329,
+    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 250
+      propertyPath: drops.Array.size
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4754490897425902925, guid: 62174776a1833b14d99edbc15a70b329,
+    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 55
+      propertyPath: maxHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: enemyName
+      value: Rats N' Bats
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: drops.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228136432753923424, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: agility
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5946325290764513460, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
@@ -163,16 +152,26 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7843112212405665735, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 819d8f21fd513d7419e69f9f94f7c60a, type: 2}
     - target: {fileID: 6549012647700534810, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: ff6abc9e42b1d2842894c7b0b77fea56,
         type: 3}
-    - target: {fileID: 7843112212405665735, guid: 62174776a1833b14d99edbc15a70b329,
+    - target: {fileID: 4754490897425902925, guid: 62174776a1833b14d99edbc15a70b329,
         type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 819d8f21fd513d7419e69f9f94f7c60a, type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 4754490897425902925, guid: 62174776a1833b14d99edbc15a70b329,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 55
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62174776a1833b14d99edbc15a70b329, type: 3}

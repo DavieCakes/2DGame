@@ -94,7 +94,8 @@ public class EncounterHandler : MonoBehaviour
     IEnumerator BossFight()
     {
         Debug.Log("Boss Fight Started");
-        overWorldUI.SetActive(false);
+        pc.pause = true;
+        //overWorldUI.SetActive(false);
 
         if (transition != null)
         {
